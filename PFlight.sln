@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlightBL", "FlightBL\Flight
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlightDL", "FlightDL\FlightDL.csproj", "{14FF8822-A77A-4A52-8423-5A6F2F561A2D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlightModel", "FlightModel\FlightModel.csproj", "{6F214D2C-DFCC-4EBD-A69B-3BBF4C6F4950}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{14FF8822-A77A-4A52-8423-5A6F2F561A2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{14FF8822-A77A-4A52-8423-5A6F2F561A2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{14FF8822-A77A-4A52-8423-5A6F2F561A2D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F214D2C-DFCC-4EBD-A69B-3BBF4C6F4950}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F214D2C-DFCC-4EBD-A69B-3BBF4C6F4950}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F214D2C-DFCC-4EBD-A69B-3BBF4C6F4950}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F214D2C-DFCC-4EBD-A69B-3BBF4C6F4950}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

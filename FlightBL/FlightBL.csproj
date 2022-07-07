@@ -17,7 +17,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>..\bin\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -44,6 +44,16 @@
     <Compile Include="BL.cs" />
     <Compile Include="IBL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FlightDL\FlightDL.csproj">
+      <Project>{14ff8822-a77a-4a52-8423-5a6f2f561a2d}</Project>
+      <Name>FlightDL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FlightModel\FlightModel.csproj">
+      <Project>{6f214d2c-dfcc-4ebd-a69b-3bbf4c6f4950}</Project>
+      <Name>FlightModel</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
