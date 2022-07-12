@@ -27,6 +27,17 @@ namespace PFlight
             InitializeComponent();
             CurrentVM = new VM();
             this.DataContext = CurrentVM;
+
+        }
+
+        private void inList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            
+        }
+
+        private void outList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            
         }
     }
 }

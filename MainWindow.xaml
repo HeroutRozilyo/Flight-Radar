@@ -6,9 +6,13 @@
         xmlns:local="clr-namespace:PFlight"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
+
+
     <Grid>
-        <Label Content="FlightDetails" HorizontalAlignment="Left" Height="42" Margin="183,32,0,0" VerticalAlignment="Top" Width="152"/>
-        <ListBox x:Name="oneFlightDetails" HorizontalAlignment="Left" Height="143" Margin="183,99,0,0" VerticalAlignment="Top" Width="130"/>
+        <Label Content="in" HorizontalAlignment="Left" Height="42" Margin="183,32,0,0" VerticalAlignment="Top" Width="152"/>
+        <ListBox x:Name="inList" HorizontalAlignment="Left" Height="143" Margin="183,74,0,0" VerticalAlignment="Top" Width="130" MouseDoubleClick="inList_MouseDoubleClick"/>
+        <Label Content="out" HorizontalAlignment="Left" Height="42" Margin="26,35,0,0" VerticalAlignment="Top" Width="152"/>
+        <ListBox x:Name="outList" HorizontalAlignment="Left" Height="143" Margin="1049,219,0,0" VerticalAlignment="Top" Width="130" MouseDoubleClick="outList_MouseDoubleClick" />
 
     </Grid>
 </Window>
