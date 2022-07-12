@@ -11,7 +11,7 @@
 
     <Grid Margin="0,0,0.333,-1.333">
         <Label Content="in" HorizontalAlignment="Left" Height="42" Margin="183,32,0,0" VerticalAlignment="Top" Width="152"/>
-        <ListBox x:Name="inList" HorizontalAlignment="Left" Height="143" Margin="142,82,0,0" VerticalAlignment="Top" Width="130" ItemsSource="{Binding FlightsIN}" DisplayMemberPath="Source" MouseDoubleClick="inList_MouseDoubleClick" />
+        <ListBox x:Name="inList" HorizontalAlignment="Left" Height="143" Margin="205,82,0,0" VerticalAlignment="Top" Width="130" ItemsSource="{Binding FlightsIN}" DisplayMemberPath="Source" MouseDoubleClick="inList_MouseDoubleClick" />
         <Label Content="out" HorizontalAlignment="Left" Height="42" Margin="26,35,0,0" VerticalAlignment="Top" Width="152"/>
         <ListBox x:Name="outList" HorizontalAlignment="Left" Height="143" Margin="0,82,0,0" VerticalAlignment="Top" Width="130" ItemsSource="{Binding FlightsOut}" DisplayMemberPath="Destination" MouseDoubleClick="outList_MouseDoubleClick"/>
        
