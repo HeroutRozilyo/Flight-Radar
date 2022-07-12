@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using FlightDL;
 using FlightModel;
+using Microsoft.Graph;
 
 namespace FlightBL
 {
@@ -29,6 +30,20 @@ namespace FlightBL
                 /////////////////////////
             }
             return to;
+        }
+
+        public FlightM.Root getRootFlights(string key)
+        {
+
+            try
+            {
+                return DLAdapter.GetFlightData(key);
+            }
+            catch (Exception e)
+            {
+                /////////////////////////
+            }
+            return null;
         }
 
         public Dictionary<string, List<FlightData>> getFlights()

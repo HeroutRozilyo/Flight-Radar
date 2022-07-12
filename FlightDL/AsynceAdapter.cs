@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using FlightModel;
 using Microsoft.Graph;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
 namespace FlightDL
@@ -154,24 +155,28 @@ namespace FlightDL
         }
 
 
-        public Root GetFlightData(string key)
+        public FlightM.Root GetFlightData(string key)
         {
             var CurrentUrl = FlightURL + key;
-            Root CurrentFlight = null;
+          
+            FlightM.Root root = null;
 
             using (var webClient = new System.Net.WebClient())
             {
                 var json = webClient.DownloadString(CurrentUrl);
                 try
                 {
-                    CurrentFlight = (Root)Newtonsoft.Json.JsonConvert.DeserializeObject(json, typeof(Root));
+                                   
+                    root = (FlightM.Root)Newtonsoft.Json.JsonConvert.DeserializeObject(json, typeof(FlightM.Root));
                 }
                 catch (Exception e)
                 {
                     //////////////
                 }
             }
-            return CurrentFlight;
+            return root;
         }
     }
+
+  
 }

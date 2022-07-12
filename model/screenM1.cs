@@ -1,4 +1,5 @@
 ﻿using FlightModel;
+using Microsoft.Graph;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,6 +34,11 @@ namespace PFlight.model
             Dictionary<string, List<FlightData>> temp = getWebFlights();
             List<FlightData> outgo = temp["Outgoing"];
             return outgo;
+        }
+
+        public FlightM.Root GetRootF(string key)
+        {
+           return bl.getRootFlights(key);
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using PFlight.command;
+﻿using Microsoft.Graph;
+using PFlight.command;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -34,6 +35,11 @@ namespace PFlight.viewmodel
                 if (FlightsOut[i].Destination == "")
                     FlightsOut.RemoveAt(i);
             }
+        }
+
+        public FlightModel.FlightM.Root GetRootF(string key)
+        {
+           return model1.GetRootF(key);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

@@ -34,13 +34,15 @@ namespace PFlight
         private void inList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             FlightData flightI = inList.SelectedItem as FlightModel.FlightData;
-            detailsP.DataContext = flightI;     
+            detailsP.DataContext=CurrentVM.GetRootF(flightI.SourceId);
+            //detailsP.DataContext = flightI;     
         }
 
         private void outList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             FlightData flightO = outList.SelectedItem as FlightModel.FlightData;
-            detailsP.DataContext = flightO;
+            detailsP.DataContext = CurrentVM.GetRootF(flightO.SourceId);
+            //detailsP.DataContext = flightO;
         }
 
         

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FlightModel
 {
-    class FlightM
+    public class FlightM
     {
         // Root myDeserializedClass = JsonConvert.DeserializeObject<Root>(myJsonResponse);
         public class Aircraft

@@ -1,4 +1,5 @@
 ﻿using FlightModel;
+using Microsoft.Graph;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,6 @@ namespace FlightBL
         FlightData getOneFlights(string key, int val);//return one flights
         bool addOneFlights(string key, FlightData flight);
         bool removeOneFlights(string key, FlightData flight);
-
+        FlightM.Root getRootFlights(string key);
     }
 }
