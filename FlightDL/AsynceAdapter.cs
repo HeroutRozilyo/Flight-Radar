@@ -151,7 +151,7 @@ namespace FlightDL
             Result.Add("Incoming", Incoming);
             Result.Add("Outgoing", Outgoing);
             return Result;
-        } 
+        }
 
 
         public Root GetFlightData(string key)
@@ -159,14 +159,14 @@ namespace FlightDL
             var CurrentUrl = FlightURL + key;
             Root CurrentFlight = null;
 
-            using (var webClient=new System.Net.WebClient())
+            using (var webClient = new System.Net.WebClient())
             {
                 var json = webClient.DownloadString(CurrentUrl);
                 try
                 {
                     CurrentFlight = (Root)Newtonsoft.Json.JsonConvert.DeserializeObject(json, typeof(Root));
                 }
-                catch(Exception e)
+                catch (Exception e)
                 {
                     //////////////
                 }
