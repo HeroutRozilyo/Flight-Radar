@@ -14,18 +14,16 @@
         <ListBox x:Name="inList" HorizontalAlignment="Left" Height="143" Margin="142,82,0,0" VerticalAlignment="Top" Width="130" ItemsSource="{Binding FlightsIN}" DisplayMemberPath="Source" MouseDoubleClick="inList_MouseDoubleClick" />
         <Label Content="out" HorizontalAlignment="Left" Height="42" Margin="26,35,0,0" VerticalAlignment="Top" Width="152"/>
         <ListBox x:Name="outList" HorizontalAlignment="Left" Height="143" Margin="0,82,0,0" VerticalAlignment="Top" Width="130" ItemsSource="{Binding FlightsOut}" DisplayMemberPath="Destination" MouseDoubleClick="outList_MouseDoubleClick"/>
-        <ListView x:Name="details" HorizontalAlignment="Left" Height="126" Margin="59,257,0,0" VerticalAlignment="Top" Width="706" ItemsSource="{Binding}">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn  Header="SourceId" Width="80" DisplayMemberBinding="{Binding SourceId}"/>
-                    <GridViewColumn  Header="Source" Width="80" DisplayMemberBinding="{Binding Source}"/>
-                    <GridViewColumn  Header="Destination" Width="80" DisplayMemberBinding="{Binding Destination}"/>
-                    <GridViewColumn  Header="DataAndTime" Width="80" DisplayMemberBinding="{Binding DataAndTime}"/>
-                    <GridViewColumn  Header="FlightCode" Width="80" DisplayMemberBinding="{Binding FlightCode}"/>
-                    <GridViewColumn Header="Lat"  Width="200" DisplayMemberBinding="{Binding Lat}" />
-                    <GridViewColumn Header="Long"  Width="170" DisplayMemberBinding="{Binding Long}" />
-                </GridView>
-            </ListView.View>
-        </ListView>
+       
+        <StackPanel x:Name="detailsP" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" Height="126" Margin="59,257,0,0" VerticalAlignment="Top" Width="706">
+            <TextBlock Text="{Binding SourceId}"></TextBlock>
+            <TextBlock Text="{Binding Source}"></TextBlock>
+            <TextBlock Text="{Binding Destination}"></TextBlock>
+            <TextBlock Text="{Binding FlightCode}"></TextBlock>
+            <TextBlock Text="{Binding Lat}"></TextBlock>
+            <TextBlock Text="{Binding Long}"></TextBlock>
+        </StackPanel>
+
+
     </Grid>
 </Window>
