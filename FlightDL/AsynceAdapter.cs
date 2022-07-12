@@ -5,10 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using FlightModel;
+using Microsoft.Graph;
 using Newtonsoft.Json.Linq;
 
 namespace FlightDL
 {
+    //להפוך לאסינכרוני
     public class AsynceAdapter
     {
         private const string AllURL = @"https://data-cloud.flightradar24.com/zones/fcgi/feed.js?faa=1&bounds=38.64%2C21.377%2C24.676%2C40.605&satellite=1&mlat=1&flarm=1&adsb=1&gnd=1&air=1&vehicles=1&estimated=1&maxage=14400&gliders=1&stats=1";
@@ -149,8 +151,27 @@ namespace FlightDL
             Result.Add("Incoming", Incoming);
             Result.Add("Outgoing", Outgoing);
             return Result;
+        } 
+
+
+        public Root GetFlightData(string key)
+        {
+            var CurrentUrl = FlightURL + key;
+            Root CurrentFlight = null;
+
+            using (var webClient=new System.Net.WebClient())
+            {
+                var json = webClient.DownloadString(CurrentUrl);
+                try
+                {
+                    CurrentFlight = (Root)Newtonsoft.Json.JsonConvert.DeserializeObject(json, typeof(Root));
+                }
+                catch(Exception e)
+                {
+                    //////////////
+                }
+            }
+            return CurrentFlight;
         }
-
-
     }
 }

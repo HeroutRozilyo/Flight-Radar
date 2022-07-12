@@ -7,6 +7,8 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        
+        <Label Content="FlightDetails" HorizontalAlignment="Left" Height="42" Margin="183,32,0,0" VerticalAlignment="Top" Width="152"/>
+        <ListBox x:Name="oneFlightDetails" HorizontalAlignment="Left" Height="143" Margin="183,99,0,0" VerticalAlignment="Top" Width="130"/>
+
     </Grid>
 </Window>

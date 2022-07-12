@@ -8,7 +8,7 @@ using FlightModel;
 
 namespace FlightBL
 {
-    // להחליט אם צריך לעשות פקטורי או לא לשכבת DL/
+    
 
     public class BL : IBL
     {

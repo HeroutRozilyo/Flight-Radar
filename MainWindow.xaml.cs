@@ -20,9 +20,12 @@ namespace PFlight
     /// </summary>
     public partial class MainWindow : Window
     {
+        public VM CurrentVM { get; set; }
         public MainWindow()
         {
             InitializeComponent();
+            CurrentVM = new VM();
+            this.DataContext = CurrentVM;
         }
     }
 }

@@ -17,8 +17,5 @@ namespace FlightModel
         public string Destination { get; set; }
         public string FlightCode { get; set; }
 
-
-
-
     }
 }
