@@ -12,11 +12,7 @@ namespace FlightBL
 
     public class BL : IBL
     {
-        #region singelton
-        static readonly BL instance = new BL();
-        static BL() { }
-        public static BL Instance { get => instance; }
-        #endregion
+        
 
         private IDL DL = new DB();
         public AsynceAdapter DLAdapter = new AsynceAdapter();

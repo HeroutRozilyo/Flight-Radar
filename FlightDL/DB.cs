@@ -10,11 +10,6 @@ namespace FlightDL
     public class DB : IDL
     {
 
-        #region singelton
-        static readonly DB instance = new DB();
-        static DB() { }
-        public static DB Instance => instance;
-        #endregion
 
         //private Dictionary<string, List<FlightData>> Flights = new Dictionary<string, List<FlightData>>();
         private List<FlightData> FIncoming = new List<FlightData>();
