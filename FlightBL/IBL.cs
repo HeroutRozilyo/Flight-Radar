@@ -9,6 +9,7 @@ namespace FlightBL
 {
     public interface IBL
     {
+        Dictionary<string, List<FlightData>> getWebFlights(); //from the web
         Dictionary<string, List<FlightData>> getFlights();//return all the data at the data base       
         FlightData getOneFlights(string key, int val);//return one flights
         bool addOneFlights(string key, FlightData flight);

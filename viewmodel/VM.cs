@@ -13,12 +13,12 @@ namespace PFlight.viewmodel
         //model- bl
         public ObservableCollection<FlightModel.FlightData>  Flights { get; set; }
         public FlightBL.IBL BL { get; set; }
-        public command.Command1 Command1;
+   
 
         public VM()
         {
             Flights = new ObservableCollection<FlightModel.FlightData>(); ////
-            Command1 = new command.Command1();
+        
             BL = new FlightBL.BL();
             Flights.CollectionChanged += Flights_CollectionChanged; 
         }

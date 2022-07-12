@@ -55,7 +55,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="command\Command1.cs" />
+    <Compile Include="command\showFlightDCommand.cs" />
+    <Compile Include="model\screenM1.cs" />
+    <Compile Include="viewmodel\screen1VM.cs" />
     <Compile Include="viewmodel\VM.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -88,6 +90,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="Properties\DataSources\FlightModel.FlightData.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -105,6 +108,9 @@
       <Project>{6f214d2c-dfcc-4ebd-a69b-3bbf4c6f4950}</Project>
       <Name>FlightModel</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

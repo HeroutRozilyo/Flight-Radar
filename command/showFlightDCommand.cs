@@ -7,17 +7,21 @@ using System.Windows.Input;
 
 namespace PFlight.command
 {
-    public class Command1 : ICommand
+    class showFlightDCommand : ICommand
     {
         public event EventHandler CanExecuteChanged
         {
-            add { CommandManager.RequerySuggested += value; }
-            remove { CommandManager.RequerySuggested -= value; }
+            add
+            {  CommandManager.RequerySuggested += value; }
+
+            remove
+            { CommandManager.RequerySuggested -= value; }
         }
+
 
         public bool CanExecute(object parameter)
         {
-            return true;
+            throw new NotImplementedException();
         }
 
         public void Execute(object parameter)

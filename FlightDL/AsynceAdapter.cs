@@ -84,7 +84,7 @@ namespace FlightDL
         */
 
         //return the current flight.   
-        public Dictionary<string, List<FlightData>> GetCurrentFlights()//////////זה לא סנכרוני, אחרי שיעבוד לנסות לעבור לפונקציה למעלה שהיא א סנכרונית
+        public Dictionary<string, List<FlightData>> GetWebFlights()//////////זה לא סנכרוני, אחרי שיעבוד לנסות לעבור לפונקציה למעלה שהיא א סנכרונית
         {
 
             Dictionary<string, List<FlightData>> Result = new Dictionary<string, List<FlightData>>(); // return to BL

@@ -17,12 +17,12 @@ namespace FlightBL
         private IDL DL = new DB();
         public AsynceAdapter DLAdapter = new AsynceAdapter();
 
-        public Dictionary<string, List<FlightData>> getCurrentFlights()
+        public Dictionary<string, List<FlightData>> getWebFlights()
         {
             Dictionary<string, List<FlightData>> to = null;
             try
             {
-                to = DLAdapter.GetCurrentFlights();
+                to = DLAdapter.GetWebFlights();
             }
             catch (Exception e)
             {

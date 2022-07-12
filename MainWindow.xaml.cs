@@ -1,6 +1,8 @@
-﻿using PFlight.viewmodel;
+﻿using FlightModel;
+using PFlight.viewmodel;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,23 +23,25 @@ namespace PFlight
     /// </summary>
     public partial class MainWindow : Window
     {
-        public VM CurrentVM { get; set; }
+        public screen1VM CurrentVM { get; set; }
         public MainWindow()
         {
             InitializeComponent();
-            CurrentVM = new VM();
+            CurrentVM = new screen1VM();
             this.DataContext = CurrentVM;
-
         }
 
         private void inList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            
+            FlightData flightI = inList.SelectedItem as FlightModel.FlightData;
+            details.ItemsSource = flightI;
         }
 
         private void outList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            
+            FlightData flightO = outList.SelectedItem as FlightModel.FlightData;
         }
+
+        
     }
 }
