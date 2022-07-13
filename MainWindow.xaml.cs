@@ -38,14 +38,20 @@ namespace PFlight
         {
             var list = (ListView)sender; //to get the line
             FlightData flightO = list.SelectedItem as FlightModel.FlightData;
-            detailsP.DataContext = CurrentVM.GetRootF(flightO.SourceId);
+            Root flightM = CurrentVM.GetRootF(flightO.SourceId);
+            detailsP.DataContext = flightM;
             bool flag = CurrentVM.addFlightDB("Outgoing", flightO);
             if (flag)/////////////
             {
                 MessageBox.Show("Flight details saved successfully", "DB", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             else
+            {
                 MessageBox.Show("Flight details already exsis", "DB", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
+            if (CurrentVM.cm.CanExecute(flightM))
+                CurrentVM.cm.Execute(flightM);
 
         }
 
@@ -54,14 +60,19 @@ namespace PFlight
             var list = (ListView)sender; //to get the line
 
             FlightData flightO = list.SelectedItem as FlightModel.FlightData;
-            detailsP.DataContext = CurrentVM.GetRootF(flightO.SourceId);
+            Root flightM = CurrentVM.GetRootF(flightO.SourceId);
+            detailsP.DataContext = flightM;
             bool flag = CurrentVM.addFlightDB("Outgoing", flightO);
             if (flag)
             {
                 MessageBox.Show("Flight details saved successfully", "DB", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             else
+            {
                 MessageBox.Show("Flight details already exsis", "DB", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            if (CurrentVM.cm.CanExecute(flightM))
+                CurrentVM.cm.Execute(flightM);
         }
        
     }
