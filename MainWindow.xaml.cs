@@ -15,6 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using static FlightModel.FlightM;
 
 namespace PFlight
 {
@@ -34,7 +35,8 @@ namespace PFlight
         private void inList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             FlightData flightI = inList.SelectedItem as FlightModel.FlightData;
-            detailsP.DataContext=CurrentVM.GetRootF(flightI.SourceId);
+            Root flightM= CurrentVM.GetRootF(flightI.SourceId);
+            detailsP.DataContext = flightM;
             bool flag=CurrentVM.addFlightDB("Incoming", flightI);
             if(flag)
             {
@@ -43,6 +45,8 @@ namespace PFlight
             else
                 MessageBox.Show("Flight details already exsis", "DB", MessageBoxButton.OK, MessageBoxImage.Error);
 
+            if (CurrentVM.cm.CanExecute(flightM))
+                CurrentVM.cm.Execute(flightM);
         }
 
         private void outList_MouseDoubleClick(object sender, MouseButtonEventArgs e)

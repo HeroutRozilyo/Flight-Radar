@@ -179,7 +179,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="command\showFlightDCommand.cs" />
+    <Compile Include="command\updateMapCommand.cs" />
     <Compile Include="model\screenM1.cs" />
     <Compile Include="viewmodel\screen1VM.cs" />
     <Compile Include="viewmodel\VM.cs" />
