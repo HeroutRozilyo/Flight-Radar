@@ -60,7 +60,7 @@ namespace FlightBL
         {
             if (DL.addOneFlights(key, flight) == true)
                 return true;
-            throw new Exception("the current flight allready exsis.");
+            return false;
         }
 
         public bool removeOneFlights(string key, FlightData flight)

@@ -35,18 +35,29 @@ namespace PFlight
         {
             FlightData flightI = inList.SelectedItem as FlightModel.FlightData;
             detailsP.DataContext=CurrentVM.GetRootF(flightI.SourceId);
-            CurrentVM.addFlightDB("Incoming", flightI);
-            //detailsP.DataContext = flightI;     
+            bool flag=CurrentVM.addFlightDB("Incoming", flightI);
+            if(flag)
+            {
+                MessageBox.Show("Flight details saved successfully", "DB", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            else
+                MessageBox.Show("Flight details already exsis", "DB", MessageBoxButton.OK, MessageBoxImage.Error);
+
         }
 
         private void outList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             FlightData flightO = outList.SelectedItem as FlightModel.FlightData;
             detailsP.DataContext = CurrentVM.GetRootF(flightO.SourceId);
-            CurrentVM.addFlightDB("Outgoing", flightO);
-            //detailsP.DataContext = flightO;
-        }
+            bool flag = CurrentVM.addFlightDB("Outgoing", flightO);
+            if (flag)
+            {
+                MessageBox.Show("Flight details saved successfully", "DB", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            else
+                MessageBox.Show("Flight details already exsis", "DB", MessageBoxButton.OK, MessageBoxImage.Error);
 
+        }
         
     }
 }

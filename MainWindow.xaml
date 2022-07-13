@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:m="clr-namespace:Microsoft.Maps.MapControl.WPF;assembly=Microsoft.Maps.MapControl.WPF"
         xmlns:local="clr-namespace:PFlight"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
@@ -35,6 +36,14 @@
             <TextBlock Text="Country of origin:"></TextBlock>
             <TextBlock Text="Estimated arrival time:"></TextBlock>
         </StackPanel>
+
+
+        <Grid Margin="340,0,-0.333,-0.667">
+            <m:Map Center="32.009444, 34.876944" CredentialsProvider="AtJ_2LD-0Gxr9hiKHwkQc5kBc3-9wL38tkucgebtHsCYd1c56byKDhtzIxKbmrPk"
+               ZoomLevel="1" AnimationLevel="None" Grid.Column="1" Grid.RowSpan="4" Padding="10" >
+            <m:Pushpin Location="32.009444, 34.876944" ToolTip="BGA"/>
+          </m:Map>
+        </Grid>
 
 
     </Grid>
