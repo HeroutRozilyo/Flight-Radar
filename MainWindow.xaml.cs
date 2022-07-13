@@ -62,6 +62,10 @@ namespace PFlight
                 MessageBox.Show("Flight details already exsis", "DB", MessageBoxButton.OK, MessageBoxImage.Error);
 
         }
-        
+
+        private void ColorZone_ColorChanged(object sender, RoutedPropertyChangedEventArgs<Color> e)
+        {
+
+        }
     }
 }
