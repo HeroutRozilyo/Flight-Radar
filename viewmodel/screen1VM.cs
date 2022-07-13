@@ -8,6 +8,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using static FlightModel.FlightM;
 using Location = Microsoft.Maps.MapControl.WPF.Location;
@@ -20,7 +21,8 @@ namespace PFlight.viewmodel
         public updateMapCommand cm { get; set; }
         public ObservableCollection<FlightModel.FlightData> FlightsIN { get; set; }
         public ObservableCollection<FlightModel.FlightData> FlightsOut { get; set; }
-
+        public Map map {get;set;}
+        public ResourceDictionary res { get; set; }
         public screen1VM()
         {
             model1 = new model.screenM1();
@@ -45,19 +47,58 @@ namespace PFlight.viewmodel
 
         private void Cm_UpdateMap(FlightModel.FlightM.Root flightM)
         {
+            //order by the time
             var OrderedPlaces = (from f in flightM.trail
                                  orderby f.ts
                                  select f).ToList<Trail>();
-
+            
             addNewPolyLine(OrderedPlaces);
+
+            Trail CurrentPlace = null;
+             Pushpin PinCurrent = new Pushpin { ToolTip = flightM.identification.number.@default };//המטוס עצמו
+            //Pushpin PinCurrent = new Pushpin { ToolTip = flightM.airport.origin.position.latitude };
+            Pushpin PinOrigin = new Pushpin { ToolTip = flightM.airport.origin.name };//מוצא המטוס- שדקה תעופה
+
+            PositionOrigin origin = new PositionOrigin { X = 0.4, Y = 0.4 };//where to pat the icon of the flight
+            MapLayer.SetPositionOrigin(PinCurrent, origin);
+
+            CurrentPlace = OrderedPlaces.Last<Trail>();
+
+            ///לחשוב מה עושים עם הצד ההפוך של המטוס מבחינת כיוונים
+            if (flightM.airport.destination.code.iata=="TLV")
+            {
+                if(CurrentPlace.lat > 32.009444)
+                    PinCurrent.Style = (Style)res["ToIsrael"];
+                else
+                    PinCurrent.Style = (Style)res["FromIsrael"];
+            }
+            else
+            {
+                if(CurrentPlace.lat > 32.009444)
+                    PinCurrent.Style= (Style)res["FromIsrael"];
+                else
+                    PinCurrent.Style = (Style)res["ToIsrael"];
+            }
+
+            
+            var PlaneLocation = new Location { Latitude = CurrentPlace.lat, Longitude = CurrentPlace.lng };
+            PinCurrent.Location = PlaneLocation;
+
+            CurrentPlace = OrderedPlaces.First<Trail>();
+            PlaneLocation = new Location { Latitude = CurrentPlace.lat, Longitude = CurrentPlace.lng };
+            PinOrigin.Location = PlaneLocation;
+
+            map.Children.Add(PinOrigin);
+            map.Children.Add(PinCurrent);
+
+
         }
 
-        private void addNewPolyLine(List<Trail> orderedPlaces)
+        private void addNewPolyLine(List<Trail> orderedPlaces) //list of point 
         {
-            MapPolyline polyline = new MapPolyline();
-            //polyline.fill
+            MapPolyline polyline = new MapPolyline(); //creat line
             polyline.Stroke = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromRgb(230,10,10));
-            polyline.StrokeThickness = 1;
+            polyline.StrokeThickness = 2;
             polyline.Opacity = 0.7;
             polyline.Locations = new LocationCollection();
 
@@ -65,7 +106,8 @@ namespace PFlight.viewmodel
             {
                 polyline.Locations.Add(new Location(item.lat, item.lng));
             }
-            myMap.Children.clear();
+           // map.Children.Clear();
+            map.Children.Add(polyline);
 
         }
 

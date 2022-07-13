@@ -10,53 +10,72 @@
         Title="MainWindow" Height="639" Width="1093">
     <Window.Resources>
         <SolidColorBrush x:Key="ColorZoneBackground1" Color="#DD000000"/>
+        <Style TargetType="m:Pushpin" x:Key="FromIsrael">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Image Source="/Icon/icon2.jpg" />
+
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="m:Pushpin" x:Key="ToIsrael">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Image Source="/Icon/icon2_1.ico" />
+
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+
     </Window.Resources>
 
 
     <Grid Margin="0,0,0,-6">
-        <Label Content="in" HorizontalAlignment="Left" Height="42" Margin="183,32,0,0" VerticalAlignment="Top" Width="152"/>
-        <ListBox x:Name="inList" HorizontalAlignment="Left" Height="143" Margin="205,82,0,0" VerticalAlignment="Top" Width="130" ItemsSource="{Binding FlightsIN}" DisplayMemberPath="Source" MouseDoubleClick="inList_MouseDoubleClick" />
-        <Label Content="out" HorizontalAlignment="Left" Height="42" Margin="26,35,0,0" VerticalAlignment="Top" Width="152"/>
-        <ListBox x:Name="outList" HorizontalAlignment="Left" Height="143" Margin="0,82,0,0" VerticalAlignment="Top" Width="130" ItemsSource="{Binding FlightsOut}" DisplayMemberPath="Destination" MouseDoubleClick="outList_MouseDoubleClick"/>
+        <Label Content="Incoming Flight" Foreground="#FF477B8F"  FontWeight="Bold" HorizontalAlignment="Left" Height="42" Margin="187,107,0,0" FontFamily="Comic Sans MS" VerticalAlignment="Top" Width="152"/>
 
-        <StackPanel x:Name="detailsP" HorizontalAlignment="Left" Height="126" Margin="130,257,0,0" VerticalAlignment="Top" Width="205">
-            <TextBlock Text="{Binding identification.callsign}" FontFamily="Comic Sans MS"></TextBlock>
-            <TextBlock Text="{Binding aircraft.registration}" FontFamily="Comic Sans MS"></TextBlock>
-            <TextBlock Text="{Binding airline.name}" FontFamily="Comic Sans MS"></TextBlock>
-            <TextBlock Text="{Binding airport.destination.name}" FontFamily="Comic Sans MS"></TextBlock>
-            <TextBlock Text="{Binding airport.destination.position.country.name}" FontFamily="Comic Sans MS"></TextBlock>
-            <TextBlock Text="{Binding airport.origin.name}" FontFamily="Comic Sans MS"></TextBlock>
-            <TextBlock Text="{Binding airport.origin.position.country.name}" FontFamily="Comic Sans MS"></TextBlock>
-            <TextBlock Text="{Binding status.text}" FontFamily="Comic Sans MS"></TextBlock >
+        <Label Content="Outcoming Flight" FontFamily="Comic Sans MS" HorizontalAlignment="Left" Height="42" Margin="17,107,0,0" VerticalAlignment="Top" Width="152" Foreground="#FF477B8F" FontWeight="Bold"/>
+        <!-- <ListBox x:Name="outList" HorizontalAlignment="Left" Height="142" Margin="26,155,0,0" FontFamily="Comic Sans MS" VerticalAlignment="Top" Width="130" ItemsSource="{Binding FlightsOut}" DisplayMemberPath="Destination" MouseDoubleClick="outList_MouseDoubleClick"/>-->
+
+        <StackPanel x:Name="detailsP" HorizontalAlignment="Left" Height="145" Margin="142,313,0,0" VerticalAlignment="Top" Width="161">
+            <TextBlock Text="{Binding identification.callsign}" Foreground="#FF477B8F" FontFamily="Comic Sans MS"/>
+            <TextBlock Text="{Binding aircraft.registration}" Foreground="#FF477B8F" FontFamily="Comic Sans MS"/>
+            <TextBlock Text="{Binding airline.name}" Foreground="#FF477B8F" FontFamily="Comic Sans MS"/>
+            <TextBlock Text="{Binding airport.destination.name}"  Foreground="#FF477B8F" FontFamily="Comic Sans MS"/>
+            <TextBlock Text="{Binding airport.destination.position.country.name}" Foreground="#FF477B8F" FontFamily="Comic Sans MS"/>
+            <TextBlock Text="{Binding airport.origin.name}" FontFamily="Comic Sans MS" Foreground="#FF477B8F"/>
+            <TextBlock Text="{Binding airport.origin.position.country.name}" Foreground="#FF477B8F" FontFamily="Comic Sans MS"/>
+            <TextBlock Text="{Binding status.text}" Foreground="#FF477B8F" FontFamily="Comic Sans MS"/>
         </StackPanel>
-        <StackPanel x:Name="detailsPNName" HorizontalAlignment="Left" Height="126" Margin="11,257,0,0" VerticalAlignment="Top" Width="119">
-            <TextBlock Text="Flight code:" FontFamily="Comic Sans MS"></TextBlock>
-            <TextBlock Text="Flight name:" FontFamily="Comic Sans MS"></TextBlock>
-            <TextBlock Text="Airline:" FontFamily="Comic Sans MS"> </TextBlock>
-            <TextBlock Text="Destination:" FontFamily="Comic Sans MS"></TextBlock>
-            <TextBlock Text="Destination country:" FontFamily="Comic Sans MS"></TextBlock>
-            <TextBlock Text="Origin:" FontFamily="Comic Sans MS"></TextBlock>
-            <TextBlock Text="Country of origin:" FontFamily="Comic Sans MS"></TextBlock>
-            <TextBlock Text="Estimated arrival time:" FontFamily="Comic Sans MS"></TextBlock>
+        <StackPanel x:Name="detailsPNName" HorizontalAlignment="Left" Height="145" Margin="11,313,0,0" VerticalAlignment="Top" Width="138">
+            <TextBlock Text="Flight code:"  Foreground="#FF477B8F" FontFamily="Comic Sans MS"></TextBlock>
+            <TextBlock Text="Flight name:" Foreground="#FF477B8F" FontFamily="Comic Sans MS"></TextBlock>
+            <TextBlock Text="Airline:" Foreground="#FF477B8F" FontFamily="Comic Sans MS"></TextBlock>
+            <TextBlock Text="Destination:" Foreground="#FF477B8F" FontFamily="Comic Sans MS"></TextBlock>
+            <TextBlock Text="Destination country:" Foreground="#FF477B8F" FontFamily="Comic Sans MS"></TextBlock>
+            <TextBlock Text="Origin:" Foreground="#FF477B8F" FontFamily="Comic Sans MS"></TextBlock>
+            <TextBlock Text="Country of origin:" Foreground="#FF477B8F" FontFamily="Comic Sans MS"></TextBlock>
+            <TextBlock Text="Estimated arrival time:" Foreground="#FF477B8F" FontFamily="Comic Sans MS"></TextBlock>
         </StackPanel>
 
 
-        <Grid Margin="340,0,-0.333,-0.667">
+        <Grid x:Name="GridMap" Margin="340,0,-0.333,-0.667">
             <m:Map x:Name="myMap" Center="32.009444, 34.876944" CredentialsProvider="AtJ_2LD-0Gxr9hiKHwkQc5kBc3-9wL38tkucgebtHsCYd1c56byKDhtzIxKbmrPk"
-               ZoomLevel="1" AnimationLevel="None" Padding="10" Margin="10,68,0,10" >
-                <m:Pushpin Location="32.009444, 34.876944" ToolTip="BGA"/>
+               ZoomLevel="5" AnimationLevel="None" Padding="10" Margin="10,68,0,10" >
+                <m:Pushpin Location="32.009444, 34.876944" ToolTip="Tel Aviv- Ben Gurion"/>
             </m:Map>
         </Grid>
-        <materialDesign:ColorZone Background="#497b8f"
-            
-           
-            
+
+        <materialDesign:ColorZone Background="#497b8f"     
   Mode="Inverted"
   Padding="16">
             <DockPanel>
                 <materialDesign:PopupBox
-              
-                    
                     DockPanel.Dock="Right"
       PlacementMode="BottomAndAlignRightEdges">
                     <ListBox>
@@ -78,12 +97,45 @@
         VerticalAlignment="Center"
         Margin="16 0 0 0"
                        
-        Text="Material Design In XAML Toolkit" />
+        Text="Flight Data" />
                 </StackPanel>
             </DockPanel>
 
         </materialDesign:ColorZone>
 
+        <ListView  ItemsSource="{Binding FlightsOut}" FontFamily="Comic Sans MS" x:Name="outList" Margin="4,98,0,0" SelectionChanged="outList_SelectionChanged" FontSize="9" Foreground="#FF477B8F" Width="152" Height="146" HorizontalAlignment="Left" VerticalAlignment="Top">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Width="50" Header=" ">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Image Source="/Icon/AirPlaneIcone.ico" Width="20" />
+
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Width="65" Header=""
+                DisplayMemberBinding="{Binding Destination}"/>
+                </GridView>
+            </ListView.View>
+
+        </ListView>
+        <ListView Name="inList"  HorizontalAlignment="Left"  Margin="169,98,0,0" FontFamily="Comic Sans MS" VerticalAlignment="Top" FontSize="9"  Foreground="#FF477B8F" Width="166" ItemsSource="{Binding FlightsIN}" SelectionChanged="inlist_SelectionChanged" Height="146.04"  >
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Width="50" Header=" ">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Image Source="/Icon/AirPlaneIcone.ico" Width="20" />
+
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Width="65" Header=""
+                DisplayMemberBinding="{Binding Source}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
 
     </Grid>
 </Window>

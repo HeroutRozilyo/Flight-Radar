@@ -30,28 +30,14 @@ namespace PFlight
             InitializeComponent();
             CurrentVM = new screen1VM();
             this.DataContext = CurrentVM;
+            CurrentVM.map = myMap;///////////////////////////////
+            CurrentVM.res = Resources;
         }
 
-        private void inList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        private void outList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            FlightData flightI = inList.SelectedItem as FlightModel.FlightData;
-            Root flightM= CurrentVM.GetRootF(flightI.SourceId);
-            detailsP.DataContext = flightM;
-            bool flag=CurrentVM.addFlightDB("Incoming", flightI);
-            if(flag)
-            {
-                MessageBox.Show("Flight details saved successfully", "DB", MessageBoxButton.OK, MessageBoxImage.Information);
-            }
-            else
-                MessageBox.Show("Flight details already exsis", "DB", MessageBoxButton.OK, MessageBoxImage.Error);
-
-            if (CurrentVM.cm.CanExecute(flightM))
-                CurrentVM.cm.Execute(flightM);
-        }
-
-        private void outList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            FlightData flightO = outList.SelectedItem as FlightModel.FlightData;
+            var list = (ListView)sender; //to get the line
+            FlightData flightO = list.SelectedItem as FlightModel.FlightData;
             detailsP.DataContext = CurrentVM.GetRootF(flightO.SourceId);
             bool flag = CurrentVM.addFlightDB("Outgoing", flightO);
             if (flag)
@@ -63,9 +49,20 @@ namespace PFlight
 
         }
 
-        private void ColorZone_ColorChanged(object sender, RoutedPropertyChangedEventArgs<Color> e)
+        private void inlist_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            var list = (ListView)sender; //to get the line
 
+            FlightData flightO = list.SelectedItem as FlightModel.FlightData;
+            detailsP.DataContext = CurrentVM.GetRootF(flightO.SourceId);
+            bool flag = CurrentVM.addFlightDB("Outgoing", flightO);
+            if (flag)
+            {
+                MessageBox.Show("Flight details saved successfully", "DB", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            else
+                MessageBox.Show("Flight details already exsis", "DB", MessageBoxButton.OK, MessageBoxImage.Error);
         }
+       
     }
 }
