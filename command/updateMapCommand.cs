@@ -28,7 +28,7 @@ namespace PFlight.command
             {
                 var temp = (FlightModel.FlightM.Root)parameter;
             if (UpdateMap != null)
-                    UpdateMap(temp);////
+                    UpdateMap(temp);//////////////////
             }
             catch(Exception e)
             {

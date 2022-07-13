@@ -40,7 +40,7 @@ namespace PFlight
             FlightData flightO = list.SelectedItem as FlightModel.FlightData;
             detailsP.DataContext = CurrentVM.GetRootF(flightO.SourceId);
             bool flag = CurrentVM.addFlightDB("Outgoing", flightO);
-            if (flag)
+            if (flag)/////////////
             {
                 MessageBox.Show("Flight details saved successfully", "DB", MessageBoxButton.OK, MessageBoxImage.Information);
             }

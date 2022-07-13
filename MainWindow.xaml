@@ -25,7 +25,7 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate>
-                        <Image Source="/Icon/icon2_1.ico" />
+                        <Image Source="/Icon/icon2_1.ico"/>
 
                     </ControlTemplate>
                 </Setter.Value>

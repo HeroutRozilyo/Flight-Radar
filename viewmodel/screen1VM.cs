@@ -52,7 +52,7 @@ namespace PFlight.viewmodel
                                  orderby f.ts
                                  select f).ToList<Trail>();
             
-            addNewPolyLine(OrderedPlaces);
+            addNewPolyLine(OrderedPlaces);//////////
 
             Trail CurrentPlace = null;
              Pushpin PinCurrent = new Pushpin { ToolTip = flightM.identification.number.@default };//המטוס עצמו
