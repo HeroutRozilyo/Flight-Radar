@@ -40,5 +40,11 @@ namespace PFlight.model
         {
            return bl.getRootFlights(key);
         }
+
+        public void addFlightDB(string key,FlightModel.FlightData f)
+        {
+            bl.addOneFlights(key,f);
+        }
+
     }
 }

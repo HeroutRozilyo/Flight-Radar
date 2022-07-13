@@ -70,7 +70,6 @@ namespace FlightDL
                 }
             }
             return false;
-
         }
 
         public bool removeOneFlights(string key, FlightData flight)

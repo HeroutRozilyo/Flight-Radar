@@ -58,7 +58,8 @@ namespace FlightBL
 
         public bool addOneFlights(string key, FlightData flight)
         {
-            if (DL.addOneFlights(key, flight) == true) return true;
+            if (DL.addOneFlights(key, flight) == true)
+                return true;
             throw new Exception("the current flight allready exsis.");
         }
 

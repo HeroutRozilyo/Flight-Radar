@@ -42,6 +42,11 @@ namespace PFlight.viewmodel
            return model1.GetRootF(key);
         }
 
+        public void addFlightDB( string key,FlightModel.FlightData f)
+        {
+            model1.addFlightDB(key, f);
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
 

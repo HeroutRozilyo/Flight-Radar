@@ -35,6 +35,7 @@ namespace PFlight
         {
             FlightData flightI = inList.SelectedItem as FlightModel.FlightData;
             detailsP.DataContext=CurrentVM.GetRootF(flightI.SourceId);
+            CurrentVM.addFlightDB("Incoming", flightI);
             //detailsP.DataContext = flightI;     
         }
 
@@ -42,6 +43,7 @@ namespace PFlight
         {
             FlightData flightO = outList.SelectedItem as FlightModel.FlightData;
             detailsP.DataContext = CurrentVM.GetRootF(flightO.SourceId);
+            CurrentVM.addFlightDB("Outgoing", flightO);
             //detailsP.DataContext = flightO;
         }
 
