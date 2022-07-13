@@ -237,6 +237,11 @@
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icon\AirPlaneIcone.ico" />
+    <Resource Include="Icon\icon2.jpg" />
+    <Resource Include="Icon\icon2_1.ico" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="packages\System.Text.Json.6.0.4\build\System.Text.Json.targets" Condition="Exists('packages\System.Text.Json.6.0.4\build\System.Text.Json.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
