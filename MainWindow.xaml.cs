@@ -34,26 +34,46 @@ namespace PFlight
             CurrentVM.res = Resources;
         }
 
-        private void outList_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            var list = (ListView)sender; //to get the line
-            FlightData flightO = list.SelectedItem as FlightModel.FlightData;
-            Root flightM = CurrentVM.GetRootF(flightO.SourceId);
-            detailsP.DataContext = flightM;
-            bool flag = CurrentVM.addFlightDB("Outgoing", flightO);
-            if (flag)/////////////
-            {
-                MessageBox.Show("Flight details saved successfully", "DB", MessageBoxButton.OK, MessageBoxImage.Information);
-            }
-            else
-            {
-                MessageBox.Show("Flight details already exsis", "DB", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
+        //private void outList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        //{
+        //    var list = (ListView)sender; //to get the line
+        //    FlightData flightO = list.SelectedItem as FlightModel.FlightData;
+        //    Root flightM = CurrentVM.GetRootF(flightO.SourceId);
+        //    detailsP.DataContext = flightM;
+        //    bool flag = CurrentVM.addFlightDB("Outgoing", flightO);
+        //    if (flag)/////////////
+        //    {
+        //        MessageBox.Show("Flight details saved successfully", "DB", MessageBoxButton.OK, MessageBoxImage.Information);
+        //    }
+        //    else
+        //    {
+        //        MessageBox.Show("Flight details already exsis", "DB", MessageBoxButton.OK, MessageBoxImage.Error);
+        //    }
 
-            if (CurrentVM.cm.CanExecute(flightM))
-                CurrentVM.cm.Execute(flightM);
+        //    if (CurrentVM.cm.CanExecute(flightM))
+        //        CurrentVM.cm.Execute(flightM);
 
-        }
+        //}
+
+        //private void inlist_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        //{
+        //    var list = (ListView)sender; //to get the line
+
+        //    FlightData flightO = list.SelectedItem as FlightModel.FlightData;
+        //    Root flightM = CurrentVM.GetRootF(flightO.SourceId);
+        //    detailsP.DataContext = flightM;
+        //    bool flag = CurrentVM.addFlightDB("InComing", flightO);
+        //    if (flag)
+        //    {
+        //        MessageBox.Show("Flight details saved successfully", "DB", MessageBoxButton.OK, MessageBoxImage.Information);
+        //    }
+        //    else
+        //    {
+        //        MessageBox.Show("Flight details already exsis", "DB", MessageBoxButton.OK, MessageBoxImage.Error);
+        //    }
+        //    if (CurrentVM.cm.CanExecute(flightM))
+        //        CurrentVM.cm.Execute(flightM);
+        //}
 
         private void inlist_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -62,18 +82,27 @@ namespace PFlight
             FlightData flightO = list.SelectedItem as FlightModel.FlightData;
             Root flightM = CurrentVM.GetRootF(flightO.SourceId);
             detailsP.DataContext = flightM;
-            bool flag = CurrentVM.addFlightDB("InComing", flightO);
-            if (flag)
+
+            if (flightO.Source == "TLV")
             {
-                MessageBox.Show("Flight details saved successfully", "DB", MessageBoxButton.OK, MessageBoxImage.Information);
+                CurrentVM.addFlightDB("Outgoing", flightO);
             }
             else
             {
-                MessageBox.Show("Flight details already exsis", "DB", MessageBoxButton.OK, MessageBoxImage.Error);
+                   CurrentVM.addFlightDB("Incoming", flightO);
             }
+            bool flag = CurrentVM.addFlightDB("InComing", flightO);
+            //if (flag)
+            //{
+            //    MessageBox.Show("Flight details saved successfully", "DB", MessageBoxButton.OK, MessageBoxImage.Information);
+            //}
+            //else
+            //{
+            //    MessageBox.Show("Flight details already exsis", "DB", MessageBoxButton.OK, MessageBoxImage.Error);
+            //}
             if (CurrentVM.cm.CanExecute(flightM))
                 CurrentVM.cm.Execute(flightM);
         }
-       
+
     }
 }

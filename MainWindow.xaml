@@ -103,7 +103,7 @@
 
         </materialDesign:ColorZone>
 
-        <ListView  ItemsSource="{Binding FlightsOut}" FontFamily="Comic Sans MS" x:Name="outList" Margin="4,98,0,0" SelectionChanged="outList_SelectionChanged" FontSize="9" Foreground="#FF477B8F" Width="152" Height="146" HorizontalAlignment="Left" VerticalAlignment="Top">
+        <ListView  ItemsSource="{Binding FlightsOut}" FontFamily="Comic Sans MS" x:Name="outList" Margin="4,98,0,0" SelectionChanged="inlist_SelectionChanged" FontSize="9" Foreground="#FF477B8F" Width="152" Height="146" HorizontalAlignment="Left" VerticalAlignment="Top">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Width="50" Header=" ">
