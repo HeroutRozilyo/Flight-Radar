@@ -14,8 +14,8 @@
         <ListBox x:Name="inList" HorizontalAlignment="Left" Height="143" Margin="205,82,0,0" VerticalAlignment="Top" Width="130" ItemsSource="{Binding FlightsIN}" DisplayMemberPath="Source" MouseDoubleClick="inList_MouseDoubleClick" />
         <Label Content="out" HorizontalAlignment="Left" Height="42" Margin="26,35,0,0" VerticalAlignment="Top" Width="152"/>
         <ListBox x:Name="outList" HorizontalAlignment="Left" Height="143" Margin="0,82,0,0" VerticalAlignment="Top" Width="130" ItemsSource="{Binding FlightsOut}" DisplayMemberPath="Destination" MouseDoubleClick="outList_MouseDoubleClick"/>
-       
-        <StackPanel x:Name="detailsP" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" Height="126" Margin="59,257,0,0" VerticalAlignment="Top" Width="706">
+
+        <StackPanel x:Name="detailsP" HorizontalAlignment="Left" Height="126" Margin="130,257,0,0" VerticalAlignment="Top" Width="205">
             <TextBlock Text="{Binding identification.callsign}"></TextBlock>
             <TextBlock Text="{Binding aircraft.registration}"></TextBlock>
             <TextBlock Text="{Binding airline.name}"></TextBlock>
@@ -24,6 +24,16 @@
             <TextBlock Text="{Binding airport.origin.name}"></TextBlock>
             <TextBlock Text="{Binding airport.origin.position.country.name}"></TextBlock>
             <TextBlock Text="{Binding status.text}"></TextBlock>
+        </StackPanel>
+        <StackPanel x:Name="detailsPNName" HorizontalAlignment="Left" Height="126" Margin="11,257,0,0" VerticalAlignment="Top" Width="119">
+            <TextBlock Text="Flight code:"></TextBlock>
+            <TextBlock Text="Flight name:"></TextBlock>
+            <TextBlock Text="Airline:"></TextBlock>
+            <TextBlock Text="Destination:"></TextBlock>
+            <TextBlock Text="Destination country:"></TextBlock>
+            <TextBlock Text="Origin:"></TextBlock>
+            <TextBlock Text="Country of origin:"></TextBlock>
+            <TextBlock Text="Estimated arrival time:"></TextBlock>
         </StackPanel>
 
 
