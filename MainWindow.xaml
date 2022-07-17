@@ -14,7 +14,7 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate>
-                        <Image Source="/Icon/icon2.jpg" />
+                        <Image Source="C:\Users\da077\source\repos\PFlight\Icon\from.png" />
 
                     </ControlTemplate>
                 </Setter.Value>
@@ -25,7 +25,7 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate>
-                        <Image Source="/Icon/icon2_1.ico"/>
+                        <Image Source="C:\Users\da077\source\repos\PFlight\Icon\to.png"/>
 
                     </ControlTemplate>
                 </Setter.Value>
