@@ -17,24 +17,18 @@ namespace PFlight.model
             bl = new FlightBL.BL();
         }
 
+        //public async Task<Dictionary<string, List<FlightData>>> getWebFlights()
+        //{
+        //    return await bl.getWebFlights();
+        //}
+
         public Dictionary<string, List<FlightData>> getWebFlights()
         {
-           return bl.getWebFlights();
+            return bl.getWebFlights();
         }
 
-        public List<FlightData> FlightInWeb()
-        {
-            Dictionary<string, List<FlightData>> temp = getWebFlights();
-            List<FlightData> incom= temp["Incoming"];
-            return incom;
-        }
 
-        public List<FlightData> FlightOutWeb()
-        {
-            Dictionary<string, List<FlightData>> temp = getWebFlights();
-            List<FlightData> outgo = temp["Outgoing"];
-            return outgo;
-        }
+
 
         public FlightM.Root GetRootF(string key)
         {
@@ -45,6 +39,13 @@ namespace PFlight.model
         {
            return bl.addOneFlights(key,f);
         }
+
+
+        public Dictionary<string, List<FlightData>> getFlights()
+        {
+            return bl.getFlights();
+        }
+
 
     }
 }

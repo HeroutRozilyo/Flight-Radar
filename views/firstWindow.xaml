@@ -6,8 +6,15 @@
         xmlns:local="clr-namespace:PFlight.views"
         mc:Ignorable="d"
         Title="firstWindow" Height="450" Width="800">
-    <Grid>
-        <Button x:Name="seeF" Content="StartTrack" Command="" HorizontalAlignment="Left" Margin="65,125,0,0" VerticalAlignment="Top" Width="159" Height="50"/>
+
+    <Grid Margin="0,0,0.333,-0.333">
+        <Grid.Background>
+            <ImageBrush ImageSource="C:\Users\da077\source\repos\PFlight\Icon\backgroundMainScreen.png" Opacity="0.5"/>
+        </Grid.Background>
+        <Label x:Name="label" Content="WELCOME &#xD;&#xA; TO &#xD;&#xA; FLIGHTRADAR24 " HorizontalAlignment="Center" Margin="137,94,140,56" VerticalAlignment="Center" Height="271" Width="516" FontFamily="Franklin Gothic Heavy" FontSize="30" BorderBrush="Black" Foreground="Black" FontWeight="Bold" Padding="7" FlowDirection="LeftToRight" FontStyle="Italic" OpacityMask="#FF241D1D" HorizontalContentAlignment="Center"/>
+
+
+        <Button x:Name="seeF" Content="StartTrack" Command="" HorizontalAlignment="Left" Margin="290,273,0,0" VerticalAlignment="Top" Width="159" Height="50"/>
 
     </Grid>
 </Window>

@@ -18,18 +18,21 @@ namespace FlightBL
         private IDL DL = new DB();
         public AsynceAdapter DLAdapter = new AsynceAdapter();
 
+        // public async Task<Dictionary<string, List<FlightData>>> getWebFlights()
         public Dictionary<string, List<FlightData>> getWebFlights()
         {
             Dictionary<string, List<FlightData>> to = null;
             try
             {
-                to = DLAdapter.GetWebFlights();
+                to =  DLAdapter.GetWebFlights();
+                //to = await DLAdapter.GetWebFlights();
+
             }
             catch (Exception e)
             {
                 /////////////////////////
             }
-            return to;
+            return  to;
         }
 
         public FlightM.Root getRootFlights(string key)

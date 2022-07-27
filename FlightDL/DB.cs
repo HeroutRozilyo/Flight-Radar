@@ -22,6 +22,7 @@ namespace FlightDL
             Result.Add("Incoming", FIncoming);
             Result.Add("Outgoing", FOutgoing);
             return Result;
+
         }
 
         //return one flights
