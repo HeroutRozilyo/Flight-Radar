@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PFlight.viewmodel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,6 +10,11 @@ namespace PFlight.command
 {
     public class OpenWindowCommand : ICommand
     {
+        OpenWindowVM vm;
+        public OpenWindowCommand(OpenWindowVM v)
+        {
+            vm = v;
+        }
         public event EventHandler CanExecuteChanged
         {
             add
@@ -19,15 +25,13 @@ namespace PFlight.command
         }
 
         public bool CanExecute(object parameter)
-        {
-            if (parameter != null)
-                return true;
-            return false;
+        {           
+                return true;         
         }
 
         public void Execute(object parameter)
         {
-
+            vm.openWind();
         }
     }
 }

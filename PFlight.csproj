@@ -184,7 +184,6 @@
     <Compile Include="model\screenM1.cs" />
     <Compile Include="viewmodel\OpenWindowVM.cs" />
     <Compile Include="viewmodel\screen1VM.cs" />
-    <Compile Include="viewmodel\VM.cs" />
     <Compile Include="views\firstWindow.xaml.cs">
       <DependentUpon>firstWindow.xaml</DependentUpon>
     </Compile>

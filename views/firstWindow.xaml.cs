@@ -25,7 +25,7 @@ namespace PFlight.views
         public firstWindow()
         {
             InitializeComponent();
-            CurrentVM = new OpenWindowVM();
+            CurrentVM = new OpenWindowVM(this);
             this.DataContext = CurrentVM;
 
         }

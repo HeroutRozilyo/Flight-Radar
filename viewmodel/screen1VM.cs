@@ -62,11 +62,11 @@ namespace PFlight.viewmodel
         }
 
         //to uodate the data all 10 sec. the func get the new data from the web, clean the data and return specific data on flights.
-       // public async Task getUrlF()
+        //public async Task getUrlF()
         public void getUrlF()
         {
-            //Dictionary<string, List<FlightData>> temp = await model1.getWebFlights();
-           Dictionary<string, List<FlightData>> temp =  model1.getWebFlights();
+           // Dictionary<string, List<FlightData>> temp = await model1.getWebFlights();
+             Dictionary<string, List<FlightData>> temp =  model1.getWebFlights();
 
             FlightsIN = new ObservableCollection<FlightModel.FlightData>(temp["Incoming"]);
             FlightsOut = new ObservableCollection<FlightModel.FlightData>(temp["Outgoing"]);

@@ -33,69 +33,70 @@ namespace FlightDL
         //    List<FlightData> Incoming = new List<FlightData>();
         //    List<FlightData> Outgoing = new List<FlightData>();
 
-        //    HttpClient client = new HttpClient();
+        //   // HttpClient client = new HttpClient();
 
 
-        //    HttpResponseMessage response = await client.GetAsync(AllURL);
-        //    response.EnsureSuccessStatusCode();
-        //    string responseBody = await response.Content.ReadAsStringAsync();
+        //    //HttpResponseMessage response = await client.GetAsync(AllURL);
+        //    //response.EnsureSuccessStatusCode();
+        //    //string responseBody = await response.Content.ReadAsStringAsync();
 
-        //   // using (var webClient = new System.Net.WebClient())
-        //    //{
-        //        HelperClass Helper = new HelperClass();
+        //     using (var webClient = new System.Net.WebClient())
+        //    {
+        //       HelperClass Helper = new HelperClass();
 
-        //    //var json = await Task.Run(() => webClient.DownloadString(AllURL)); ///////////////////
 
-        //    //                var json = await webClient.DownloadStringAsync(AllURL);
 
-        //    // var json =  webClient.DownloadString(AllURL);
-        //    AllFlightData = JsonConvert.DeserializeObject<JObject>(responseBody);
-        //   // AllFlightData = JObject.Parse(responseBody);
+        //      //var json = await webClient.DownloadStringAsync(AllURL);
 
-        //        try
+        //     var json = await  webClient.DownloadStringTaskAsync(AllURL);
+        //      AllFlightData = JObject.Parse(json);
+
+
+
+        //    try
+        //    {
+        //        //move on all the flights
+        //        foreach (var item in AllFlightData)
         //        {
-        //            //move on all the flights
-        //            foreach (var item in AllFlightData)
+        //            var key = item.Key;
+        //            if (key == "full_count" || key == "version") continue;
+        //            if (item.Value[11].ToString() == "TLV")
         //            {
-        //                var key = item.Key;
-        //                if (key == "full_count" || key == "version") continue;
-        //                if (item.Value[11].ToString() == "TLV")
+        //                Outgoing.Add(new FlightData
         //                {
-        //                    Outgoing.Add(new FlightData
-        //                    {
-        //                        Id = -1,
-        //                        Source = item.Value[11].ToString(),
-        //                        Destination = item.Value[12].ToString(),
-        //                        SourceId = key,
-        //                        Long = Convert.ToDouble(item.Value[1]),
-        //                        Lat = Convert.ToDouble(item.Value[2]),
-        //                        DataAndTime = Helper.GetDateTimeFromEpohc(Convert.ToDouble(item.Value[10])),
-        //                        FlightCode = item.Value[13].ToString()
+        //                    Id = -1,
+        //                    Source = item.Value[11].ToString(),
+        //                    Destination = item.Value[12].ToString(),
+        //                    SourceId = key,
+        //                    Long = Convert.ToDouble(item.Value[1]),
+        //                    Lat = Convert.ToDouble(item.Value[2]),
+        //                    DataAndTime = Helper.GetDateTimeFromEpohc(Convert.ToDouble(item.Value[10])),
+        //                    FlightCode = item.Value[13].ToString()
 
-        //                    });
+        //                });
 
-        //                }
-        //                if (item.Value[12].ToString() == "TLV")
+        //            }
+        //            if (item.Value[12].ToString() == "TLV")
+        //            {
+        //                Incoming.Add(new FlightData
         //                {
-        //                    Incoming.Add(new FlightData
-        //                    {
-        //                        Id = -1,
-        //                        Source = item.Value[11].ToString(),
-        //                        Destination = item.Value[12].ToString(),
-        //                        SourceId = key,
-        //                        Long = Convert.ToDouble(item.Value[1]),
-        //                        Lat = Convert.ToDouble(item.Value[2]),
-        //                        DataAndTime = Helper.GetDateTimeFromEpohc(Convert.ToDouble(item.Value[10])),
-        //                        FlightCode = item.Value[13].ToString()
+        //                    Id = -1,
+        //                    Source = item.Value[11].ToString(),
+        //                    Destination = item.Value[12].ToString(),
+        //                    SourceId = key,
+        //                    Long = Convert.ToDouble(item.Value[1]),
+        //                    Lat = Convert.ToDouble(item.Value[2]),
+        //                    DataAndTime = Helper.GetDateTimeFromEpohc(Convert.ToDouble(item.Value[10])),
+        //                    FlightCode = item.Value[13].ToString()
 
-        //                    });
+        //                });
 
-        //                }
-        //          }
+        //            }
         //        }
-        //        catch (Exception e) { Debug.Print(e.Message); }
+        //    }
+        //    catch (Exception e) { Debug.Print(e.Message); }
 
-        //    //}
+        //    }
 
         //    Result.Add("Incoming", Incoming);
         //    Result.Add("Outgoing", Outgoing);
@@ -129,7 +130,7 @@ namespace FlightDL
             using (var webClient = new System.Net.WebClient())
             {
                 HelperClass Helper = new HelperClass();
-                 var json =  webClient.DownloadString(AllURL);
+                var json = webClient.DownloadString(AllURL);
                 AllFlightData = JObject.Parse(json);
 
                 try

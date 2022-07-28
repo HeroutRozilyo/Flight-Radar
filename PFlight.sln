@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.0.32002.185
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30717.126
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PFlight", "PFlight.csproj", "{0BDBD1E7-2B4E-4196-A3D8-17CEA9D29F1A}"
 EndProject
@@ -10,6 +10,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlightDL", "FlightDL\FlightDL.csproj", "{14FF8822-A77A-4A52-8423-5A6F2F561A2D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlightModel", "FlightModel\FlightModel.csproj", "{6F214D2C-DFCC-4EBD-A69B-3BBF4C6F4950}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HebDates", "..\HebDates\HebDates.csproj", "{72F3035D-BE24-456E-AE36-62F53D5B553E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{6F214D2C-DFCC-4EBD-A69B-3BBF4C6F4950}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6F214D2C-DFCC-4EBD-A69B-3BBF4C6F4950}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6F214D2C-DFCC-4EBD-A69B-3BBF4C6F4950}.Release|Any CPU.Build.0 = Release|Any CPU
+		{72F3035D-BE24-456E-AE36-62F53D5B553E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{72F3035D-BE24-456E-AE36-62F53D5B553E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{72F3035D-BE24-456E-AE36-62F53D5B553E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{72F3035D-BE24-456E-AE36-62F53D5B553E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

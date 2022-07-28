@@ -18,8 +18,8 @@ namespace FlightBL
         private IDL DL = new DB();
         public AsynceAdapter DLAdapter = new AsynceAdapter();
 
-        // public async Task<Dictionary<string, List<FlightData>>> getWebFlights()
-        public Dictionary<string, List<FlightData>> getWebFlights()
+     //    public async Task<Dictionary<string, List<FlightData>>> getWebFlights()
+       public Dictionary<string, List<FlightData>> getWebFlights()
         {
             Dictionary<string, List<FlightData>> to = null;
             try
