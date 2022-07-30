@@ -28,6 +28,7 @@ namespace PFlight
     public partial class MainWindow : Window
     {
         public static screen1VM CurrentVM { get; set; }
+        public HolidayVM HolidayVM { get; set; }
         private bool isTimerRun { get; set; }  
         BackgroundWorker timer;
 
@@ -36,6 +37,9 @@ namespace PFlight
             InitializeComponent();
             CurrentVM = new screen1VM(myMap, Resources);
             this.DataContext = CurrentVM;
+
+            HolidayVM = new HolidayVM();
+            dpicker.SelectedDate = DateTime.Today;
 
             timer = new BackgroundWorker();
             isTimerRun = true;
@@ -98,8 +102,13 @@ namespace PFlight
 
         }
 
-       
+        private async void dpicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            string date= dpicker.SelectedDate.ToString();
+            string result = await  HolidayVM.isHoliday(date);
+            textday.Text = result;
 
 
+        }
     }
 }

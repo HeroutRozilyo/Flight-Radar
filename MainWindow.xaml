@@ -21,7 +21,7 @@
                                 </TransformGroup>
                             </Image.LayoutTransform>
                         </Image>
-                        
+
 
                     </ControlTemplate>
                 </Setter.Value>
@@ -77,7 +77,7 @@
     </Window.Resources>
 
 
-    
+
     <Grid Margin="0,0,0,-6">
 
 
@@ -112,7 +112,7 @@
         <Grid x:Name="GridMap" Margin="340,0,-0.333,-0.667">
             <m:Map x:Name="myMap" Center="32.009444, 34.876944" CredentialsProvider="AtJ_2LD-0Gxr9hiKHwkQc5kBc3-9wL38tkucgebtHsCYd1c56byKDhtzIxKbmrPk"
                ZoomLevel="7" AnimationLevel="None" Padding="10" Margin="10,68,0,10" >
-            <!--    <m:Pushpin Location="32.009444, 34.876944" ToolTip="Tel Aviv- Ben Gurion"/>-->
+                <!--    <m:Pushpin Location="32.009444, 34.876944" ToolTip="Tel Aviv- Ben Gurion"/>-->
             </m:Map>
         </Grid>
 
@@ -134,7 +134,7 @@
                 </materialDesign:PopupBox>
                 <StackPanel
       Orientation="Horizontal">
-                   <!-- <ToggleButton
+                    <!-- <ToggleButton
        Style="{StaticResource MaterialDesignHamburgerToggleButton}"
                        
                        /> -->
@@ -154,7 +154,7 @@
                     <GridViewColumn Width="50" Header=" ">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                              <!--  <Image Source="/Icon/AirPlaneIcone.ico" Width="20" />-->
+                                <!--  <Image Source="/Icon/AirPlaneIcone.ico" Width="20" />-->
 
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
@@ -171,7 +171,7 @@
                     <GridViewColumn Width="50" Header=" ">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                             <!--   <Image Source="/Icon/AirPlaneIcone.ico" Width="20" />-->
+                                <!--   <Image Source="/Icon/AirPlaneIcone.ico" Width="20" />-->
 
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
@@ -181,6 +181,20 @@
                 </GridView>
             </ListView.View>
         </ListView>
+
+        <Grid>
+            <DatePicker Name="dpicker"  SelectedDateChanged="dpicker_SelectedDateChanged"  SelectedDateFormat="Long" DisplayDateStart="1/01/2022" DisplayDateEnd="12/31/2022" HorizontalAlignment="Left" FirstDayOfWeek="Sunday"  Margin="128,10,0,0" VerticalAlignment="Top" Width="144" Height="34">
+                <DatePicker.BorderBrush>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                        <GradientStop Color="Blue" Offset="0" />
+                        <GradientStop Color="Red" Offset="1.0" />
+                    </LinearGradientBrush>
+                </DatePicker.BorderBrush>
+            </DatePicker>
+            <TextBlock x:Name="textday"  HorizontalAlignment="Left" Margin="290,10,0,571.333" TextWrapping="Wrap"  VerticalAlignment="Center" Height="34" Width="123" RenderTransformOrigin="0.526,-1.632"/>
+
+        </Grid>
+
 
     </Grid>
 </Window>

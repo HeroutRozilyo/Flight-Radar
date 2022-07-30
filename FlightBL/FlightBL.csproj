@@ -161,6 +161,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\HebDates\HebDates.csproj">
+      <Project>{72f3035d-be24-456e-ae36-62f53d5b553e}</Project>
+      <Name>HebDates</Name>
+    </ProjectReference>
     <ProjectReference Include="..\FlightDL\FlightDL.csproj">
       <Project>{14ff8822-a77a-4a52-8423-5a6f2f561a2d}</Project>
       <Name>FlightDL</Name>

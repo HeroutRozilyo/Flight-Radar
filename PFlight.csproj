@@ -181,7 +181,9 @@
     </ApplicationDefinition>
     <Compile Include="command\OpenWindowCommand.cs" />
     <Compile Include="command\updateMapCommand.cs" />
+    <Compile Include="model\HolidatModel.cs" />
     <Compile Include="model\screenM1.cs" />
+    <Compile Include="viewmodel\HolidayVM.cs" />
     <Compile Include="viewmodel\OpenWindowVM.cs" />
     <Compile Include="viewmodel\screen1VM.cs" />
     <Compile Include="views\firstWindow.xaml.cs">
@@ -233,6 +235,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\HebDates\HebDates.csproj">
+      <Project>{72f3035d-be24-456e-ae36-62f53d5b553e}</Project>
+      <Name>HebDates</Name>
+    </ProjectReference>
     <ProjectReference Include="FlightBL\FlightBL.csproj">
       <Project>{2b48a5a7-66f8-4ec4-89ab-987690dff9c0}</Project>
       <Name>FlightBL</Name>
