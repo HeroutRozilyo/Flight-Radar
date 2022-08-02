@@ -13,7 +13,7 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate>
-                        <Image x:Name="from1" Source="/Icon/from.png" >
+                        <Image x:Name="from1" Source="/Icon/fromMap.png" >
                             <Image.LayoutTransform>
                                 <TransformGroup>
                                     <ScaleTransform CenterX="0.5" CenterY="0.5"/>
@@ -32,7 +32,7 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate>
-                        <Image Source="/Icon/to.png" 
+                        <Image Source="/Icon/ToMap.png" 
                             />
                     </ControlTemplate>
                 </Setter.Value>
@@ -44,7 +44,7 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate>
-                        <Image Source="/Icon/airplaneToIsrael.png" >
+                        <Image Source="/Icon/Toyellow.png" >
 
                             <Image.LayoutTransform>
                                 <TransformGroup>
@@ -63,7 +63,7 @@
                 <Setter.Value>
                     <ControlTemplate>
                         <Image Source="/Icon/airplane.png" >
-                            
+
                             <Image.LayoutTransform>
                                 <TransformGroup>
                                     <ScaleTransform CenterX="0.5" CenterY="0.5"/>
@@ -161,7 +161,7 @@
                     <GridViewColumn Width="50" Header=" ">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <!--  <Image Source="/Icon/AirPlaneIcone.ico" Width="20" />-->
+                                <Image Source="/Icon/airplane.png" Width="20" />
 
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
@@ -178,7 +178,7 @@
                     <GridViewColumn Width="50" Header=" ">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <!--   <Image Source="/Icon/AirPlaneIcone.ico" Width="20" />-->
+                                <Image Source="\Icon\airplaneToIsrael.png" Width="20" />
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
@@ -189,15 +189,16 @@
         </ListView>
 
         <Grid Margin="0,0,-0.333,0.333" Grid.RowSpan="2">
-            <DatePicker Name="dpicker"  SelectedDateChanged="dpicker_SelectedDateChanged"  SelectedDateFormat="Long" DisplayDateStart="1/01/2022" DisplayDateEnd="12/31/2022" HorizontalAlignment="Left" FirstDayOfWeek="Sunday"  Margin="128,10,0,0" VerticalAlignment="Top" Width="144" Height="34">
+            <DatePicker Name="dpicker" FontFamily="Comic Sans MS"   SelectedDateChanged="dpicker_SelectedDateChanged"  SelectedDateFormat="Long" DisplayDateStart="1/01/2022" DisplayDateEnd="12/31/2022" HorizontalAlignment="Left" FirstDayOfWeek="Sunday"  Margin="128,10,0,0" VerticalAlignment="Top" Width="201" Height="34" Foreground="White">
                 <DatePicker.BorderBrush>
                     <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                        <GradientStop Color="Blue" Offset="0" />
-                        <GradientStop Color="Red" Offset="1.0" />
+                        <GradientStop Color="WhiteSmoke" Offset="0" />
+                        <GradientStop Color="PapayaWhip" Offset="1.0" />
+                        <GradientStop Color="NavajoWhite" Offset="0.6" />
                     </LinearGradientBrush>
                 </DatePicker.BorderBrush>
             </DatePicker>
-            <TextBlock x:Name="textday"  HorizontalAlignment="Left" Margin="290,10,0,571.333" TextWrapping="Wrap"  VerticalAlignment="Center" Height="34" Width="123" RenderTransformOrigin="0.526,-1.632"/>
+            <TextBlock x:Name="textday"  HorizontalAlignment="Left" Margin="334,19,0,552" TextWrapping="Wrap" Width="163" RenderTransformOrigin="0.526,-1.632" FontFamily="Comic Sans MS" Foreground="White"/>
             <Button x:Name="weatherButton" Click="weatherButton_Click" Content="Airport Weather" HorizontalAlignment="Left" Margin="91,489,0,0" VerticalAlignment="Top" Width="130"/>
 
         </Grid>
