@@ -179,9 +179,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="command\CloseCommand.cs" />
     <Compile Include="command\OpenWindowCommand.cs" />
     <Compile Include="command\updateMapCommand.cs" />
-    <Compile Include="command\WeatherCommand.cs" />
     <Compile Include="model\HolidatModel.cs" />
     <Compile Include="model\screenM1.cs" />
     <Compile Include="model\WeatherM.cs" />

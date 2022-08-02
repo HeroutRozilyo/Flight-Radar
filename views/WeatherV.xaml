@@ -36,6 +36,7 @@
         </StackPanel>
         <Label Content="{Binding OriginAname, UpdateSourceTrigger=PropertyChanged}" Foreground="#FF477B8F" FontFamily="Comic Sans MS" HorizontalAlignment="Left" Margin="280,21,0,0" VerticalAlignment="Top" Width="159" Height="42"/>
         <Label Content="{Binding DestinationAname, UpdateSourceTrigger=PropertyChanged}" Foreground="#FF477B8F" FontFamily="Comic Sans MS" HorizontalAlignment="Left" Margin="570,21,0,0" VerticalAlignment="Top" Width="164" Height="42"/>
+        <Button Content="close" Command="{Binding closeCommand}" HorizontalAlignment="Left" Margin="318,239,0,0" VerticalAlignment="Top" Width="102" Height="28"/>
 
 
     </Grid>

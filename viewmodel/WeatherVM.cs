@@ -15,11 +15,13 @@ namespace PFlight.viewmodel
     public class WeatherVM : INotifyPropertyChanged
     {
         WeatherM weather { get; set; }
+        public  CloseCommand closeCommand { get; set; }
         public double tempDivide=11.17;
         public WeatherModel.Main rootO;
         public WeatherModel.Main rootD;
         string originAname;
         string destinationAname;
+        WeatherV wnd;
 
         public string OriginAname
         {
@@ -67,17 +69,13 @@ namespace PFlight.viewmodel
         public event PropertyChangedEventHandler PropertyChanged;
 
       
-        public WeatherVM()
+        public WeatherVM(WeatherV v)
         {
-            weather = new WeatherM();           
+            weather = new WeatherM();
+            wnd = v;
+            closeCommand = new CloseCommand(this);
         }
      
-        public void openWind(FlightModel.FlightM.Root flight)
-        {
-           // wnd = new WeatherV();          
-            LatLonWeather(flight);
-           // wnd.Show();
-        }
 
         public async void LatLonWeather(FlightModel.FlightM.Root flight)
         {
@@ -104,7 +102,11 @@ namespace PFlight.viewmodel
             OriginAname = "Origin Airport:\n "+ flight.airport.origin.name;
             DestinationAname = "Destination Airport:\n " + flight.airport.destination.name;
            
+        }
 
+        public void closeWnd()
+        {
+            wnd.Close();
         }
 
     }

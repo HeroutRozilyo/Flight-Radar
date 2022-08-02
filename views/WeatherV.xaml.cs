@@ -26,7 +26,7 @@ namespace PFlight.views
         public  WeatherV(FlightModel.FlightM.Root f)
         {
             InitializeComponent();
-            CurrentVM = new WeatherVM();
+            CurrentVM = new WeatherVM(this);
             this.DataContext = CurrentVM;
 
             CurrentVM.LatLonWeather(f);

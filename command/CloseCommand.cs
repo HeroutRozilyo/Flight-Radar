@@ -8,18 +8,14 @@ using System.Windows.Input;
 
 namespace PFlight.command
 {
-    public class WeatherCommand : ICommand
+    public class CloseCommand : ICommand
     {
-        WeatherVM vm { get; set; }
-
-        public WeatherCommand()
-        {
-       
-        }
-        public WeatherCommand(WeatherVM v)
+        WeatherVM vm;
+        public CloseCommand(WeatherVM v)
         {
             vm = v;
         }
+       
         public event EventHandler CanExecuteChanged
         {
             add
@@ -31,14 +27,12 @@ namespace PFlight.command
 
         public bool CanExecute(object parameter)
         {
-            if (parameter != null)
-                return true;
-            return false;
+            return true;
         }
 
         public void Execute(object parameter)
         {
-           // vm.openWind();
+            vm.closeWnd();
         }
     }
 }
