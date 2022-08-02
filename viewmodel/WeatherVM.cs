@@ -107,7 +107,7 @@ namespace PFlight.viewmodel
         public void closeWnd()
         {
             wnd.Close();
-        }
+        }//
 
     }
 }
