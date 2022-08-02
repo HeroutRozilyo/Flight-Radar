@@ -245,10 +245,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\HebDates\HebDates.csproj">
-      <Project>{72f3035d-be24-456e-ae36-62f53d5b553e}</Project>
-      <Name>HebDates</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Weather\Weather.csproj">
       <Project>{8a9de817-4c0d-4c25-82f6-619a7670a651}</Project>
       <Name>Weather</Name>
@@ -260,6 +256,10 @@
     <ProjectReference Include="FlightModel\FlightModel.csproj">
       <Project>{6f214d2c-dfcc-4ebd-a69b-3bbf4c6f4950}</Project>
       <Name>FlightModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="HebDates1\HebDates.csproj">
+      <Project>{ab0b27ad-8e7e-419d-9908-3c0f720a3744}</Project>
+      <Name>HebDates</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
