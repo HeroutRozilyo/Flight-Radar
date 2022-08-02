@@ -5,7 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace FlightModel
-{
+{/// <summary>
+/// ////////////////
+/// </summary>
     public class HelperClass
     {
         //convert from unix time to humane datetime
