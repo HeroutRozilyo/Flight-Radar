@@ -19,7 +19,6 @@ namespace PFlight.viewmodel
         {
             firstWnd = first;
             OpenCommand = new OpenWindowCommand(this);
-
         }
 
         public void openWind()

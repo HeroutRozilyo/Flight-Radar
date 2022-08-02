@@ -29,6 +29,9 @@ namespace PFlight.viewmodel
         public ResourceDictionary res { get; set; }
         private double angle;
         public  event PropertyChangedEventHandler PropertyChanged;
+        public WeatherVM weatherVM { get; set; }
+      //  public WeatherCommand weatherCommand { get; set; }
+
 
         public double Angle
         {
@@ -52,7 +55,9 @@ namespace PFlight.viewmodel
         public screen1VM(Map m, ResourceDictionary r)
         {
             model1 = new model.screenM1();
-            cm = new updateMapCommand();
+            // weatherCommand = new WeatherCommand();
+            weatherVM = new WeatherVM();
+             cm = new updateMapCommand();
             Angle = 0;
             map = m;
             res = r;

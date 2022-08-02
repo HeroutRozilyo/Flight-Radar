@@ -181,13 +181,19 @@
     </ApplicationDefinition>
     <Compile Include="command\OpenWindowCommand.cs" />
     <Compile Include="command\updateMapCommand.cs" />
+    <Compile Include="command\WeatherCommand.cs" />
     <Compile Include="model\HolidatModel.cs" />
     <Compile Include="model\screenM1.cs" />
+    <Compile Include="model\WeatherM.cs" />
     <Compile Include="viewmodel\HolidayVM.cs" />
     <Compile Include="viewmodel\OpenWindowVM.cs" />
     <Compile Include="viewmodel\screen1VM.cs" />
+    <Compile Include="viewmodel\WeatherVM.cs" />
     <Compile Include="views\firstWindow.xaml.cs">
       <DependentUpon>firstWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="views\WeatherV.xaml.cs">
+      <DependentUpon>WeatherV.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -202,6 +208,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="views\firstWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="views\WeatherV.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -238,6 +248,10 @@
     <ProjectReference Include="..\HebDates\HebDates.csproj">
       <Project>{72f3035d-be24-456e-ae36-62f53d5b553e}</Project>
       <Name>HebDates</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Weather\Weather.csproj">
+      <Project>{8a9de817-4c0d-4c25-82f6-619a7670a651}</Project>
+      <Name>Weather</Name>
     </ProjectReference>
     <ProjectReference Include="FlightBL\FlightBL.csproj">
       <Project>{2b48a5a7-66f8-4ec4-89ab-987690dff9c0}</Project>

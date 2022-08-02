@@ -19,6 +19,7 @@ using System.Windows.Shapes;
 using static FlightModel.FlightM;
 using System.Threading;
 using System.ComponentModel;
+using PFlight.command;
 
 namespace PFlight
 {
@@ -29,7 +30,8 @@ namespace PFlight
     {
         public static screen1VM CurrentVM { get; set; }
         public HolidayVM HolidayVM { get; set; }
-        private bool isTimerRun { get; set; }  
+        private bool isTimerRun { get; set; }
+        private Root lastChoos;
         BackgroundWorker timer;
 
         public MainWindow()
@@ -37,9 +39,11 @@ namespace PFlight
             InitializeComponent();
             CurrentVM = new screen1VM(myMap, Resources);
             this.DataContext = CurrentVM;
+            weatherButton.IsEnabled = false;
 
             HolidayVM = new HolidayVM();
             dpicker.SelectedDate = DateTime.Today;
+
 
             timer = new BackgroundWorker();
             isTimerRun = true;
@@ -75,7 +79,8 @@ namespace PFlight
             FlightData flightO = list.SelectedItem as FlightModel.FlightData;
             Root flightM = CurrentVM.GetRootF(flightO.SourceId);
             detailsP.DataContext = flightM;
-
+            weatherB(flightM);
+            
             if (flightO.Source == "TLV")
             {
                
@@ -109,6 +114,17 @@ namespace PFlight
             textday.Text = result;
 
 
+        }
+        public void weatherB(Root f)
+        {
+            weatherButton.IsEnabled = true;
+            lastChoos = f;
+           // CurrentVM.weatherVM.LatLonWeather(f);
+        }
+
+        private void weatherButton_Click(object sender, RoutedEventArgs e)
+        {
+            CurrentVM.weatherVM.openWind(lastChoos);
         }
     }
 }

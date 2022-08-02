@@ -1,0 +1,40 @@
+﻿<Window x:Class="PFlight.views.WeatherV"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PFlight.views"
+        mc:Ignorable="d"
+        Title="WeatherV" Height="363.043" Width="800">
+    <Grid Margin="0,0,0.333,-19">
+
+        <StackPanel x:Name="detailsDes" DataContext="{Binding rootD}" HorizontalAlignment="Left" Height="145" Margin="348,74,0,0" VerticalAlignment="Top" Width="161">
+            <TextBlock Text="{Binding temp}" Foreground="#FF477B8F" FontFamily="Comic Sans MS"/>
+            <TextBlock Text="{Binding feels_like}" Foreground="#FF477B8F" FontFamily="Comic Sans MS"/>
+            <TextBlock Text="{Binding temp_min}" Foreground="#FF477B8F" FontFamily="Comic Sans MS"/>
+            <TextBlock Text="{Binding temp_max}"  Foreground="#FF477B8F" FontFamily="Comic Sans MS"/>
+            <TextBlock Text="{Binding pressure}" Foreground="#FF477B8F" FontFamily="Comic Sans MS"/>
+            <TextBlock Text="{Binding humidity}" FontFamily="Comic Sans MS" Foreground="#FF477B8F"/>
+        </StackPanel>
+
+        <StackPanel x:Name="detailsOri" HorizontalAlignment="Left" Height="145" Margin="573,74,0,0" VerticalAlignment="Top" Width="161">
+            <TextBlock Text="{Binding temp}" Foreground="#FF477B8F" FontFamily="Comic Sans MS"/>
+            <TextBlock Text="{Binding feels_like}" Foreground="#FF477B8F" FontFamily="Comic Sans MS"/>
+            <TextBlock Text="{Binding temp_min}" Foreground="#FF477B8F" FontFamily="Comic Sans MS"/>
+            <TextBlock Text="{Binding temp_max}"  Foreground="#FF477B8F" FontFamily="Comic Sans MS"/>
+            <TextBlock Text="{Binding pressure}" Foreground="#FF477B8F" FontFamily="Comic Sans MS"/>
+            <TextBlock Text="{Binding humidity}" FontFamily="Comic Sans MS" Foreground="#FF477B8F"/>
+        </StackPanel>
+
+        <StackPanel x:Name="detailsPNName" HorizontalAlignment="Left" Height="145" Margin="142,74,0,0" VerticalAlignment="Top" Width="138">
+            <TextBlock Text="Temperature:"  Foreground="#FF477B8F" FontFamily="Comic Sans MS"></TextBlock>
+            <TextBlock Text="Feels like:" Foreground="#FF477B8F" FontFamily="Comic Sans MS"></TextBlock>
+            <TextBlock Text="Temperature Min:" Foreground="#FF477B8F" FontFamily="Comic Sans MS"></TextBlock>
+            <TextBlock Text="Temperature Max:" Foreground="#FF477B8F" FontFamily="Comic Sans MS"></TextBlock>
+            <TextBlock Text="Pressure:" Foreground="#FF477B8F" FontFamily="Comic Sans MS"></TextBlock>
+            <TextBlock Text="Humidity:" Foreground="#FF477B8F" FontFamily="Comic Sans MS"></TextBlock>
+        </StackPanel>
+
+
+    </Grid>
+</Window>

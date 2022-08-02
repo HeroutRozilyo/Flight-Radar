@@ -79,6 +79,10 @@
 
 
     <Grid Margin="0,0,0,-6">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="7*"/>
+            <RowDefinition Height="4*"/>
+        </Grid.RowDefinitions>
 
 
 
@@ -87,7 +91,7 @@
         <Label Content="Outcoming Flight" FontFamily="Comic Sans MS" HorizontalAlignment="Left" Height="42" Margin="17,107,0,0" VerticalAlignment="Top" Width="152" Foreground="#FF477B8F" FontWeight="Bold"/>
         <!-- <ListBox x:Name="outList" HorizontalAlignment="Left" Height="142" Margin="26,155,0,0" FontFamily="Comic Sans MS" VerticalAlignment="Top" Width="130" ItemsSource="{Binding FlightsOut}" DisplayMemberPath="Destination" MouseDoubleClick="outList_MouseDoubleClick"/>-->
 
-        <StackPanel x:Name="detailsP" HorizontalAlignment="Left" Height="145" Margin="142,313,0,0" VerticalAlignment="Top" Width="161">
+        <StackPanel x:Name="detailsP" HorizontalAlignment="Left" Height="145" Margin="142,313,0,0" VerticalAlignment="Top" Width="161" Grid.RowSpan="2">
             <TextBlock Text="{Binding identification.callsign}" Foreground="#FF477B8F" FontFamily="Comic Sans MS"/>
             <TextBlock Text="{Binding aircraft.registration}" Foreground="#FF477B8F" FontFamily="Comic Sans MS"/>
             <TextBlock Text="{Binding airline.name}" Foreground="#FF477B8F" FontFamily="Comic Sans MS"/>
@@ -97,7 +101,7 @@
             <TextBlock Text="{Binding airport.origin.position.country.name}" Foreground="#FF477B8F" FontFamily="Comic Sans MS"/>
             <TextBlock Text="{Binding status.text}" Foreground="#FF477B8F" FontFamily="Comic Sans MS"/>
         </StackPanel>
-        <StackPanel x:Name="detailsPNName" HorizontalAlignment="Left" Height="145" Margin="11,313,0,0" VerticalAlignment="Top" Width="138">
+        <StackPanel x:Name="detailsPNName" HorizontalAlignment="Left" Height="145" Margin="11,313,0,0" VerticalAlignment="Top" Width="138" Grid.RowSpan="2">
             <TextBlock Text="Flight code:"  Foreground="#FF477B8F" FontFamily="Comic Sans MS"></TextBlock>
             <TextBlock Text="Flight name:" Foreground="#FF477B8F" FontFamily="Comic Sans MS"></TextBlock>
             <TextBlock Text="Airline:" Foreground="#FF477B8F" FontFamily="Comic Sans MS"></TextBlock>
@@ -109,7 +113,7 @@
         </StackPanel>
 
 
-        <Grid x:Name="GridMap" Margin="340,0,-0.333,-0.667">
+        <Grid x:Name="GridMap" Margin="340,0,-0.333,-0.667" Grid.RowSpan="2">
             <m:Map x:Name="myMap" Center="32.009444, 34.876944" CredentialsProvider="AtJ_2LD-0Gxr9hiKHwkQc5kBc3-9wL38tkucgebtHsCYd1c56byKDhtzIxKbmrPk"
                ZoomLevel="7" AnimationLevel="None" Padding="10" Margin="10,68,0,10" >
                 <!--    <m:Pushpin Location="32.009444, 34.876944" ToolTip="Tel Aviv- Ben Gurion"/>-->
@@ -118,7 +122,7 @@
 
         <materialDesign:ColorZone Background="#497b8f"     
   Mode="Inverted"
-  Padding="16">
+  Padding="16" Margin="0,0,-0.333,0.333" Grid.RowSpan="2">
             <DockPanel>
                 <materialDesign:PopupBox
                     DockPanel.Dock="Right"
@@ -165,14 +169,13 @@
             </ListView.View>
 
         </ListView>
-        <ListView Name="inList"  HorizontalAlignment="Left"  Margin="169,98,0,0" FontFamily="Comic Sans MS" VerticalAlignment="Top" FontSize="9"  Foreground="#FF477B8F" Width="166" ItemsSource="{Binding FlightsIN}" SelectionChanged="inlist_SelectionChanged" Height="146.04"  >
+        <ListView Name="inList"  HorizontalAlignment="Left"  Margin="169,98,0,0" FontFamily="Comic Sans MS" VerticalAlignment="Top" FontSize="9"  Foreground="#FF477B8F" Width="166" ItemsSource="{Binding FlightsIN}" SelectionChanged="inlist_SelectionChanged" Height="146"  >
             <ListView.View>
                 <GridView>
                     <GridViewColumn Width="50" Header=" ">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <!--   <Image Source="/Icon/AirPlaneIcone.ico" Width="20" />-->
-
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
@@ -182,7 +185,7 @@
             </ListView.View>
         </ListView>
 
-        <Grid>
+        <Grid Margin="0,0,-0.333,0.333" Grid.RowSpan="2">
             <DatePicker Name="dpicker"  SelectedDateChanged="dpicker_SelectedDateChanged"  SelectedDateFormat="Long" DisplayDateStart="1/01/2022" DisplayDateEnd="12/31/2022" HorizontalAlignment="Left" FirstDayOfWeek="Sunday"  Margin="128,10,0,0" VerticalAlignment="Top" Width="144" Height="34">
                 <DatePicker.BorderBrush>
                     <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
@@ -192,6 +195,7 @@
                 </DatePicker.BorderBrush>
             </DatePicker>
             <TextBlock x:Name="textday"  HorizontalAlignment="Left" Margin="290,10,0,571.333" TextWrapping="Wrap"  VerticalAlignment="Center" Height="34" Width="123" RenderTransformOrigin="0.526,-1.632"/>
+            <Button x:Name="weatherButton" Click="weatherButton_Click" Content="Airport Weather" HorizontalAlignment="Left" Margin="91,489,0,0" VerticalAlignment="Top" Width="130"/>
 
         </Grid>
 
