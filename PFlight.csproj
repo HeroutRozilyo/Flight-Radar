@@ -257,9 +257,9 @@
       <Project>{ab0b27ad-8e7e-419d-9908-3c0f720a3744}</Project>
       <Name>HebDates</Name>
     </ProjectReference>
-    <ProjectReference Include="Weather1\Weather.csproj">
+    <ProjectReference Include="Weather1\Weather1.csproj">
       <Project>{e2b8865a-778e-43ec-aee2-2526fd3bf7a8}</Project>
-      <Name>Weather</Name>
+      <Name>Weather1</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

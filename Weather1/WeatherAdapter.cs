@@ -6,7 +6,7 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Weather
+namespace Weather1
 {
     public class WeatherAdapter
     {

@@ -13,7 +13,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlightModel", "FlightModel\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HebDates", "HebDates1\HebDates.csproj", "{AB0B27AD-8E7E-419D-9908-3C0F720A3744}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Weather", "Weather1\Weather.csproj", "{E2B8865A-778E-43EC-AEE2-2526FD3BF7A8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Weather1", "Weather1\Weather1.csproj", "{E2B8865A-778E-43EC-AEE2-2526FD3BF7A8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Weather
+namespace Weather1
 {
     public class WeatherModel
     {

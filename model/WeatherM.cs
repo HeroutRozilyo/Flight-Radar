@@ -8,14 +8,15 @@ namespace PFlight.model
 {
     public class WeatherM
     {
-        Weather.WeatherAdapter weather { get; set; }
+       
+        Weather1.WeatherAdapter weather { get; set; }
 
         public WeatherM()
         {
-            weather = new Weather.WeatherAdapter();
+            weather = new Weather1.WeatherAdapter();
         }
 
-        public async Task<Weather.WeatherModel.Main> LatLonWeather(double lat,double lon)
+        public async Task<Weather1.WeatherModel.Main> LatLonWeather(double lat,double lon)
         {
            return await weather.WeatherAtLatLon(lat, lon);
         }

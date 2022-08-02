@@ -7,7 +7,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Weather;
+using Weather1;
 using static FlightModel.FlightM;
 
 namespace PFlight.viewmodel
@@ -15,7 +15,7 @@ namespace PFlight.viewmodel
     public class WeatherVM : INotifyPropertyChanged
     {
         WeatherM weather { get; set; }
-        public double tempDivide=11;
+        public double tempDivide=11.17;
         public WeatherModel.Main rootO;
         public WeatherModel.Main rootD { get; set; }
         //public WeatherCommand command { get; set; }
