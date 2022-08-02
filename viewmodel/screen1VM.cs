@@ -55,8 +55,7 @@ namespace PFlight.viewmodel
         public screen1VM(Map m, ResourceDictionary r)
         {
             model1 = new model.screenM1();
-            // weatherCommand = new WeatherCommand();
-            weatherVM = new WeatherVM();
+           // weatherVM = new WeatherVM();
              cm = new updateMapCommand();
             Angle = 0;
             map = m;

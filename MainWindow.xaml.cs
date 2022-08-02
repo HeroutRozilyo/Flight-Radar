@@ -20,6 +20,7 @@ using static FlightModel.FlightM;
 using System.Threading;
 using System.ComponentModel;
 using PFlight.command;
+using PFlight.views;
 
 namespace PFlight
 {
@@ -33,7 +34,7 @@ namespace PFlight
         private bool isTimerRun { get; set; }
         private Root lastChoos;
         BackgroundWorker timer;
-
+        WeatherV weatherV;
         public MainWindow()
         {
             InitializeComponent();
@@ -115,16 +116,18 @@ namespace PFlight
 
 
         }
+
+        //keep the last choos flight in order to show the weather
         public void weatherB(Root f)
         {
             weatherButton.IsEnabled = true;
             lastChoos = f;
-           // CurrentVM.weatherVM.LatLonWeather(f);
         }
 
         private void weatherButton_Click(object sender, RoutedEventArgs e)
         {
-            CurrentVM.weatherVM.openWind(lastChoos);
+            weatherV = new WeatherV(lastChoos);
+            weatherV.Show();
         }
     }
 }
