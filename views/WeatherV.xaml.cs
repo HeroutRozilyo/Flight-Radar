@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Weather1;
 
 namespace PFlight.views
 {
@@ -22,16 +23,13 @@ namespace PFlight.views
     {
         WeatherVM CurrentVM { get; set; }
 
-        public  WeatherV()
+        public  WeatherV(FlightModel.FlightM.Root f)
         {
             InitializeComponent();
-            CurrentVM = new WeatherVM();
+            CurrentVM = new WeatherVM(this);
             this.DataContext = CurrentVM;
 
-            detailsDes.DataContext = CurrentVM.rootD;
-
-
-        }
-
+            CurrentVM.LatLonWeather(f);
+        }      
     }
 }

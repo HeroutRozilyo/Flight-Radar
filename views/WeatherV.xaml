@@ -8,8 +8,8 @@
         Title="WeatherV" Height="363.043" Width="800">
     <Grid Margin="0,0,0.333,-19">
 
-        <StackPanel x:Name="detailsDes" DataContext="{Binding rootD}" HorizontalAlignment="Left" Height="145" Margin="348,74,0,0" VerticalAlignment="Top" Width="161">
-            <TextBlock Text="{Binding temp}" Foreground="#FF477B8F" FontFamily="Comic Sans MS"/>
+        <StackPanel x:Name="detailsDes" DataContext="{Binding RootD ,UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="145" Margin="573,68,0,0" VerticalAlignment="Top" Width="161">
+            <TextBlock Text="{Binding temp}" Foreground="#FF477B8F" FontFamily="Comic Sans MS" Margin="0,0,-0.667,0"/>
             <TextBlock Text="{Binding feels_like}" Foreground="#FF477B8F" FontFamily="Comic Sans MS"/>
             <TextBlock Text="{Binding temp_min}" Foreground="#FF477B8F" FontFamily="Comic Sans MS"/>
             <TextBlock Text="{Binding temp_max}"  Foreground="#FF477B8F" FontFamily="Comic Sans MS"/>
@@ -17,7 +17,7 @@
             <TextBlock Text="{Binding humidity}" FontFamily="Comic Sans MS" Foreground="#FF477B8F"/>
         </StackPanel>
 
-        <StackPanel x:Name="detailsOri" HorizontalAlignment="Left" Height="145" Margin="573,74,0,0" VerticalAlignment="Top" Width="161">
+        <StackPanel x:Name="detailsOri"  DataContext="{Binding RootO ,UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="145" Margin="280,74,0,0" VerticalAlignment="Top" Width="161">
             <TextBlock Text="{Binding temp}" Foreground="#FF477B8F" FontFamily="Comic Sans MS"/>
             <TextBlock Text="{Binding feels_like}" Foreground="#FF477B8F" FontFamily="Comic Sans MS"/>
             <TextBlock Text="{Binding temp_min}" Foreground="#FF477B8F" FontFamily="Comic Sans MS"/>
@@ -34,6 +34,9 @@
             <TextBlock Text="Pressure:" Foreground="#FF477B8F" FontFamily="Comic Sans MS"></TextBlock>
             <TextBlock Text="Humidity:" Foreground="#FF477B8F" FontFamily="Comic Sans MS"></TextBlock>
         </StackPanel>
+        <Label Content="{Binding OriginAname, UpdateSourceTrigger=PropertyChanged}" Foreground="#FF477B8F" FontFamily="Comic Sans MS" HorizontalAlignment="Left" Margin="280,21,0,0" VerticalAlignment="Top" Width="159" Height="42"/>
+        <Label Content="{Binding DestinationAname, UpdateSourceTrigger=PropertyChanged}" Foreground="#FF477B8F" FontFamily="Comic Sans MS" HorizontalAlignment="Left" Margin="570,21,0,0" VerticalAlignment="Top" Width="164" Height="42"/>
+        <Button Content="close" Command="{Binding closeCommand}" HorizontalAlignment="Left" Margin="318,239,0,0" VerticalAlignment="Top" Width="102" Height="28"/>
 
 
     </Grid>
