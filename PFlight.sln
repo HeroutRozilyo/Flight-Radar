@@ -11,11 +11,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlightDL", "FlightDL\Flight
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlightModel", "FlightModel\FlightModel.csproj", "{6F214D2C-DFCC-4EBD-A69B-3BBF4C6F4950}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Weather", "..\Weather\Weather.csproj", "{8A9DE817-4C0D-4C25-82F6-619A7670A651}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HebDates", "HebDates1\HebDates.csproj", "{AB0B27AD-8E7E-419D-9908-3C0F720A3744}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Weather1", "Weather1\Weather1.csproj", "{E2B8865A-778E-43EC-AEE2-2526FD3BF7A8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Weather", "Weather1\Weather.csproj", "{E2B8865A-778E-43EC-AEE2-2526FD3BF7A8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,10 +37,6 @@ Global
 		{6F214D2C-DFCC-4EBD-A69B-3BBF4C6F4950}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6F214D2C-DFCC-4EBD-A69B-3BBF4C6F4950}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6F214D2C-DFCC-4EBD-A69B-3BBF4C6F4950}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8A9DE817-4C0D-4C25-82F6-619A7670A651}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8A9DE817-4C0D-4C25-82F6-619A7670A651}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8A9DE817-4C0D-4C25-82F6-619A7670A651}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8A9DE817-4C0D-4C25-82F6-619A7670A651}.Release|Any CPU.Build.0 = Release|Any CPU
 		{AB0B27AD-8E7E-419D-9908-3C0F720A3744}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{AB0B27AD-8E7E-419D-9908-3C0F720A3744}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AB0B27AD-8E7E-419D-9908-3C0F720A3744}.Release|Any CPU.ActiveCfg = Release|Any CPU
