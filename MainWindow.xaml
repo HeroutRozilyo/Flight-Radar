@@ -13,7 +13,7 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate>
-                        <Image x:Name="from1" Source="C:\Users\da077\source\repos\PFlight\Icon\from.png" >
+                        <Image x:Name="from1" Source="/Icon/from.png" >
                             <Image.LayoutTransform>
                                 <TransformGroup>
                                     <ScaleTransform CenterX="0.5" CenterY="0.5"/>
@@ -32,7 +32,8 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate>
-                        <Image Source="C:\Users\da077\source\repos\PFlight\Icon\to.png"/>
+                        <Image Source="/Icon/to.png" 
+                            />
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
@@ -43,7 +44,8 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate>
-                        <Image Source="C:\Users\da077\source\repos\PFlight\Icon\airplaneToIsrael.png">
+                        <Image Source="/Icon/airplaneToIsrael.png" >
+
                             <Image.LayoutTransform>
                                 <TransformGroup>
                                     <ScaleTransform CenterX="0.5" CenterY="0.5"/>
@@ -60,7 +62,8 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate>
-                        <Image Source="C:\Users\da077\source\repos\PFlight\Icon\airplane.png">
+                        <Image Source="/Icon/airplane.png" >
+                            
                             <Image.LayoutTransform>
                                 <TransformGroup>
                                     <ScaleTransform CenterX="0.5" CenterY="0.5"/>
