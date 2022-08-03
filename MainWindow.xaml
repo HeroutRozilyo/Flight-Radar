@@ -6,7 +6,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:m="clr-namespace:Microsoft.Maps.MapControl.WPF;assembly=Microsoft.Maps.MapControl.WPF"
         mc:Ignorable="d"
-        Title="MainWindow" Height="639" Width="1093">
+        Title="MainWindow" Height="639" Width="1093" WindowStartupLocation="CenterScreen" MouseDoubleClick="Window_MouseDoubleClick">
     <Window.Resources>
         <SolidColorBrush x:Key="ColorZoneBackground1" Color="#DD000000"/>
         <Style  TargetType="m:Pushpin" x:Key="FromIsrael" >

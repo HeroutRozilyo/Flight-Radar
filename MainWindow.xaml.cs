@@ -129,5 +129,12 @@ namespace PFlight
             weatherV = new WeatherV(lastChoos);
             weatherV.Show();
         }
+        private void Window_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (this.WindowState == WindowState.Normal)
+                this.WindowState = WindowState.Maximized;
+            else
+                this.WindowState = WindowState.Normal;
+        }
     }
 }

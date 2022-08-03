@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:PFlight.views"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" x:Class="PFlight.views.firstWindow"
         mc:Ignorable="d"
-        Title="firstWindow" Height="450" Width="800">
+        Title="firstWindow"  WindowStartupLocation="CenterScreen" MouseDoubleClick="Window_MouseDoubleClick"
+    ContentRendered="Window_ContentRendered">
 
     <Grid Margin="0,0,0.333,-0.333">
         <Grid.Background>
@@ -14,12 +15,12 @@
 
         </Grid.Background>
 
-        <Button x:Name="seeF" Content="StartTrack" Command="{Binding OpenCommand}" HorizontalAlignment="Left" Margin="290,273,0,0" VerticalAlignment="Top" Width="159" Height="50"/>
-       
-
-       
+        <ProgressBar x:Name="pbStatus"     Height="30"  Width="328" VerticalContentAlignment="Center"  
+                        Minimum= "0" Maximum="100" Margin="236,324,236,80" Foreground="#007747" Background="White"/>
 
 
 
-    </Grid>
+
+
+        </Grid>
 </Window>
