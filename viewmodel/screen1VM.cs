@@ -209,59 +209,64 @@ namespace PFlight.viewmodel
         //draw the polyline
         private void addNewPolyLine(FlightModel.FlightM.Root flightM) //list of point 
         {
-            //order by the time
-            var OrderedPlaces = (from f in flightM.trail
-                                 orderby f.ts
-                                 select f).ToList<Trail>();
-
-            #region pushpin airport
-            Trail CurrentPlaceF = null;
-            Pushpin PinOrigin = new Pushpin { ToolTip = flightM.airport.origin.name };//מוצא המטוס- שדה תעופה
-            CurrentPlaceF = OrderedPlaces.First<Trail>();
-            var PlaneLocation = new Location { Latitude = CurrentPlaceF.lat, Longitude = CurrentPlaceF.lng };
-            if (flightM.airport.origin.code.iata != "TLV")
+            if (flightM != null)
             {
-                PinOrigin.Location = PlaneLocation;
-                map.Children.Add(PinOrigin);
-            }
-            #endregion
 
 
-            MapPolyline polyline = new MapPolyline(); //creat line
-            polyline.Stroke = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromRgb(230, 10, 10));
-            polyline.StrokeThickness = 2;
-            polyline.Opacity = 0.7;
-            polyline.Locations = new LocationCollection();
+                //order by the time
+                var OrderedPlaces = (from f in flightM.trail
+                                     orderby f.ts
+                                     select f).ToList<Trail>();
 
-            foreach (var item in OrderedPlaces)
-            {
-                polyline.Locations.Add(new Location(item.lat, item.lng));
-            }
-            removeChildren(flightM);
-            map.Children.Add(polyline);
+                #region pushpin airport
+                Trail CurrentPlaceF = null;
+                Pushpin PinOrigin = new Pushpin { ToolTip = flightM.airport.origin.name };//מוצא המטוס- שדה תעופה
+                CurrentPlaceF = OrderedPlaces.First<Trail>();
+                var PlaneLocation = new Location { Latitude = CurrentPlaceF.lat, Longitude = CurrentPlaceF.lng };
+                if (flightM.airport.origin.code.iata != "TLV")
+                {
+                    PinOrigin.Location = PlaneLocation;
+                    map.Children.Add(PinOrigin);
+                }
+                #endregion
 
 
-       
-            Pushpin PinCurrent = new Pushpin { ToolTip = flightM.identification.number.@default};//המטוס עצמו
-            PinCurrent.Tag = flightM.identification.id;
-            PositionOrigin origin = new PositionOrigin { X = 0.4, Y = 0.4 };//where to put the icon of the flight
-            MapLayer.SetPositionOrigin(PinCurrent, origin);
+                MapPolyline polyline = new MapPolyline(); //creat line
+                polyline.Stroke = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromRgb(230, 10, 10));
+                polyline.StrokeThickness = 2;
+                polyline.Opacity = 0.7;
+                polyline.Locations = new LocationCollection();
 
-            ///לחשוב מה עושים עם הצד ההפוך של המטוס מבחינת כיוונים
-            if (flightM.airport.destination.code.iata == "TLV")
-            {
-   
-                    PinCurrent.Style = (Style)res["ToIsraelYello"];  
-            }
-            else
-            {      
+                foreach (var item in OrderedPlaces)
+                {
+                    polyline.Locations.Add(new Location(item.lat, item.lng));
+                }
+                removeChildren(flightM);
+                map.Children.Add(polyline);
+
+
+
+                Pushpin PinCurrent = new Pushpin { ToolTip = flightM.identification.number.@default };//המטוס עצמו
+                PinCurrent.Tag = flightM.identification.id;
+                PositionOrigin origin = new PositionOrigin { X = 0.4, Y = 0.4 };//where to put the icon of the flight
+                MapLayer.SetPositionOrigin(PinCurrent, origin);
+
+                ///לחשוב מה עושים עם הצד ההפוך של המטוס מבחינת כיוונים
+                if (flightM.airport.destination.code.iata == "TLV")
+                {
+
+                    PinCurrent.Style = (Style)res["ToIsraelYello"];
+                }
+                else
+                {
                     PinCurrent.Style = (Style)res["fromIsraelYello"];
-            }
+                }
 
-         
-            var PlaneLocationl = new Location { Latitude = OrderedPlaces.Last<Trail>().lat, Longitude = OrderedPlaces.Last<Trail>().lng };
-            PinCurrent.Location = PlaneLocationl;
-            map.Children.Add(PinCurrent);
+
+                var PlaneLocationl = new Location { Latitude = OrderedPlaces.Last<Trail>().lat, Longitude = OrderedPlaces.Last<Trail>().lng };
+                PinCurrent.Location = PlaneLocationl;
+                map.Children.Add(PinCurrent);
+            }
 
         }
 
