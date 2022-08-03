@@ -80,6 +80,10 @@ namespace PFlight
             FlightData flightO = list.SelectedItem as FlightModel.FlightData;
             Root flightM = CurrentVM.GetRootF(flightO.SourceId);
             detailsP.DataContext = flightM;
+            if (flightM != null)
+                detailsP.DataContext = flightM;
+            else
+                System.Windows.MessageBox.Show("There is a problem loading the data", "My App", MessageBoxButton.OK, MessageBoxImage.Error);
             weatherB(flightM);
             
             if (flightO.Source == "TLV")
