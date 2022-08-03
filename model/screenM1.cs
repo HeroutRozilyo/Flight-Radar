@@ -46,6 +46,11 @@ namespace PFlight.model
             return bl.getFlights();
         }
 
+        public void cleanDB()
+        {
+            bl.cleanDB();
+        }
+
 
     }
 }

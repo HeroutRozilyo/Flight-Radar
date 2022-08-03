@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using FlightDL;
+using DataBaseEF;
 using FlightModel;
 using Microsoft.Graph;
 
@@ -13,9 +13,9 @@ namespace FlightBL
 
     public class BL : IBL
     {
-        
 
-        private IDL DL = new DB();
+
+        private IDL DL = new IDL();
         public AsynceAdapter DLAdapter = new AsynceAdapter();
 
      //    public async Task<Dictionary<string, List<FlightData>>> getWebFlights()
@@ -70,6 +70,11 @@ namespace FlightBL
         {
             if (DL.removeOneFlights(key, flight) == true) return true;
             throw new Exception("the current flight unexsis.");  //לבדוק ניסוח האנגלית בזריקה
+        }
+
+        public void cleanDB()
+        {
+            DL.cleanDB();
         }
 
 

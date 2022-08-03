@@ -18,5 +18,6 @@ namespace FlightBL
         bool addOneFlights(string key, FlightData flight);
         bool removeOneFlights(string key, FlightData flight);
         FlightM.Root getRootFlights(string key);
+        void cleanDB();
     }
 }

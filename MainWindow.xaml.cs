@@ -40,6 +40,7 @@ namespace PFlight
             InitializeComponent();
             CurrentVM = new screen1VM(myMap, Resources);
             this.DataContext = CurrentVM;
+            CurrentVM.cleanDB();
             weatherButton.IsEnabled = false;
 
             HolidayVM = new HolidayVM();

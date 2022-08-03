@@ -318,6 +318,11 @@ namespace PFlight.viewmodel
 
         }
 
+        public void cleanDB()
+        {
+            model1.cleanDB();
+        }
+
 
         ////get one flight and put really on the map
         //private void putOneFlight(FlightModel.FlightM.Root flightM)
