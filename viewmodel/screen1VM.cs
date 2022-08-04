@@ -324,6 +324,7 @@ namespace PFlight.viewmodel
         }
 
 
+
         ////get one flight and put really on the map
         //private void putOneFlight(FlightModel.FlightM.Root flightM)
         //{

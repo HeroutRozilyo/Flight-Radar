@@ -21,7 +21,7 @@ namespace PFlight.viewmodel
         public WeatherModel.Main rootD;
         string originAname;
         string destinationAname;
-        WeatherV wnd;
+        WeatherVP wnd;
 
         public string OriginAname
         {
@@ -69,7 +69,7 @@ namespace PFlight.viewmodel
         public event PropertyChangedEventHandler PropertyChanged;
 
       
-        public WeatherVM(WeatherV v)
+        public WeatherVM(WeatherVP v)
         {
             weather = new WeatherM();
             wnd = v;
@@ -79,34 +79,37 @@ namespace PFlight.viewmodel
 
         public async void LatLonWeather(FlightModel.FlightM.Root flight)
         {
-            double latO = flight.airport.origin.position.latitude;
-            double lanO = flight.airport.origin.position.longitude;
-            double latD = flight.airport.destination.position.latitude;
-            double lonD = flight.airport.destination.position.longitude;
+            if (flight != null)
+            {
+                double latO = flight.airport.origin.position.latitude;
+                double lanO = flight.airport.origin.position.longitude;
+                double latD = flight.airport.destination.position.latitude;
+                double lonD = flight.airport.destination.position.longitude;
 
-            rootO= await weather.LatLonWeather(latO, lanO);
-            rootD = await weather.LatLonWeather(latD, lonD);
+                rootO = await weather.LatLonWeather(latO, lanO);
+                rootD = await weather.LatLonWeather(latD, lonD);
 
-            rootO.feels_like = rootO.feels_like / tempDivide;
-            rootO.temp = rootO.temp / tempDivide;
-            rootO.temp_max = rootO.temp_max/ tempDivide;
-            rootO.temp_min = rootO.temp_min / tempDivide;
+                rootO.feels_like = rootO.feels_like / tempDivide;
+                rootO.temp = rootO.temp / tempDivide;
+                rootO.temp_max = rootO.temp_max / tempDivide;
+                rootO.temp_min = rootO.temp_min / tempDivide;
 
-            rootD.feels_like = rootD.feels_like / tempDivide;
-            rootD.temp = rootD.temp / tempDivide;
-            rootD.temp_max = rootD.temp_max / tempDivide;
-            rootD.temp_min = rootD.temp_min / tempDivide;
-            RootD = rootD;
-            RootO = rootO;
-           
-            OriginAname = "Origin Airport:\n "+ flight.airport.origin.name;
-            DestinationAname = "Destination Airport:\n " + flight.airport.destination.name;
+                rootD.feels_like = rootD.feels_like / tempDivide;
+                rootD.temp = rootD.temp / tempDivide;
+                rootD.temp_max = rootD.temp_max / tempDivide;
+                rootD.temp_min = rootD.temp_min / tempDivide;
+                RootD = rootD;
+                RootO = rootO;
+
+                OriginAname = "Origin Airport:\n " + flight.airport.origin.name;
+                DestinationAname = "Destination Airport:\n " + flight.airport.destination.name;
+            }
            
         }
 
         public void closeWnd()
         {
-            wnd.Close();
+// wnd.Close();
         }
 
     }

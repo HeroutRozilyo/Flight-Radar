@@ -1,0 +1,90 @@
+﻿<Page x:Class="PFlight.views.MapP"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:PFlight.views"
+      xmlns:m="clr-namespace:Microsoft.Maps.MapControl.WPF;assembly=Microsoft.Maps.MapControl.WPF"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"  
+      Title="MapP">
+    <Page.Resources>
+        <SolidColorBrush x:Key="ColorZoneBackground1" Color="#DD000000"/>
+        <Style  TargetType="m:Pushpin" x:Key="FromIsrael" >
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Image x:Name="from1" Source="/Icon/fromMap.png" >
+                            <Image.LayoutTransform>
+                                <TransformGroup>
+                                    <ScaleTransform CenterX="0.5" CenterY="0.5"/>
+                                    <RotateTransform  Angle="{Binding Angle, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"  />
+                                </TransformGroup>
+                            </Image.LayoutTransform>
+                        </Image>
+
+
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="m:Pushpin" x:Key="ToIsrael">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Image Source="/Icon/ToMap.png" 
+                            />
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+
+        <Style TargetType="m:Pushpin" x:Key="ToIsraelYello">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Image Source="/Icon/Toyellow.png" >
+
+                            <Image.LayoutTransform>
+                                <TransformGroup>
+                                    <ScaleTransform CenterX="0.5" CenterY="0.5"/>
+                                    <RotateTransform  Angle="40"  />
+                                </TransformGroup>
+                            </Image.LayoutTransform>
+                        </Image>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="m:Pushpin" x:Key="fromIsraelYello">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Image Source="/Icon/airplane.png" >
+
+                            <Image.LayoutTransform>
+                                <TransformGroup>
+                                    <ScaleTransform CenterX="0.5" CenterY="0.5"/>
+                                    <RotateTransform  Angle="40"  />
+                                </TransformGroup>
+                            </Image.LayoutTransform>
+                        </Image>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+
+    </Page.Resources>
+    <Grid x:Name="GridMap" Margin="10,0,0,-1" Grid.RowSpan="2">
+        <m:Map x:Name="myMap" Center="32.009444, 34.876944" CredentialsProvider="AtJ_2LD-0Gxr9hiKHwkQc5kBc3-9wL38tkucgebtHsCYd1c56byKDhtzIxKbmrPk" 
+               ZoomLevel="7" AnimationLevel="None" Padding="10" Margin="10,68,0,10" >
+            <!--    <m:Pushpin Location="32.009444, 34.876944" ToolTip="Tel Aviv- Ben Gurion"/>-->
+        </m:Map>
+    </Grid>
+
+    
+</Page>

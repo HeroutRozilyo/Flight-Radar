@@ -11,26 +11,26 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Weather1;
 
 namespace PFlight.views
 {
     /// <summary>
-    /// Interaction logic for WeatherV.xaml
+    /// Interaction logic for WeatherVP.xaml
     /// </summary>
-    public partial class WeatherV : Window
+    public partial class WeatherVP : Page
     {
         WeatherVM CurrentVM { get; set; }
-        /*
-        public  WeatherV(FlightModel.FlightM.Root f)
+
+        
+        public WeatherVP(FlightModel.FlightM.Root f)
         {
             InitializeComponent();
             CurrentVM = new WeatherVM(this);
             this.DataContext = CurrentVM;
 
             CurrentVM.LatLonWeather(f);
-        }  
-        */
+        }
     }
 }

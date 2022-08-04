@@ -69,5 +69,10 @@ namespace PFlight.views
             else
                 this.WindowState = WindowState.Normal;
         }
+
+        private void pbStatus_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+
+        }
     }
 }

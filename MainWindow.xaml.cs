@@ -35,13 +35,23 @@ namespace PFlight
         private Root lastChoos;
         BackgroundWorker timer;
         WeatherV weatherV;
+        MapP mapP=new MapP();
         public MainWindow()
         {
             InitializeComponent();
-            CurrentVM = new screen1VM(myMap, Resources);
+
+            CurrentVM = new screen1VM(mapP.myMap, Resources);
             this.DataContext = CurrentVM;
             CurrentVM.cleanDB();
             weatherButton.IsEnabled = false;
+            
+            frame.Navigate(new MapP());
+
+           
+            wNameFlight.Visibility = Visibility.Collapsed;
+            labelWeather.Visibility = Visibility.Collapsed;
+            btnLight.Visibility = Visibility.Collapsed;
+            pas.Visibility = Visibility.Collapsed;
 
             HolidayVM = new HolidayVM();
             dpicker.SelectedDate = DateTime.Today;
@@ -58,7 +68,7 @@ namespace PFlight
 
         private void Timer_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
-            myMap.Children.Clear();
+            mapP.myMap.Children.Clear();
             CurrentVM.getUrlF();
             CurrentVM.chooseFlight();
         }
@@ -128,18 +138,41 @@ namespace PFlight
             weatherButton.IsEnabled = true;
             lastChoos = f;
         }
+       
 
         private void weatherButton_Click(object sender, RoutedEventArgs e)
         {
-            weatherV = new WeatherV(lastChoos);
-            weatherV.Show();
+            frame.Content = null;   
+            frame1.Navigate( new WeatherVP(lastChoos)) ;
+            wNameFlight.Visibility = Visibility.Visible;
+            labelWeather.Visibility = Visibility.Visible;
+            pas.Visibility = Visibility.Visible;
+            wNameFlight.Text=nameFlight.Text;
+            frame2.Navigate(mapP);
+            btnLight.Visibility = Visibility.Visible;
+            weatherButton.IsEnabled = false;
+            // weatherV = new WeatherV(lastChoos);
+            //weatherV.Show();
         }
         private void Window_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            if (this.WindowState == WindowState.Normal)
-                this.WindowState = WindowState.Maximized;
-            else
-                this.WindowState = WindowState.Normal;
+            
+
+        }
+
+        private void btnLight_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            // frame.Visibility = Visibility.Visible;
+            frame.Navigate(mapP);
+            frame1.Content = null;
+            frame2.Content = null;
+
+            wNameFlight.Visibility = Visibility.Collapsed;
+            labelWeather.Visibility = Visibility.Collapsed;
+            btnLight.Visibility = Visibility.Collapsed;
+            pas.Visibility = Visibility.Collapsed;
+            weatherButton.IsEnabled = true;
+
         }
     }
 }

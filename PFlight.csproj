@@ -213,8 +213,14 @@
     <Compile Include="views\firstWindow.xaml.cs">
       <DependentUpon>firstWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="views\MapP.xaml.cs">
+      <DependentUpon>MapP.xaml</DependentUpon>
+    </Compile>
     <Compile Include="views\WeatherV.xaml.cs">
       <DependentUpon>WeatherV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="views\WeatherVP.xaml.cs">
+      <DependentUpon>WeatherVP.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -232,7 +238,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="views\MapP.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="views\WeatherV.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="views\WeatherVP.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -315,6 +329,21 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Icon\Toyellow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="open.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icon\Backround.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Backround.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icon\PlusMap.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icon\IconOpenMap.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="packages\System.Text.Json.6.0.4\build\System.Text.Json.targets" Condition="Exists('packages\System.Text.Json.6.0.4\build\System.Text.Json.targets')" />
