@@ -407,7 +407,7 @@ namespace PFlight.viewmodel
                 image.Height = 20;
                 image.Width = 20;
                 ImagePinMap = image;
-                ImagePinMap.ToolTip = flightM.identification.number.@default;
+                ImagePinMap.ToolTip = flightM.identification.callsign;
                 if (flightM.identification.number.@default == "")
                     ImagePinMap.ToolTip = "Data Problem";
 
