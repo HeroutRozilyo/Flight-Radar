@@ -6,6 +6,8 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,7 +16,9 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+
 using static FlightModel.FlightM;
+using Image = System.Windows.Controls.Image;
 using Location = Microsoft.Maps.MapControl.WPF.Location;
 
 namespace PFlight.viewmodel
@@ -24,23 +28,39 @@ namespace PFlight.viewmodel
         private model.screenM1 model1 { get; set; }
         public updateMapCommand cm { get; set; }
         public ObservableCollection<FlightModel.FlightData> FlightsIN { get; set; }
+        public ObservableCollection<Pushpin> pushpins { get; set; }
         public ObservableCollection<FlightModel.FlightData> FlightsOut { get; set; }
         public Map map { get; set; }
         public ResourceDictionary res { get; set; }
-        private double angle;
+        private float angle;
         public  event PropertyChangedEventHandler PropertyChanged;
         public WeatherVM weatherVM { get; set; }
-      //  public WeatherCommand weatherCommand { get; set; }
+          TransformedBitmap transformBmp = new TransformedBitmap();
+         Bitmap imagepin;
+        Image imagePinMap = new Image();
+        //  public WeatherCommand weatherCommand { get; set; }
 
 
-        public double Angle
+        public Image ImagePinMap
+        {
+            get { return imagePinMap; }
+            set
+            {
+                imagePinMap = value;
+                OnPropertyChanged(nameof(ImagePinMap));
+                
+                //  if (PropertyChanged != null)
+                //     PropertyChanged(this, new PropertyChangedEventArgs("Angle"));
+            }
+        }
+        public float Angle
         {
             get { return angle; }
             set
             {
                 angle = value;
                 OnPropertyChanged(nameof(Angle));
-                
+
                 //  if (PropertyChanged != null)
                 //     PropertyChanged(this, new PropertyChangedEventArgs("Angle"));
             }
@@ -55,14 +75,17 @@ namespace PFlight.viewmodel
         public screen1VM(Map m, ResourceDictionary r)
         {
             model1 = new model.screenM1();
-           // weatherVM = new WeatherVM();
+            pushpins=new ObservableCollection<Pushpin>();
+             // weatherVM = new WeatherVM();
              cm = new updateMapCommand();
             Angle = 0;
             map = m;
             res = r;
+
             //Task.Run(async()=> await getUrlF());
-           getUrlF();
-            cm.UpdateMap += Cm_UpdateMap;          
+            getUrlF();
+            cm.UpdateMap += Cm_UpdateMap;   
+           
         }
 
         //to uodate the data all 10 sec. the func get the new data from the web, clean the data and return specific data on flights.
@@ -152,20 +175,53 @@ namespace PFlight.viewmodel
                 }              
             }
         }
-      
+
+        
+
         private void putOneFlight1(FlightModel.FlightData flightM)
         {
-            double lat = flightM.Lat;
-            double lon= flightM.Long;
-           
+            float lat = (float)flightM.Lat;
+            float lon= (float)flightM.Long;
+
             Pushpin PinCurrent = new Pushpin { ToolTip = flightM.FlightCode };//המטוס עצמו
+
             PinCurrent.Tag = flightM.SourceId;
+            PinCurrent.Style = (Style)res["FromIsrael"];
+            Angle = FlightAngle(lat, lon);
+            PinCurrent.MouseDoubleClick += PinCurrent_MouseDoubleClick;
             PositionOrigin origin = new PositionOrigin { X = 0.4, Y = 0.4 };//where to put the icon of the flight
-            MapLayer.SetPositionOrigin(PinCurrent, origin);
+            //MapLayer.SetPositionOrigin(PinCurrent, origin);
+           
+            Image image = new Image();
+            BitmapImage bitmap = new BitmapImage();
+            bitmap.BeginInit();
+            bitmap.UriSource = new Uri("C:/Users/Pc/source/repos/PFlight/Icon/fromMap.png");
+            bitmap.DecodePixelHeight = 256;
+            bitmap.DecodePixelWidth = 256;
+            bitmap.EndInit();
+           image.Source = bitmap;
+           
+            RotateTransform rotateTransform = new RotateTransform(Angle);
+            image.RenderTransform = rotateTransform;
+            image.Height = 20;
+            image.Width = 20;
+            ImagePinMap = image;
+            ImagePinMap.ToolTip = flightM.FlightCode;
+            if(flightM.FlightCode=="")
+                ImagePinMap.ToolTip = "Data Problem";
 
-          //  Angle=FlightAngle(lat, lon);
-          // PinCurrent.Style = (Style)res["FromIsrael"];
+            var PlaneLocation = new Location { Latitude = lat, Longitude = lon };
+            MapLayer mapLayer = new MapLayer();
+           
+            mapLayer.AddChild(ImagePinMap, PlaneLocation, origin);
+           
+           
 
+            map.Children.Add(mapLayer);
+
+
+            /*
+            
             // לחשוב מה עושים עם הצד ההפוך של המטוס מבחינת כיוונים
             if (flightM.Destination == "TLV")
             {
@@ -181,10 +237,83 @@ namespace PFlight.viewmodel
                     PinCurrent.Style = (Style)res["FromIsrael"];
                 else
                     PinCurrent.Style = (Style)res["ToIsrael"];
-            }
-            var PlaneLocation = new Location { Latitude = lat, Longitude =lon };
-            PinCurrent.Location = PlaneLocation;
-            map.Children.Add(PinCurrent);
+            }*/
+
+           
+          //  PinCurrent.Style = (Style)res["FromIsrael"];
+         
+
+
+           // PinCurrent.Template = ImagePinMap;
+          //  PinCurrent.Location = PlaneLocation;
+          //  map.Children.Add(PinCurrent);
+           
+       
+
+           
+
+            
+            
+          // pushpins.Add(PinCurrent);
+        }
+        public BitmapImage ConvertBitmap(System.Drawing.Bitmap bitmap)
+        {
+            MemoryStream ms = new MemoryStream();
+            bitmap.Save(ms, System.Drawing.Imaging.ImageFormat.Bmp);
+            BitmapImage image = new BitmapImage();
+            image.BeginInit();
+            ms.Seek(0, SeekOrigin.Begin);
+            image.StreamSource = ms;
+            image.EndInit();
+
+            return image;
+        }
+
+        private Bitmap rotateImage(Bitmap b, float angle)
+        {
+            int maxside = (int)(Math.Sqrt(b.Width * b.Width + b.Height * b.Height));
+
+            //create a new empty bitmap to hold rotated image
+
+            Bitmap returnBitmap = new Bitmap(maxside, maxside);
+
+            //make a graphics object from the empty bitmap
+
+            Graphics g = Graphics.FromImage(returnBitmap);
+
+
+
+
+
+            //move rotation point to center of image
+
+            g.TranslateTransform((float)b.Width / 2, (float)b.Height / 2);
+
+            //rotate
+
+            g.RotateTransform(angle);
+
+            //move image back
+
+            g.TranslateTransform(-(float)b.Width / 2, -(float)b.Height / 2);
+
+            //draw passed in image onto graphics object
+
+            g.DrawImage(b, new System.Drawing.Point(0, 0));
+
+
+
+            return returnBitmap;
+        }
+
+        private void PinCurrent_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            
+            {
+                
+                if (this.cm.CanExecute(null))
+                   cm.Execute(null);
+            };
         }
 
 
@@ -229,7 +358,7 @@ namespace PFlight.viewmodel
                     map.Children.Add(PinOrigin);
                 }
                 #endregion
-
+               
 
                 MapPolyline polyline = new MapPolyline(); //creat line
                 polyline.Stroke = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromRgb(230, 10, 10));
@@ -250,22 +379,53 @@ namespace PFlight.viewmodel
                 PinCurrent.Tag = flightM.identification.id;
                 PositionOrigin origin = new PositionOrigin { X = 0.4, Y = 0.4 };//where to put the icon of the flight
                 MapLayer.SetPositionOrigin(PinCurrent, origin);
+                var PlaneLocationl = new Location { Latitude = OrderedPlaces.Last<Trail>().lat, Longitude = OrderedPlaces.Last<Trail>().lng };
+                float lat = (float)OrderedPlaces.Last<Trail>().lat;
+                float lon = (float)OrderedPlaces.Last<Trail>().lng;
+                float angle1;
 
-                ///לחשוב מה עושים עם הצד ההפוך של המטוס מבחינת כיוונים
-                if (flightM.airport.destination.code.iata == "TLV")
-                {
-
-                    PinCurrent.Style = (Style)res["ToIsraelYello"];
+                angle1 = FlightAngle(lat, lon);
+                
+                
+                if (flightM.airport.destination.code.iata != "TLV")
+                { 
+                    angle1 = 360 - angle1;
                 }
-                else
-                {
-                    PinCurrent.Style = (Style)res["fromIsraelYello"];
-                }
+                
+
+                Image image = new Image();
+                BitmapImage bitmap = new BitmapImage();
+                bitmap.BeginInit();
+                bitmap.UriSource = new Uri("C:/Users/Pc/source/repos/PFlight/Icon/airplaneToIsrael.png");
+                bitmap.DecodePixelHeight = 256;
+                bitmap.DecodePixelWidth = 256;
+                bitmap.EndInit();
+                image.Source = bitmap;
+
+                RotateTransform rotateTransform = new RotateTransform(angle1);
+                image.RenderTransform = rotateTransform;
+                image.Height = 20;
+                image.Width = 20;
+                ImagePinMap = image;
+                ImagePinMap.ToolTip = flightM.identification.number.@default;
+                if (flightM.identification.number.@default == "")
+                    ImagePinMap.ToolTip = "Data Problem";
+
+               
+                MapLayer mapLayer = new MapLayer();
+
+                mapLayer.AddChild(ImagePinMap, PlaneLocationl, origin);
 
 
+
+                map.Children.Add(mapLayer);
+                
+
+                /*
                 var PlaneLocationl = new Location { Latitude = OrderedPlaces.Last<Trail>().lat, Longitude = OrderedPlaces.Last<Trail>().lng };
                 PinCurrent.Location = PlaneLocationl;
                 map.Children.Add(PinCurrent);
+                */
             }
 
         }
@@ -288,19 +448,19 @@ namespace PFlight.viewmodel
         }
 
 
-        public double FlightAngle(double lat, double lon)
+        public float FlightAngle(float lat, float lon)
         {
-            double latX = lat- 32.009444;
-            double lonY = lon - 34.876944;
+            float latX = (float)(lat - 32.009444);
+            float lonY = (float)(lon - 34.876944);
           
             var deltaX = Math.Pow(latX, 2);
             var deltaY = Math.Pow(lonY, 2);
 
             //atan2 for angle
-            var radians = Math.Atan2(lonY, latX); 
+            var radians = Math.Atan2(deltaX, deltaY); 
 
             //radians into degrees
-            return radians * (180 / Math.PI);
+            return (float)(radians * (180 / Math.PI));
 
         }
 

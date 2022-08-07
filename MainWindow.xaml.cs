@@ -90,7 +90,7 @@ namespace PFlight
 
             FlightData flightO = list.SelectedItem as FlightModel.FlightData;
             Root flightM = CurrentVM.GetRootF(flightO.SourceId);
-            detailsP.DataContext = flightM;
+            
             if (flightM != null)
                 detailsP.DataContext = flightM;
             else
@@ -109,6 +109,7 @@ namespace PFlight
       
             if (CurrentVM.cm.CanExecute(flightM))
                 CurrentVM.cm.Execute(flightM);
+
         }
 
 
@@ -174,5 +175,8 @@ namespace PFlight
             weatherButton.IsEnabled = true;
 
         }
+
+       
+        
     }
 }

@@ -8,18 +8,14 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="639" Width="1093" WindowStartupLocation="CenterScreen" >
     <Window.Resources>
-        <SolidColorBrush x:Key="ColorZoneBackground1" Color="#DD000000"/>
-        <Style  TargetType="m:Pushpin" x:Key="FromIsrael" >
+        
+   
+<Style  TargetType="m:Pushpin" x:Key="FromIsrael22" >
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate>
-                        <Image x:Name="from1" Source="/Icon/fromMap.png" >
-                            <Image.LayoutTransform>
-                                <TransformGroup>
-                                    <ScaleTransform CenterX="0.5" CenterY="0.5"/>
-                                    <RotateTransform  Angle="{Binding Angle, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"  />
-                                </TransformGroup>
-                            </Image.LayoutTransform>
+                        <Image x:Name="from1" Source="{Binding ImagePinMap}" DataContext="{Binding ImagePinMap}">
+                          
                         </Image>
 
 
@@ -27,59 +23,8 @@
                 </Setter.Value>
             </Setter>
         </Style>
-
-        <Style TargetType="m:Pushpin" x:Key="ToIsrael">
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate>
-                        <Image Source="/Icon/ToMap.png" 
-                            />
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-
-
-        <Style TargetType="m:Pushpin" x:Key="ToIsraelYello">
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate>
-                        <Image Source="/Icon/Toyellow.png" >
-
-                            <Image.LayoutTransform>
-                                <TransformGroup>
-                                    <ScaleTransform CenterX="0.5" CenterY="0.5"/>
-                                    <RotateTransform  Angle="40"  />
-                                </TransformGroup>
-                            </Image.LayoutTransform>
-                        </Image>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-
-        <Style TargetType="m:Pushpin" x:Key="fromIsraelYello">
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate>
-                        <Image Source="/Icon/airplane.png" >
-
-                            <Image.LayoutTransform>
-                                <TransformGroup>
-                                    <ScaleTransform CenterX="0.5" CenterY="0.5"/>
-                                    <RotateTransform  Angle="40"  />
-                                </TransformGroup>
-                            </Image.LayoutTransform>
-                        </Image>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-
 
     </Window.Resources>
-
-
 
     <Grid Margin="0,0,0,-6">
         <Grid.RowDefinitions>

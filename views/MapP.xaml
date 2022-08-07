@@ -8,26 +8,33 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"  
       Title="MapP">
+    
     <Page.Resources>
         <SolidColorBrush x:Key="ColorZoneBackground1" Color="#DD000000"/>
         <Style  TargetType="m:Pushpin" x:Key="FromIsrael" >
             <Setter Property="Template">
                 <Setter.Value>
-                    <ControlTemplate>
-                        <Image x:Name="from1" Source="/Icon/fromMap.png" >
-                            <Image.LayoutTransform>
-                                <TransformGroup>
-                                    <ScaleTransform CenterX="0.5" CenterY="0.5"/>
-                                    <RotateTransform  Angle="{Binding Angle, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"  />
-                                </TransformGroup>
-                            </Image.LayoutTransform>
+                    <ControlTemplate x:Name="temcontrol">
+                        <Image x:Name="from1" Source="{Binding ImagePinMap}">
+                          
                         </Image>
+                        
 
 
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
         </Style>
+
+        <ControlTemplate x:Key="PushPinTemplate">
+            <Grid>
+                <Rectangle Width="32" Height="32">
+                    <Rectangle.Fill>
+                        <ImageBrush ImageSource="{Binding ImagePinMap}" />
+                    </Rectangle.Fill>
+                </Rectangle>
+            </Grid>
+        </ControlTemplate>
 
         <Style TargetType="m:Pushpin" x:Key="ToIsrael">
             <Setter Property="Template">
@@ -81,8 +88,12 @@
     </Page.Resources>
     <Grid x:Name="GridMap" Margin="10,0,0,-1" Grid.RowSpan="2">
         <m:Map x:Name="myMap" Center="32.009444, 34.876944" CredentialsProvider="AtJ_2LD-0Gxr9hiKHwkQc5kBc3-9wL38tkucgebtHsCYd1c56byKDhtzIxKbmrPk" 
-               ZoomLevel="7" AnimationLevel="None" Padding="10" Margin="10,68,0,10" >
-            <!--    <m:Pushpin Location="32.009444, 34.876944" ToolTip="Tel Aviv- Ben Gurion"/>-->
+               ZoomLevel="7" AnimationLevel="None" Padding="10" Margin="10,68,0,10"  >
+           
+            <!--   <m:Pushpin Location="32.009444, 34.876944" ToolTip="Tel Aviv- Ben Gurion"/>-->
+           
+
+            
         </m:Map>
     </Grid>
 
