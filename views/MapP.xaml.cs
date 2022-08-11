@@ -31,7 +31,7 @@ namespace PFlight.views
             InitializeComponent();
             CurrentVM = new screen1VM(myMap, Resources);
             this.DataContext = CurrentVM;
-            CurrentVM.cleanDB();
+           // CurrentVM.cleanDB();
             timer = new BackgroundWorker();
             isTimerRun = true;
             timer.DoWork += Timer_DoWork;

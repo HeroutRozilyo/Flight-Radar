@@ -21,6 +21,7 @@ using System.Threading;
 using System.ComponentModel;
 using PFlight.command;
 using PFlight.views;
+using PFlight.model;
 
 namespace PFlight
 {
@@ -36,18 +37,26 @@ namespace PFlight
         BackgroundWorker timer;
         WeatherV weatherV;
         MapP mapP=new MapP();
+        ListFlightVP ListFlight;
+        public ObservableCollection<string> list = new ObservableCollection<string>();
+
+
+
         public MainWindow()
         {
             InitializeComponent();
 
             CurrentVM = new screen1VM(mapP.myMap, Resources);
             this.DataContext = CurrentVM;
-            CurrentVM.cleanDB();
+           // CurrentVM.cleanDB();
             weatherButton.IsEnabled = false;
-            
-            frame.Navigate(new MapP());
+            this.autoSuggestionUserControl.AutoSuggestionList = CurrentVM.getObserverList();
 
-           
+            frame.Navigate(mapP);
+            this.autoSuggestionUserControl.AutoSuggestionList = list;
+
+
+
             wNameFlight.Visibility = Visibility.Collapsed;
             labelWeather.Visibility = Visibility.Collapsed;
             btnLight.Visibility = Visibility.Collapsed;
@@ -90,9 +99,12 @@ namespace PFlight
 
             FlightData flightO = list.SelectedItem as FlightModel.FlightData;
             Root flightM = CurrentVM.GetRootF(flightO.SourceId);
-            
+
             if (flightM != null)
+            {
                 detailsP.DataContext = flightM;
+                nameFlight.Text = flightM.identification.number.@default;
+            }
             else
                 System.Windows.MessageBox.Show("There is a problem loading the data", "My App", MessageBoxButton.OK, MessageBoxImage.Error);
             weatherB(flightM);
@@ -101,12 +113,14 @@ namespace PFlight
             {
                
                 CurrentVM.addFlightDB("Outgoing", flightO);
+                
             }
             else
             {
                    CurrentVM.addFlightDB("Incoming", flightO);
             }
-      
+            this.autoSuggestionUserControl.AutoSuggestionList =  CurrentVM.getObserverList();
+
             if (CurrentVM.cm.CanExecute(flightM))
                 CurrentVM.cm.Execute(flightM);
 
@@ -176,7 +190,12 @@ namespace PFlight
 
         }
 
-       
-        
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            frame1.Navigate(new ListFlightVP());
+            frame2.Navigate(mapP);
+            frame2.Content = null;
+        }
+
     }
 }
