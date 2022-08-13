@@ -53,10 +53,16 @@ namespace FlightBL
         {
             return DL.getFlights();
         }
-
-        public FlightData getOneFlights(string key, int val)
+         public FlightData getFlightCode(string val)
         {
-            return DL.getOneFlights(key, val);
+            FlightData a = new FlightData();
+            a = DL.getFlightCode(val);
+            return a ;
+        }
+
+        public FlightData getOneFlights( int val)
+        {
+            return DL.getOneFlights( val);
         }
 
         public bool addOneFlights(string key, FlightData flight)

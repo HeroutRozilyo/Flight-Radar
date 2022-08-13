@@ -45,15 +45,15 @@ namespace PFlight
         public MainWindow()
         {
             InitializeComponent();
-
             CurrentVM = new screen1VM(mapP.myMap, Resources);
+            this.autoSuggestionUserControl.AutoSuggestionList = CurrentVM.getObserverList();
             this.DataContext = CurrentVM;
            // CurrentVM.cleanDB();
             weatherButton.IsEnabled = false;
-            this.autoSuggestionUserControl.AutoSuggestionList = CurrentVM.getObserverList();
+
 
             frame.Navigate(mapP);
-            this.autoSuggestionUserControl.AutoSuggestionList = list;
+         
 
 
 
@@ -61,6 +61,8 @@ namespace PFlight
             labelWeather.Visibility = Visibility.Collapsed;
             btnLight.Visibility = Visibility.Collapsed;
             pas.Visibility = Visibility.Collapsed;
+            dataFrame.Visibility = Visibility.Collapsed;
+           // backData.Visibility = Visibility.Collapsed;
 
             HolidayVM = new HolidayVM();
             dpicker.SelectedDate = DateTime.Today;
@@ -72,6 +74,7 @@ namespace PFlight
             timer.ProgressChanged += Timer_ProgressChanged;
             timer.WorkerReportsProgress = true;
             timer.RunWorkerAsync();
+            
           
         }
 
@@ -102,6 +105,7 @@ namespace PFlight
 
             if (flightM != null)
             {
+                
                 detailsP.DataContext = flightM;
                 nameFlight.Text = flightM.identification.number.@default;
             }
@@ -192,10 +196,26 @@ namespace PFlight
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            frame1.Navigate(new ListFlightVP());
-            frame2.Navigate(mapP);
-            frame2.Content = null;
+            
         }
 
+       
+
+       
+
+        
+
+        private void autoSuggestionUserControl_selectedChangeUC(object sender, EventArgs e)
+        {
+           FlightData flightData=  autoSuggestionUserControl.flightData;
+            dataFrame.Visibility = Visibility.Visible;
+            dataFrame.Navigate(new ListFlightVP(flightData));
+           // backData.Visibility = Visibility.Visible;
+
+
+
+        }
+
+       
     }
 }

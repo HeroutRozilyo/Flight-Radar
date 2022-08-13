@@ -1,4 +1,5 @@
 ﻿using FlightModel;
+using MahApps.Metro.Controls;
 using PFlight.viewmodel;
 using System;
 using System.Collections.Generic;
@@ -26,18 +27,30 @@ namespace PFlight.views
     public partial class ListFlightVP : Page
     {
         public static ListFlightVM CurrentVM { get; set; }
-        public ListFlightVP()
+        public ListFlightVP( FlightData flight)
         {
             InitializeComponent();
-            
-            CurrentVM = new ListFlightVM();
-            this.DataContext = CurrentVM;
-        }
-        private void inlist_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
+
+           CurrentVM=new ListFlightVM(flight);
            
+           
+            DataContext= CurrentVM;
+            
+          
 
         }
-    
+        private void backData_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            NavigationService ns = NavigationService.GetNavigationService(this);
+            ns.Content = null;
+            MainWindow parentWindow = Window.GetWindow(this) as MainWindow;
+            this.Visibility=Visibility.Collapsed;
+            parentWindow.dataFrame.Visibility = Visibility.Collapsed;
+
+            backData.Visibility = Visibility.Collapsed;
+
+        }
+
+
     }
 }

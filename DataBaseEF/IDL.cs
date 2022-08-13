@@ -48,7 +48,7 @@ namespace DataBaseEF
         }
 
         //return one flights
-        public FlightData getOneFlights(string key, int val)
+        public FlightData getOneFlights( int val)
         {
             FlightData flight = null;
             using (var db = new DB())
@@ -58,6 +58,20 @@ namespace DataBaseEF
                          where f.Id == val
                          select f).FirstOrDefault();
                
+            }
+            return flight;
+        }
+
+        public FlightData getFlightCode(string val)
+        {
+            FlightData flight = new FlightData();
+            using (var db = new DB())
+            {
+
+                flight = (from f in db.Flights
+                          where f.FlightCode== val
+                          select f).FirstOrDefault();
+
             }
             return flight;
         }

@@ -6,6 +6,9 @@ using System.Text;
 using System.Threading.Tasks;
 using static FlightModel.FlightM;
 using FlightModel;
+using System.ComponentModel;
+using PFlight.model;
+using System.Runtime.CompilerServices;
 
 namespace PFlight.viewmodel
 {
@@ -13,29 +16,46 @@ namespace PFlight.viewmodel
     public class ListFlightVM
     {
 
-        private model.ListFlightM model1 { get; set; }
-        public ObservableCollection<FlightModel.FlightData> FlightsINDB { get; set; }
-        public ObservableCollection<FlightModel.FlightData> FlightsOutDB { get; set; }
-        public ListFlightVM()
-        {
-            model1 = new model.ListFlightM();
-            Dictionary<string, List<FlightData>> flightData = new Dictionary<string, List<FlightData>>();
-            flightData = model1.getFlights();
-            if (flightData.Count != 0)
+        
+        
+           ListFlightM model = new ListFlightM();
+            //public ICommand flightDetailsCommand { get; set; }
+
+            public ListFlightVM(FlightData _flight)
             {
-                FlightsINDB = new ObservableCollection<FlightModel.FlightData>(flightData["Incoming"]);
-                FlightsOutDB = new ObservableCollection<FlightModel.FlightData>(flightData["Outgoing"]);
+                flight = _flight;
+               
             }
-            //this.autoSuggestionUserControl.AutoSuggestionList = list;
 
+           
 
+            FlightData flight;
+            public FlightData Flight
+            {
+                get
+                {
+                    return flight;
+                }
+                set
+                {
+                    flight = value;
+                    OnPropertyChanged("Flight");
+                }
+            }
 
+           
+
+            public event PropertyChangedEventHandler PropertyChanged;
+            protected void OnPropertyChanged([CallerMemberName] string name = null)
+            {
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+            }
         }
-        
-
-       
-        
 
 
-    }
+
+
+
+
+    
 }

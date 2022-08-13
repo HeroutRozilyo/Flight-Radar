@@ -38,6 +38,7 @@ namespace PFlight.views
             timer.ProgressChanged += Timer_ProgressChanged;
             timer.WorkerReportsProgress = true;
             timer.RunWorkerAsync();
+
         }
 
         

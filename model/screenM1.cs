@@ -50,6 +50,14 @@ namespace PFlight.model
         {
             bl.cleanDB();
         }
+        public FlightData getOneFlights(string code)
+        {
+            FlightData a = new FlightData();
+            a = bl.getFlightCode(code);
+            return a;
+
+        }
+
 
 
     }

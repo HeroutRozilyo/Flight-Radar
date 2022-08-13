@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:PFlight.views.UserControls"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
+    <Grid x:Name="grid">
         <StackPanel Orientation="Horizontal"    
                     VerticalAlignment="Center"    
                     HorizontalAlignment="Center">
@@ -14,7 +14,7 @@
             <!-- Text Box -->
             <Border x:Name="autoTextBoxBorder"   BorderBrush="Black" BorderThickness="1"  
                         Width="220"    
-                        Height="26" Background="#FFFBFEFF">
+                        Height="26"  Background="#FFF5FEFC" >
 
                 <DockPanel Margin="0,0,0,-1">
                     <Image Source="/Icon/SearchIcon.png"  Height="20"/>
@@ -23,6 +23,7 @@
                     <TextBox x:Name="autoTextBox"    
                              Width="199"  
                           GotFocus="autoTextBox_GotFocus"
+                             LostFocus="autoTextBox_LostFocus"
                              FontSize="12"     
                              BorderThickness="0"    
                              VerticalContentAlignment="Center"    
@@ -42,8 +43,9 @@
                    PlacementTarget="{Binding ElementName=autoTextBox}"   AllowsTransparency="True" Opacity="0.5"  OpacityMask="White">
 
                 <ListBox x:Name="autoList"    
-                         Visibility="Collapsed"    
-                         Width="220"    
+                         Visibility="Collapsed" 
+                          Background="#FFF5FEFC" 
+                         Width="218"    
                          Height="100"    
                          SelectionChanged="AutoList_SelectionChanged" />
             </Popup>

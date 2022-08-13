@@ -5,10 +5,75 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:PFlight.views"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="620" d:DesignWidth="300"
       Title="ListFlightVP">
 
-    <Grid>
-        
+    <Grid Background="White" Margin="0,0,0,319">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="86"/>
+            <RowDefinition Height="124"/>
+            <RowDefinition Height="90"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="0*"/>
+
+        </Grid.RowDefinitions>
+        <Canvas Grid.ColumnSpan="2" Background="#FFC6DBDD" Margin="0,6,0,30">
+
+            <Label x:Name="flightCode" Content="{Binding Flight.FlightCode, UpdateSourceTrigger=PropertyChanged}" Width="100" Height="30" VerticalContentAlignment="Center" Canvas.Left="98" 
+                   FontWeight="Bold" FontSize="15"/>
+            <Button x:Name="backData" RenderTransformOrigin="2.705,0.376" MouseDoubleClick="backData_MouseDoubleClick"  Height="32" Canvas.Left="203" Canvas.Top="10" Width="63">
+                <Button.Template>
+                    <ControlTemplate>
+                        <Grid Margin="40,4,-40,-4">
+                           
+
+                            <Image Source="/Icon/back.png" Width="20" Height="20" Margin="0,0,-20,6" Grid.Row="2" />
+
+
+                        </Grid>
+                    </ControlTemplate>
+                </Button.Template>
+
+
+            </Button>
+
+        </Canvas>
+        <Canvas Grid.Row="1" Grid.Column="0" Background="#FF477B8F" Margin="13,18,18,31">
+            <Label x:Name="originCode" Content="Origin:" FontWeight="Bold"
+               Width="100" Height="60" FontSize="14" HorizontalContentAlignment="Center" Canvas.Left="25"/>
+            <Label x:Name="originName" Content="{Binding Flight.Source}"
+               Width="100" Height="40" FontSize="13" HorizontalContentAlignment="Center" Canvas.Top="30" Canvas.Left="10" />
+        </Canvas>
+
+        <Canvas Background="#FF477B8F" Margin="21,19,9,0" Height="74" VerticalAlignment="Top"  Grid.Row="1" Grid.Column="1">
+            <Label x:Name="desCode" Content="Destination" FontWeight="Bold"
+               Width="100" Height="60" FontSize="14" HorizontalContentAlignment="Center" Canvas.Left="25"/>
+            <Label x:Name="desName" Content="{Binding Flight.Destination}"
+               Width="100" Height="40" FontSize="13" HorizontalContentAlignment="Center" Canvas.Top="30" Canvas.Left="10" RenderTransformOrigin="0.133,0.042"/>
+        </Canvas>
+
+        <Canvas Grid.Row="2" Grid.Column="0" Background="#FF477B8F" Margin="13,0,17,0" Height="74" VerticalAlignment="Center">
+            <Label Content="Date"
+               FontWeight="Bold"
+               Width="100" Height="60" FontSize="14" HorizontalContentAlignment="Center" Canvas.Left="25"/>
+            <Label x:Name="originTime" Content="{Binding Flight.DataAndTime.Date}" FontWeight="Bold" Canvas.Right="0"
+               Width="100" Height="45" FontSize="13" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Canvas.Left="10" Canvas.Top="30"/>
+        </Canvas>
+
+        <Canvas Grid.Row="2" Grid.Column="1" Background="#FF477B8F"  Margin="21,0,10,0" Height="70" VerticalAlignment="Center">
+            <Label Content="Hour"
+               FontWeight="Bold"
+               Width="100" Height="60" FontSize="14" HorizontalContentAlignment="Center" Canvas.Left="25"/>
+            <Label x:Name="desTime" Content="{Binding Flight.DataAndTime.TimeOfDay}" FontWeight="Bold" Canvas.Right="0"
+               Width="100" Height="45" FontSize="13" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Canvas.Left="0" Canvas.Top="25"/>
+
+        </Canvas>
+
     </Grid>
+
 </Page>

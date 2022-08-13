@@ -36,7 +36,7 @@ namespace PFlight.viewmodel
         public event PropertyChangedEventHandler PropertyChanged;
         public WeatherVM weatherVM { get; set; }
         TransformedBitmap transformBmp = new TransformedBitmap();
-        Bitmap imagepin;
+        
         Image imagePinMap = new Image();
         //  public WeatherCommand weatherCommand { get; set; }
         ObservableCollection<string> myCollection = new ObservableCollection<string>();
@@ -104,6 +104,17 @@ namespace PFlight.viewmodel
             
 
         }
+
+        /// <summary>
+        /// for the user control
+        /// </summary>
+        public screen1VM()
+        {
+            model1 = new model.screenM1();
+            cm = new updateMapCommand();
+        }
+
+
 
         //to uodate the data all 10 sec. the func get the new data from the web, clean the data and return specific data on flights.
         //public async Task getUrlF()
@@ -273,9 +284,15 @@ namespace PFlight.viewmodel
         {
             return model1.GetRootF(key);
         }
+        public FlightData GetFlightCode(string key)
+        {
+            FlightData a=new FlightData();
+            a= model1.getOneFlights(key);
+            return a;
+        }
 
 
-     
+
 
 
         //from the command order the by time and add polyline to the map
