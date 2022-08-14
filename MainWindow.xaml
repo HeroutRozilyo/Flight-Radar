@@ -124,8 +124,8 @@
                     <GridViewColumn Width="50" Header=" ">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <!--     <Image Source="\Icon\airplaneToIsrael.png" Width="20" />/-->
-                                <Image Source="C:\Users\da077\source\repos\PFlight\Icon\airplaneToIsrael.png" Width="20" />
+                                <Image Source="\Icon\airplaneToIsrael.png" Width="20" />
+                                <!-- <Image Source="C:\Users\da077\source\repos\PFlight\Icon\airplaneToIsrael.png" Width="20" /> -->
 
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>

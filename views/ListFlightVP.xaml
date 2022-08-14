@@ -8,7 +8,7 @@
       d:DesignHeight="620" d:DesignWidth="300"
       Title="ListFlightVP">
 
-    <Grid Background="White" Margin="0,0,0,319">
+    <Grid Background="White" Margin="0,0,0,-68">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
