@@ -141,7 +141,7 @@
                 <ColumnDefinition Width="529*"/>
                 <ColumnDefinition Width="14*"/>
             </Grid.ColumnDefinitions>
-            <DatePicker Name="dpicker" FontFamily="Comic Sans MS"   SelectedDateChanged="dpicker_SelectedDateChanged"  SelectedDateFormat="Long" DisplayDateStart="1/01/2022" DisplayDateEnd="12/31/2022" HorizontalAlignment="Left" FirstDayOfWeek="Sunday"  Margin="828,10,0,0" VerticalAlignment="Top" Width="201" Height="34" Foreground="White">
+            <DatePicker Name="dpicker" FontFamily="Comic Sans MS"   SelectedDateChanged="dpicker_SelectedDateChanged"  SelectedDateFormat="Long" DisplayDateStart="1/01/2022" DisplayDateEnd="12/31/2022" HorizontalAlignment="Left" FirstDayOfWeek="Sunday"  Margin="828,10,0,0" VerticalAlignment="Top" Width="201" Height="34" Foreground="Black" OpacityMask="#FF477B8F">
                 <DatePicker.BorderBrush>
                     <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
                         <GradientStop Color="WhiteSmoke" Offset="0" />

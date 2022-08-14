@@ -107,8 +107,9 @@ namespace PFlight
 
             if (flightM != null)
             {
-                
-                detailsP.DataContext = flightM;
+                dataFrame.Navigate(new DataFlightRoot(flightM));
+                dataFrame.Visibility = Visibility.Visible;
+                //detailsP.DataContext = flightM;
                 nameFlight.Text = flightM.identification.number.@default;
             }
             else

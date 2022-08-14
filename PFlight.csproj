@@ -233,6 +233,9 @@
     <Compile Include="views\UserControls\AutoCompleteTextBoxUserControl.xaml.cs">
       <DependentUpon>AutoCompleteTextBoxUserControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="views\DataFlightRoot.xaml.cs">
+      <DependentUpon>DataFlightRoot.xaml</DependentUpon>
+    </Compile>
     <Compile Include="views\WeatherV.xaml.cs">
       <DependentUpon>WeatherV.xaml</DependentUpon>
     </Compile>
@@ -264,6 +267,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="views\UserControls\AutoCompleteTextBoxUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="views\DataFlightRoot.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
