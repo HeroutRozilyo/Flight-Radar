@@ -16,8 +16,8 @@ namespace FlightBL
         Dictionary<string, List<FlightData>> getFlights();//return all the data at the data base       
         FlightData getOneFlights( int val);//return one flights
         FlightData getFlightCode(string val);//return one flights
-        bool addOneFlights(string key, FlightData flight);
-        bool removeOneFlights(string key, FlightData flight);
+        bool addOneFlights( FlightData flight);
+        bool removeOneFlights( FlightData flight);
         FlightM.Root getRootFlights(string key);
         void cleanDB();
     }

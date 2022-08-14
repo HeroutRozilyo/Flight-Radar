@@ -161,9 +161,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DataBaseEF\DataBaseEF.csproj">
-      <Project>{49e602d4-466f-4e2b-b584-7d8986ea2c1d}</Project>
-      <Name>DataBaseEF</Name>
+    <ProjectReference Include="..\DataBaseEF1\DataBaseEF1.csproj">
+      <Project>{a6b14d47-aa1e-4d86-8984-cf3c5e535b3b}</Project>
+      <Name>DataBaseEF1</Name>
     </ProjectReference>
     <ProjectReference Include="..\FlightModel\FlightModel.csproj">
       <Project>{6f214d2c-dfcc-4ebd-a69b-3bbf4c6f4950}</Project>

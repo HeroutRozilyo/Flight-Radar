@@ -25,11 +25,13 @@ namespace PFlight.viewmodel
 {
     public class screen1VM : INotifyPropertyChanged
     {
+        #region varieble&constructor&property 
         private model.screenM1 model1 { get; set; }
         public updateMapCommand cm { get; set; }
-        public ObservableCollection<FlightModel.FlightData> FlightsIN { get; set; }
 
+        public ObservableCollection<FlightModel.FlightData> FlightsIN { get; set; }
         public ObservableCollection<FlightModel.FlightData> FlightsOut { get; set; }
+
         public Map map { get; set; }
         public ResourceDictionary res { get; set; }
         private float angle;
@@ -42,8 +44,9 @@ namespace PFlight.viewmodel
         ObservableCollection<string> myCollection = new ObservableCollection<string>();
         List<FlightData> incom=new List<FlightData>();
         List<FlightData> outcom=new List<FlightData>();
-        Dictionary<string, List<FlightData>> dic = new Dictionary<string, List<FlightData>>();
         string code;
+        List<FlightData> dicI = new List<FlightData>();
+        List<FlightData> dicO = new List<FlightData>();
 
         public Image ImagePinMap
         {
@@ -53,8 +56,7 @@ namespace PFlight.viewmodel
                 imagePinMap = value;
                 OnPropertyChanged(nameof(ImagePinMap));
 
-                //  if (PropertyChanged != null)
-                //     PropertyChanged(this, new PropertyChangedEventArgs("Angle"));
+              
             }
         }
         public string Code
@@ -65,8 +67,7 @@ namespace PFlight.viewmodel
                 code = value;
                 OnPropertyChanged(nameof(Code));
 
-                //  if (PropertyChanged != null)
-                //     PropertyChanged(this, new PropertyChangedEventArgs("Angle"));
+   
             }
         }
         public float Angle
@@ -77,8 +78,7 @@ namespace PFlight.viewmodel
                 angle = value;
                 OnPropertyChanged(nameof(Angle));
 
-                //  if (PropertyChanged != null)
-                //     PropertyChanged(this, new PropertyChangedEventArgs("Angle"));
+               
             }
         }
         private void OnPropertyChanged(string propertyName)
@@ -105,6 +105,7 @@ namespace PFlight.viewmodel
 
         }
 
+
         /// <summary>
         /// for the user control
         /// </summary>
@@ -114,7 +115,7 @@ namespace PFlight.viewmodel
             cm = new updateMapCommand();
         }
 
-
+        #endregion
 
         //to uodate the data all 10 sec. the func get the new data from the web, clean the data and return specific data on flights.
         //public async Task getUrlF()
@@ -148,9 +149,13 @@ namespace PFlight.viewmodel
 
 
         //add choose flight to the DB
-        public bool addFlightDB(string key, FlightModel.FlightData f)
+        public bool addFlightDB( FlightModel.FlightData f)
         {
-            return model1.addFlightDB(key, f);
+            if (f.Destination == "TLV")            
+                dicI.Add(f);           
+            else
+                dicO.Add(f);
+            return model1.addFlightDB(f);
         }
 
         public bool ListFromDB()
@@ -230,14 +235,18 @@ namespace PFlight.viewmodel
             Image image = new Image();
             BitmapImage bitmap = new BitmapImage();
             bitmap.BeginInit();
-            bitmap.UriSource = new Uri("C:/Users/Pc/source/repos/PFlight/Icon/ToMap.png");
+            //bitmap.UriSource = new Uri("C:/Users/Pc/source/repos/PFlight/Icon/ToMap.png"); //שלך
+            bitmap.UriSource = new Uri("C:/Users/da077/source/repos/PFlight/Icon/ToMap.png");// שלי
+
             bitmap.DecodePixelHeight = 256;
             bitmap.DecodePixelWidth = 256;
             
 
             if (flightM.Destination != "TLV")
             {
-                bitmap.UriSource = new Uri("C:/Users/Pc/source/repos/PFlight/Icon/fromMap.png");
+                //bitmap.UriSource = new Uri("C:/Users/Pc/source/repos/PFlight/Icon/fromMap.png"); //שלך
+                bitmap.UriSource = new Uri("C:/Users/da077/source/repos/PFlight/Icon/fromMap.png");// שלי
+
             }
             bitmap.EndInit();
             image.Source = bitmap;
@@ -262,9 +271,7 @@ namespace PFlight.viewmodel
 
 
         }
-        
-
-       
+           
 
         private void PinCurrent_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
@@ -275,9 +282,6 @@ namespace PFlight.viewmodel
                    cm.Execute(null);
             };
         }
-
-
-
 
         //func to return for specific flight by her key,all the data on her
         public FlightModel.FlightM.Root GetRootF(string key)
@@ -290,10 +294,6 @@ namespace PFlight.viewmodel
             a= model1.getOneFlights(key);
             return a;
         }
-
-
-
-
 
         //from the command order the by time and add polyline to the map
         private void Cm_UpdateMap(FlightModel.FlightM.Root flightM)
@@ -355,7 +355,9 @@ namespace PFlight.viewmodel
                 Image image = new Image();
                 BitmapImage bitmap = new BitmapImage();
                 bitmap.BeginInit();
-                bitmap.UriSource = new Uri("C:/Users/Pc/source/repos/PFlight/Icon/airplaneToIsrael.png");
+               // bitmap.UriSource = new Uri("C:/Users/Pc/source/repos/PFlight/Icon/airplaneToIsrael.png");
+                bitmap.UriSource = new Uri("C:/Users/da077/source/repos/PFlight/Icon/airplaneToIsrael.png");
+
                 bitmap.DecodePixelHeight = 256;
                 bitmap.DecodePixelWidth = 256;
                
@@ -364,7 +366,9 @@ namespace PFlight.viewmodel
 
                 if (flightM.airport.destination.code.iata != "TLV")
                 {
-                    bitmap.UriSource = new Uri("C:/Users/Pc/source/repos/PFlight/Icon/airplane.png");
+                //    bitmap.UriSource = new Uri("C:/Users/Pc/source/repos/PFlight/Icon/airplane.png");
+                    bitmap.UriSource = new Uri("C:/Users/da077/source/repos/PFlight/Icon/airplane.png");
+
                 }
                 bitmap.EndInit();
                 image.Source = bitmap;
@@ -419,7 +423,7 @@ namespace PFlight.viewmodel
 
         }
 
-
+        //calculate the angle of the flight 
         public float FlightAngle(float lat, float lon)
         {
             float latX = (float)(lat - 32.009444);
@@ -436,17 +440,20 @@ namespace PFlight.viewmodel
 
         }
 
+
         public void chooseFlight()
         {
-           Dictionary<string,List<FlightData>> dic =model1.getFlights();
-            foreach(var item in dic["Incoming"])
+            // Dictionary<string,List<FlightData>> dic =model1.getFlights();
+        
+            foreach (var item in dicI)
             {
                 addNewPolyLine(GetRootF(item.SourceId));
             }
-            foreach (var item in dic["Outgoing"])
+            foreach (var item in dicO)
             {
                 addNewPolyLine(GetRootF(item.SourceId));
             }
+        
 
         }
 
@@ -456,7 +463,7 @@ namespace PFlight.viewmodel
         }
 
 
-
+        #region async
         ////get one flight and put really on the map
         //private void putOneFlight(FlightModel.FlightM.Root flightM)
         //{
@@ -508,6 +515,6 @@ namespace PFlight.viewmodel
         //    map.Children.Add(PinCurrent);
 
         //}
-
+        #endregion
     }
 }

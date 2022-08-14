@@ -1,4 +1,5 @@
-﻿using FlightModel;
+﻿#region using
+using FlightModel;
 using PFlight.viewmodel;
 using System;
 using System.Collections.Generic;
@@ -22,6 +23,7 @@ using System.ComponentModel;
 using PFlight.command;
 using PFlight.views;
 using PFlight.model;
+#endregion
 
 namespace PFlight
 {
@@ -112,17 +114,9 @@ namespace PFlight
             else
                 System.Windows.MessageBox.Show("There is a problem loading the data", "My App", MessageBoxButton.OK, MessageBoxImage.Error);
             weatherB(flightM);
-            
-            if (flightO.Source == "TLV")
-            {
-               
-                CurrentVM.addFlightDB("Outgoing", flightO);
-                
-            }
-            else
-            {
-                   CurrentVM.addFlightDB("Incoming", flightO);
-            }
+
+            CurrentVM.addFlightDB( flightO);
+         
             this.autoSuggestionUserControl.AutoSuggestionList =  CurrentVM.getObserverList();
 
             if (CurrentVM.cm.CanExecute(flightM))
@@ -201,9 +195,7 @@ namespace PFlight
 
        
 
-       
-
-        
+           
 
         private void autoSuggestionUserControl_selectedChangeUC(object sender, EventArgs e)
         {

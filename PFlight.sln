@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.0.32002.185
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30717.126
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PFlight", "PFlight.csproj", "{0BDBD1E7-2B4E-4196-A3D8-17CEA9D29F1A}"
 EndProject
@@ -14,6 +14,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Weather1", "Weather1\Weather1.csproj", "{E2B8865A-778E-43EC-AEE2-2526FD3BF7A8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataBaseEF", "DataBaseEF\DataBaseEF.csproj", "{49E602D4-466F-4E2B-B584-7D8986EA2C1D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataBaseEF1", "DataBaseEF1\DataBaseEF1.csproj", "{A6B14D47-AA1E-4D86-8984-CF3C5E535B3B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{49E602D4-466F-4E2B-B584-7D8986EA2C1D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{49E602D4-466F-4E2B-B584-7D8986EA2C1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{49E602D4-466F-4E2B-B584-7D8986EA2C1D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A6B14D47-AA1E-4D86-8984-CF3C5E535B3B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A6B14D47-AA1E-4D86-8984-CF3C5E535B3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A6B14D47-AA1E-4D86-8984-CF3C5E535B3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A6B14D47-AA1E-4D86-8984-CF3C5E535B3B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -124,7 +124,9 @@
                     <GridViewColumn Width="50" Header=" ">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <Image Source="\Icon\airplaneToIsrael.png" Width="20" />
+                                <!--     <Image Source="\Icon\airplaneToIsrael.png" Width="20" />/-->
+                                <Image Source="C:\Users\da077\source\repos\PFlight\Icon\airplaneToIsrael.png" Width="20" />
+
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
@@ -135,7 +137,11 @@
         </ListView>
 
         <Grid Grid.RowSpan="3">
-            <DatePicker Name="dpicker" FontFamily="Comic Sans MS"   SelectedDateChanged="dpicker_SelectedDateChanged"  SelectedDateFormat="Long" DisplayDateStart="1/01/2022" DisplayDateEnd="12/31/2022" HorizontalAlignment="Left" FirstDayOfWeek="Sunday"  Margin="844,10,0,0" VerticalAlignment="Top" Width="201" Height="34" Foreground="White">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="529*"/>
+                <ColumnDefinition Width="14*"/>
+            </Grid.ColumnDefinitions>
+            <DatePicker Name="dpicker" FontFamily="Comic Sans MS"   SelectedDateChanged="dpicker_SelectedDateChanged"  SelectedDateFormat="Long" DisplayDateStart="1/01/2022" DisplayDateEnd="12/31/2022" HorizontalAlignment="Left" FirstDayOfWeek="Sunday"  Margin="828,10,0,0" VerticalAlignment="Top" Width="201" Height="34" Foreground="White">
                 <DatePicker.BorderBrush>
                     <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
                         <GradientStop Color="WhiteSmoke" Offset="0" />
@@ -144,16 +150,16 @@
                     </LinearGradientBrush>
                 </DatePicker.BorderBrush>
             </DatePicker>
-            <TextBlock x:Name="textday"  HorizontalAlignment="Left" Margin="485,6,0,565" TextWrapping="Wrap" Width="163" RenderTransformOrigin="0.526,-1.632" FontFamily="Comic Sans MS" Foreground="White"/>
+            <TextBlock x:Name="textday"  HorizontalAlignment="Left" Margin="485,6,0,564.333" TextWrapping="Wrap" Width="163" RenderTransformOrigin="0.526,-1.632" FontFamily="Comic Sans MS" Foreground="White"/>
             <Button x:Name="weatherButton" Click="weatherButton_Click" Content="Airport Weather" HorizontalAlignment="Left" Margin="91,489,0,0" VerticalAlignment="Top" Width="130" Background="#FF477B8F"/>
-            <Frame  Margin="344,0,0,10" x:Name="frame" NavigationUIVisibility="Hidden" />
-            <Frame Margin="344,349,0,0" x:Name="frame1" NavigationUIVisibility="Hidden"/>
-            <Frame  Margin="344,19,10,275" x:Name="frame2" NavigationUIVisibility="Hidden"/>
+            <Frame  Margin="344,0,-0.333,10.333" x:Name="frame" NavigationUIVisibility="Hidden" Grid.ColumnSpan="2" />
+            <Frame Margin="344,349,-0.333,0.333" x:Name="frame1" NavigationUIVisibility="Hidden" Grid.ColumnSpan="2"/>
+            <Frame  Margin="344,19,9.667,275.333" x:Name="frame2" NavigationUIVisibility="Hidden" Grid.ColumnSpan="2"/>
             <Label x:Name="labelWeather" Content="Weather for flight" Foreground="#FF477B8F" HorizontalAlignment="Left" Height="47" Margin="427,349,0,0" VerticalAlignment="Top" Width="221" FontFamily="Comic Sans MS" FontSize="18" FontWeight="Bold"/>
             <TextBlock x:Name="wNameFlight" HorizontalAlignment="Left" Margin="614,355,0,0" TextWrapping="Wrap"  Foreground="#FF477B8F"  VerticalAlignment="Top" Height="47" Width="137" FontFamily="Comic Sans MS" FontSize="18" FontWeight="Bold"/>
 
             <Button HorizontalAlignment="Left"  Width="82" Height="54" Margin="415,467,0,0" VerticalAlignment="Top" BorderThickness="0" Background="Transparent" BorderBrush="Transparent" />
-            <Button  x:Name="btnLight" Height="38" Content="" Margin="334,327,721,0" VerticalAlignment="Top" MouseDoubleClick="btnLight_MouseDoubleClick" RenderTransformOrigin="-1.297,-1.175">
+            <Button  x:Name="btnLight" Height="38" Content="" Margin="334,327,692.172,0" VerticalAlignment="Top" MouseDoubleClick="btnLight_MouseDoubleClick" RenderTransformOrigin="-1.297,-1.175">
                 <Button.Template>
                     <ControlTemplate>
                         <Grid>
@@ -184,10 +190,10 @@
                 </GridSplitter.RenderTransform>
             </GridSplitter>
             <Button Content="Button" HorizontalAlignment="Left" Margin="142,592,0,0" VerticalAlignment="Top"  Click="Button_Click"/>
-            <uc:AutoCompleteTextBoxUserControl x:Name="autoSuggestionUserControl" Margin="-103,-196,678,379" RenderTransformOrigin="0.807,0.541" selectedChangeUC="autoSuggestionUserControl_selectedChangeUC"/>
-            <Frame x:Name="dataFrame" Content="" Margin="0,63,721,10" Background="#FFFBFEFF" NavigationUIVisibility="Hidden"/>
-            
-           
+            <uc:AutoCompleteTextBoxUserControl x:Name="autoSuggestionUserControl" Margin="-103,-196,649.172,379.333" RenderTransformOrigin="0.807,0.541"  selectedChangeUC="autoSuggestionUserControl_selectedChangeUC"/>
+            <Frame x:Name="dataFrame" Content="" Margin="0,63,692.172,10.333" Background="#FFFBFEFF" NavigationUIVisibility="Hidden"/>
+
+
 
 
 

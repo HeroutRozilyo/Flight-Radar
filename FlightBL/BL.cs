@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DataBaseEF;
+using DataBaseEF1;
 using FlightModel;
 using Microsoft.Graph;
 
@@ -65,16 +65,16 @@ namespace FlightBL
             return DL.getOneFlights( val);
         }
 
-        public bool addOneFlights(string key, FlightData flight)
+        public bool addOneFlights( FlightData flight)
         {
-            if (DL.addOneFlights(key, flight) == true)
+            if (DL.addOneFlights(flight) == true)
                 return true;
             return false;
         }
 
-        public bool removeOneFlights(string key, FlightData flight)
+        public bool removeOneFlights( FlightData flight)
         {
-            if (DL.removeOneFlights(key, flight) == true) return true;
+            if (DL.removeOneFlights( flight) == true) return true;
             throw new Exception("the current flight unexsis.");  //לבדוק ניסוח האנגלית בזריקה
         }
 
@@ -83,6 +83,6 @@ namespace FlightBL
             DL.cleanDB();
         }
 
-
+    
     }
 }
