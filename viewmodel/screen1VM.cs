@@ -356,7 +356,7 @@ namespace PFlight.viewmodel
                 BitmapImage bitmap = new BitmapImage();
                 bitmap.BeginInit();
                 bitmap.UriSource = new Uri("C:/Users/Pc/source/repos/PFlight/Icon/airplaneToIsrael.png");
-                //bitmap.UriSource = new Uri("C:/Users/da077/source/repos/PFlight/Icon/airplaneToIsrael.png");
+               // bitmap.UriSource = new Uri("C:/Users/da077/source/repos/PFlight/Icon/airplaneToIsrael.png");
 
                 bitmap.DecodePixelHeight = 256;
                 bitmap.DecodePixelWidth = 256;
