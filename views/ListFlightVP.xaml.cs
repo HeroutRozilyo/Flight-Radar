@@ -33,8 +33,8 @@ namespace PFlight.views
 
            CurrentVM=new ListFlightVM(flight);
            
-           
-            DataContext= CurrentVM;
+
+            DataContext = CurrentVM;
             
           
 

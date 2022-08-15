@@ -38,7 +38,7 @@ namespace PFlight
         private Root lastChoos;
         BackgroundWorker timer;
         WeatherV weatherV;
-        MapP mapP=new MapP();
+       public MapP mapP=new MapP();
         ListFlightVP ListFlight;
         public ObservableCollection<string> list = new ObservableCollection<string>();
 
@@ -51,7 +51,7 @@ namespace PFlight
             this.autoSuggestionUserControl.AutoSuggestionList = CurrentVM.getObserverList();
             this.DataContext = CurrentVM;
            // CurrentVM.cleanDB();
-            weatherButton.IsEnabled = false;
+            //weatherButton.IsEnabled = false;
 
 
             frame.Navigate(mapP);
@@ -149,25 +149,12 @@ namespace PFlight
         //keep the last choos flight in order to show the weather
         public void weatherB(Root f)
         {
-            weatherButton.IsEnabled = true;
+           // weatherButton.IsEnabled = true;
             lastChoos = f;
         }
        
 
-        private void weatherButton_Click(object sender, RoutedEventArgs e)
-        {
-            frame.Content = null;   
-            frame1.Navigate( new WeatherVP(lastChoos)) ;
-            wNameFlight.Visibility = Visibility.Visible;
-            labelWeather.Visibility = Visibility.Visible;
-            pas.Visibility = Visibility.Visible;
-            wNameFlight.Text=nameFlight.Text;
-            frame2.Navigate(mapP);
-            btnLight.Visibility = Visibility.Visible;
-            weatherButton.IsEnabled = false;
-            // weatherV = new WeatherV(lastChoos);
-            //weatherV.Show();
-        }
+       
         private void Window_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             
@@ -185,7 +172,7 @@ namespace PFlight
             labelWeather.Visibility = Visibility.Collapsed;
             btnLight.Visibility = Visibility.Collapsed;
             pas.Visibility = Visibility.Collapsed;
-            weatherButton.IsEnabled = true;
+            //weatherButton.IsEnabled = true;
 
         }
 

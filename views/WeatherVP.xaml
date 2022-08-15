@@ -38,7 +38,38 @@
         </StackPanel>
         <Label Content="{Binding OriginAname, UpdateSourceTrigger=PropertyChanged}" Foreground="#FF477B8F"  FontWeight="Bold" FontFamily="Comic Sans MS" HorizontalAlignment="Left"   Margin="250,29,0,0" VerticalAlignment="Top" Width="241" Height="40"/>
         <Label Content="{Binding DestinationAname, UpdateSourceTrigger=PropertyChanged}" Foreground="#FF477B8F"  FontWeight="Bold" FontFamily="Comic Sans MS" HorizontalAlignment="Left"  Margin="491,29,0,0" VerticalAlignment="Top" Width="227" Height="40"/>
-       
+        <ListView Margin="260,140,260,95">
+            <ListView.ItemTemplate>
+            <DataTemplate >
+                <Border BorderBrush="Black" BorderThickness="1" Margin="1">
+                    <Expander ToolTip="Expand" ExpandDirection="Down" Foreground="Black">
+                        <Expander.Header>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"  />
+                                </Grid.RowDefinitions>
+                                <Label Grid.Column="0">Column 1</Label>
+                                <Label Grid.Column="1">Column 2</Label>
+                                <Label Grid.Column="2">Column 3</Label>
+                                <Label Grid.Column="3">Column 4</Label>
+
+                               
+                            </Grid>
+                        </Expander.Header>
+                    </Expander>
+                </Border>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+        </ListView>
+
 
 
     </Grid>

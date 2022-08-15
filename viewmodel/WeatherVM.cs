@@ -1,4 +1,5 @@
-﻿using PFlight.command;
+﻿using FlightModel;
+using PFlight.command;
 using PFlight.model;
 using PFlight.views;
 using System;
@@ -22,6 +23,7 @@ namespace PFlight.viewmodel
         string originAname;
         string destinationAname;
         WeatherVP wnd;
+        Root flightData = new Root();
 
         public string OriginAname
         {
@@ -29,6 +31,16 @@ namespace PFlight.viewmodel
             set
             {
                 originAname = value;
+                if (PropertyChanged != null)
+                    PropertyChanged(this, new PropertyChangedEventArgs("OriginAname"));
+            }
+        }
+        public Root FlightData
+        {
+            get { return flightData; }
+            set
+            {
+                flightData = value;
                 if (PropertyChanged != null)
                     PropertyChanged(this, new PropertyChangedEventArgs("OriginAname"));
             }
@@ -73,31 +85,40 @@ namespace PFlight.viewmodel
         {
             weather = new WeatherM();
             wnd = v;
+            
             closeCommand = new CloseCommand(this);
         }
-     
+        public WeatherVM(DataFlightRoot v,Root r)
+        {
+            weather = new WeatherM();
+            FlightData = r;
+           
+
+             closeCommand = new CloseCommand(this);
+        }
+
 
         public async void LatLonWeather(FlightModel.FlightM.Root flight)
         {
             if (flight != null)
             {
-                double latO = flight.airport.origin.position.latitude;
-                double lanO = flight.airport.origin.position.longitude;
-                double latD = flight.airport.destination.position.latitude;
-                double lonD = flight.airport.destination.position.longitude;
+                double latO = Math.Round(flight.airport.origin.position.latitude, 2);
+                double lanO = Math.Round(flight.airport.origin.position.longitude,2);
+                double latD = Math.Round(flight.airport.destination.position.latitude,2);
+                double lonD = Math.Round(flight.airport.destination.position.longitude);
 
                 rootO = await weather.LatLonWeather(latO, lanO);
                 rootD = await weather.LatLonWeather(latD, lonD);
 
-                rootO.feels_like = rootO.feels_like / tempDivide;
-                rootO.temp = rootO.temp / tempDivide;
-                rootO.temp_max = rootO.temp_max / tempDivide;
-                rootO.temp_min = rootO.temp_min / tempDivide;
+                rootO.feels_like = Math.Round(rootO.feels_like / tempDivide,2);
+                rootO.temp = Math.Round(rootO.temp / tempDivide,2);
+                rootO.temp_max = Math.Round(rootO.temp_max / tempDivide,2);
+                rootO.temp_min =Math.Round( rootO.temp_min / tempDivide,2);
 
-                rootD.feels_like = rootD.feels_like / tempDivide;
-                rootD.temp = rootD.temp / tempDivide;
-                rootD.temp_max = rootD.temp_max / tempDivide;
-                rootD.temp_min = rootD.temp_min / tempDivide;
+                rootD.feels_like = Math.Round(rootD.feels_like / tempDivide,2);
+                rootD.temp = Math.Round(rootD.temp / tempDivide,2);
+                rootD.temp_max = Math.Round(rootD.temp_max / tempDivide,2);
+                rootD.temp_min = Math.Round(rootD.temp_min / tempDivide,2);
                 RootD = rootD;
                 RootO = rootO;
 

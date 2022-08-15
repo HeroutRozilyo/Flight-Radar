@@ -151,7 +151,7 @@
                 </DatePicker.BorderBrush>
             </DatePicker>
             <TextBlock x:Name="textday"  HorizontalAlignment="Left" Margin="485,6,0,564.333" TextWrapping="Wrap" Width="163" RenderTransformOrigin="0.526,-1.632" FontFamily="Comic Sans MS" Foreground="White"/>
-            <Button x:Name="weatherButton" Click="weatherButton_Click" Content="Airport Weather" HorizontalAlignment="Left" Margin="91,489,0,0" VerticalAlignment="Top" Width="130" Background="#FF477B8F"/>
+           
             <Frame  Margin="344,0,-0.333,10.333" x:Name="frame" NavigationUIVisibility="Hidden" Grid.ColumnSpan="2" />
             <Frame Margin="344,349,-0.333,0.333" x:Name="frame1" NavigationUIVisibility="Hidden" Grid.ColumnSpan="2"/>
             <Frame  Margin="344,19,9.667,275.333" x:Name="frame2" NavigationUIVisibility="Hidden" Grid.ColumnSpan="2"/>
