@@ -216,6 +216,7 @@
     <Compile Include="model\ListFlightM.cs" />
     <Compile Include="model\screenM1.cs" />
     <Compile Include="model\WeatherM.cs" />
+    <Compile Include="viewmodel\historyVM.cs" />
     <Compile Include="viewmodel\HolidayVM.cs" />
     <Compile Include="viewmodel\ListFlightVM.cs" />
     <Compile Include="viewmodel\OpenWindowVM.cs" />
@@ -223,6 +224,9 @@
     <Compile Include="viewmodel\WeatherVM.cs" />
     <Compile Include="views\firstWindow.xaml.cs">
       <DependentUpon>firstWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="views\historyVP.xaml.cs">
+      <DependentUpon>historyVP.xaml</DependentUpon>
     </Compile>
     <Compile Include="views\ListFlightVP.xaml.cs">
       <DependentUpon>ListFlightVP.xaml</DependentUpon>
@@ -257,6 +261,10 @@
     <Page Include="views\firstWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="views\historyVP.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="views\ListFlightVP.xaml">
       <SubType>Designer</SubType>

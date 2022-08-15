@@ -15,12 +15,12 @@ namespace PFlight.viewmodel
     {
         
         private screenM1 model { get; set; }
-        public ICommand commandH { get; set; }
+  
 
 
         public historyVM()
         {
-            commandH = new historyCommand(this);
+           
             model = new screenM1();
             dates = DateTime.Today;
             flights = new ObservableCollection<FlightModel.FlightData>();
