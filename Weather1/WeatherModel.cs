@@ -28,6 +28,7 @@ namespace Weather1
             public double temp_max { get; set; }
             public int pressure { get; set; }
             public int humidity { get; set; }
+            public string  weatherState { get; set; }
         }
 
         public class Root

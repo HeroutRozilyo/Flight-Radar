@@ -45,70 +45,64 @@
 
         <Canvas Grid.Row="2" Grid.Column="0" Background="#FF477B8F" Margin="2" DataContext="{Binding FlightData ,UpdateSourceTrigger=PropertyChanged}">
             <TextBlock Text="מקור" />
-            <Label x:Name="originCode" Content="{Binding airport.origin.position.country.name, UpdateSourceTrigger=PropertyChanged}" FontWeight="Bold"
-               Width="100" Height="60" FontSize="30" HorizontalContentAlignment="Center" Canvas.Left="25"/>
-            <Label x:Name="originName" Content="{Binding airport.origin.name}"
-               Width="100" Height="40" FontSize="15" HorizontalContentAlignment="Center" Canvas.Left="25" Canvas.Top="50" />
+            <TextBlock x:Name="originCode" Text="{Binding airport.origin.position.country.name, UpdateSourceTrigger=PropertyChanged}" FontWeight="Bold"
+               Width="100" Height="60" FontSize="30" MaxWidth="120" TextWrapping="Wrap" TextAlignment="Center"  Canvas.Left="25"/>
+
+            <TextBlock x:Name="originName" Text="{Binding airport.origin.name}" 
+               MaxHeight="40" FontSize="12" MaxWidth="120" TextWrapping="Wrap"  TextAlignment="Center" Canvas.Left="25" Canvas.Top="50" />
         </Canvas>
 
         <Canvas Grid.Row="2" Grid.Column="1" Background="#FF477B8F" Margin="2" DataContext="{Binding FlightData ,UpdateSourceTrigger=PropertyChanged}">
             <TextBlock Text="יעד"/>
-            <Label x:Name="desCode" Content="{Binding airport.destination.position.country.name}" FontWeight="Bold"
-               Width="100" Height="60" FontSize="30" HorizontalContentAlignment="Center" Canvas.Left="25"/>
-            <Label x:Name="desName" Content="{Binding airport.destination.name}"
-               Width="100" Height="40" FontSize="15" HorizontalContentAlignment="Center" Canvas.Left="25" Canvas.Top="50"/>
+            <TextBlock x:Name="desCode" Text="{Binding airport.destination.position.country.name}" FontWeight="Bold"
+               Width="100" Height="60" FontSize="30" TextAlignment="Center" Canvas.Left="25" MaxWidth="120"/>
+
+            <TextBlock x:Name="desName" Text="{Binding airport.destination.name}"
+               MaxHeight="40" FontSize="12" MaxWidth="120" TextWrapping="Wrap"  TextAlignment="Center" Canvas.Left="25" Canvas.Top="50" ></TextBlock>
         </Canvas>
 
         <Canvas Grid.Row="3" Grid.Column="0" Background="#FF477B8F" Margin="2" DataContext="{Binding FlightData ,UpdateSourceTrigger=PropertyChanged}">
             <Label Content="Leaving time:"
                Width="100" Height="45" FontSize="13" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"/>
             <Label x:Name="originTime" Content="{Binding Flight.TimeOfFly}" FontWeight="Bold" Canvas.Right="0"
-               Width="100" Height="45" FontSize="15" HorizontalContentAlignment="Right" VerticalContentAlignment="Center"/>
+               Width="100" Height="45" FontSize="15" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Canvas.Left="34"/>
         </Canvas>
 
         <Canvas Grid.Row="3" Grid.Column="1" Background="#FF477B8F" Margin="2" DataContext="{Binding FlightData ,UpdateSourceTrigger=PropertyChanged}">
             <Label Content="Arrival time:"
                Width="100" Height="45" FontSize="13" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"/>
             <Label x:Name="desTime" Content="{Binding Flight.TimeOfFArrive}" FontWeight="Bold" Canvas.Right="0"
-               Width="100" Height="45" FontSize="15" HorizontalContentAlignment="Right" VerticalContentAlignment="Center"/>
-            <Canvas.Style>
-                <Style>
-                    <Style.Triggers>
-                        <DataTrigger Binding="{Binding ElementName=isLate, Path=Text}" Value="true">
-                            <Setter Property="Canvas.Background" Value="Red"/>
-                        </DataTrigger>
-                    </Style.Triggers>
-                </Style>
-            </Canvas.Style>
+               Width="100" Height="45" FontSize="15" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Canvas.Left="34"/>
+
         </Canvas>
 
         <Canvas Grid.Row="4" Grid.Column="0" Background="#FF477B8F" Margin="2" DataContext="{Binding RootO ,UpdateSourceTrigger=PropertyChanged}">
-            <Label x:Name="stateOrigin" Content="{Binding WeatherOrigin.State}" FontWeight="Bold"
+            <Label x:Name="stateOrigin" Content="{Binding weatherState}" FontWeight="Bold"
                Width="145" Height="30" FontSize="13" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
             <Label Content="TEMPERATURE" Canvas.Top="35"
                Width="100" Height="30" FontSize="13" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"/>
-            <Label x:Name="tempOrigin" Content="{Binding temp}" FontWeight="Bold" Canvas.Right="0" Canvas.Top="35"
-               Width="45" Height="30" FontSize="13" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+            <Label x:Name="tempOrigin" Content="{Binding temp}"  Canvas.Right="0" Canvas.Top="35"
+               Width="45" Height="30" FontSize="13" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Canvas.Left="87"/>
             <Label Content="FEEL LIKE" Canvas.Bottom="0"
-                   FontSize="13" Height="30" VerticalContentAlignment="Center"/>
+                   FontSize="13" Height="30" VerticalContentAlignment="Center" />
             <Label x:Name="feelOrigin" Content="{Binding feels_like}" Canvas.Bottom="0" Canvas.Right="0"
-                   Width="45" Height="30" FontSize="13" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                   Width="45" Height="30" FontSize="13" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Canvas.Left="87"/>
         </Canvas>
 
         <Canvas Grid.Row="4" Grid.Column="1" Background="#FF477B8F" Margin="2" DataContext="{Binding RootD ,UpdateSourceTrigger=PropertyChanged}">
-            <Label x:Name="stateDes" Content="{Binding WeatherDestination.State}" FontWeight="Bold"
+            <Label x:Name="stateDes" Content="{Binding weatherState}" FontWeight="Bold"
                Width="145" Height="30" FontSize="13" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
             <Label Content="TEMPERATURE" Canvas.Top="35"
                Width="100" Height="30" FontSize="13" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"/>
-            <Label x:Name="tempDes" Content="{Binding temp}" FontWeight="Bold" Canvas.Right="0" Canvas.Top="35"
-               Width="45" Height="30" FontSize="13" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+            <Label x:Name="tempDes" Content="{Binding temp}"  Canvas.Right="0" Canvas.Top="35"
+               Width="45" Height="30" FontSize="13" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Canvas.Left="87"/>
             <Label Content="FEEL LIKE" Canvas.Bottom="0"
                    FontSize="13" Height="30" VerticalContentAlignment="Center"/>
             <Label x:Name="feelDes" Content="{Binding feels_like}" Canvas.Bottom="0" Canvas.Right="0"
-                   Width="45" Height="30" FontSize="13" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                   Width="45" Height="30" FontSize="13" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Canvas.Left="87"/>
         </Canvas>
         <Image x:Name="picture" Source="{Binding }" Width="300" Height="150" Grid.ColumnSpan="2" Grid.Row="1"/>
-        <Button x:Name="weatherButton" Click="weatherButton_Click" Content="Airport Weather" HorizontalAlignment="Left" Margin="75,53,0,0" VerticalAlignment="Top" Width="130" Background="#FF477B8F" Grid.ColumnSpan="2" Grid.Row="5"/>
+        <Button x:Name="weatherButton" Click="weatherButton_Click" Content="Airport Weather" HorizontalAlignment="Left" Margin="75,26,0,0" VerticalAlignment="Top" Width="130" Background="#FF477B8F" Grid.ColumnSpan="2" Grid.Row="5"/>
 
     </Grid>
 

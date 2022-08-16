@@ -22,6 +22,8 @@ namespace Weather1
 
                 var json = await webClient.DownloadStringTaskAsync(url);
                 WeatherModel.Root root = JsonConvert.DeserializeObject<WeatherModel.Root>(json);
+                root.main.weatherState = root.weather[0].description;
+                
 
                 return root.main;
 

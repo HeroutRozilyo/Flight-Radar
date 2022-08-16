@@ -154,7 +154,7 @@
            
             <Frame  Margin="344,0,-0.333,10.333" x:Name="frame" NavigationUIVisibility="Hidden" Grid.ColumnSpan="2" />
             <Frame Margin="344,349,-0.333,0.333" x:Name="frame1" NavigationUIVisibility="Hidden" Grid.ColumnSpan="2"/>
-            <Frame  Margin="344,19,9.667,275.333" x:Name="frame2" NavigationUIVisibility="Hidden" Grid.ColumnSpan="2"/>
+            <Frame  Margin="344,0,9.667,275.333" x:Name="frame2" NavigationUIVisibility="Hidden" Grid.ColumnSpan="2"/>
             <Label x:Name="labelWeather" Content="Weather for flight" Foreground="#FF477B8F" HorizontalAlignment="Left" Height="47" Margin="427,349,0,0" VerticalAlignment="Top" Width="221" FontFamily="Comic Sans MS" FontSize="18" FontWeight="Bold"/>
             <TextBlock x:Name="wNameFlight" HorizontalAlignment="Left" Margin="614,355,0,0" TextWrapping="Wrap"  Foreground="#FF477B8F"  VerticalAlignment="Top" Height="47" Width="137" FontFamily="Comic Sans MS" FontSize="18" FontWeight="Bold"/>
 
@@ -191,7 +191,7 @@
             </GridSplitter>
             <Button Content="Button" HorizontalAlignment="Left" Margin="142,592,0,0" VerticalAlignment="Top"  Click="Button_Click"/>
             <uc:AutoCompleteTextBoxUserControl x:Name="autoSuggestionUserControl" Margin="-103,-196,649.172,379.333" RenderTransformOrigin="0.807,0.541"  selectedChangeUC="autoSuggestionUserControl_selectedChangeUC"/>
-            <Frame x:Name="dataFrame" Content="" Margin="0,63,692.172,10.333" Background="#FFFBFEFF" NavigationUIVisibility="Hidden"/>
+            <Frame x:Name="dataFrame" Content="" Margin="0,69,692,13" Background="#FFFBFEFF" NavigationUIVisibility="Hidden"/>
 
 
 

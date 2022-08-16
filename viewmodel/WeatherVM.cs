@@ -114,6 +114,7 @@ namespace PFlight.viewmodel
                 rootO.temp = Math.Round(rootO.temp / tempDivide,2);
                 rootO.temp_max = Math.Round(rootO.temp_max / tempDivide,2);
                 rootO.temp_min =Math.Round( rootO.temp_min / tempDivide,2);
+                
 
                 rootD.feels_like = Math.Round(rootD.feels_like / tempDivide,2);
                 rootD.temp = Math.Round(rootD.temp / tempDivide,2);
