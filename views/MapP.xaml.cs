@@ -37,6 +37,7 @@ namespace PFlight.views
             timer.DoWork += Timer_DoWork;
             timer.ProgressChanged += Timer_ProgressChanged;
             timer.WorkerReportsProgress = true;
+            btnLight.Visibility = Visibility.Collapsed;
             timer.RunWorkerAsync();
 
         }
@@ -62,5 +63,16 @@ namespace PFlight.views
             }
             catch (ThreadInterruptedException) { }
     }
-}
+        private void btnLight_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            MainWindow parentWindow = Window.GetWindow(this) as MainWindow;
+            parentWindow.frame.Navigate(parentWindow.mapP);
+            parentWindow.FrameMap = null;
+            parentWindow.WheatherFrame = null;
+
+
+            //weatherButton.IsEnabled = true;
+
+        }
+    }
 }

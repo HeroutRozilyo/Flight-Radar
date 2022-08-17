@@ -4,71 +4,138 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:PFlight.views"
-      mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
-      Title="WeatherVP">
+      mc:Ignorable="d"
+      Title="WeatherVP" Width="407" Height="505">
 
-    <Grid Margin="0,0,0.333,-19">
 
-        <StackPanel x:Name="detailsDes" DataContext="{Binding RootD ,UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="145" Margin="496,68,0,0" VerticalAlignment="Top" Width="161">
-            <TextBlock Text="{Binding temp}" Foreground="#FF477B8F" FontFamily="Comic Sans MS" Margin="0,0,-0.667,0"/>
-            <TextBlock Text="{Binding feels_like}" Foreground="#FF477B8F" FontFamily="Comic Sans MS"/>
-            <TextBlock Text="{Binding temp_min}" Foreground="#FF477B8F" FontFamily="Comic Sans MS"/>
-            <TextBlock Text="{Binding temp_max}"  Foreground="#FF477B8F" FontFamily="Comic Sans MS"/>
-            <TextBlock Text="{Binding pressure}" Foreground="#FF477B8F" FontFamily="Comic Sans MS"/>
-            <TextBlock Text="{Binding humidity}" FontFamily="Comic Sans MS" Foreground="#FF477B8F"/>
-        </StackPanel>
+    <Grid Margin="0,10,0,0">
+        <GridSplitter x:Name="pas" HorizontalAlignment="Left" Height="298" Margin="153,201,0,0" VerticalAlignment="Top" Width="6" RenderTransformOrigin="0.5,0.5">
+            <GridSplitter.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF477B8F" />
+                    <GradientStop Color="#FF8BC1D5 " Offset="1"/>
+                </LinearGradientBrush>
+            </GridSplitter.Background>
+            <GridSplitter.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-90.00"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </GridSplitter.RenderTransform>
+        </GridSplitter>
 
-        <StackPanel x:Name="detailsOri"  DataContext="{Binding RootO ,UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="145" Margin="280,74,0,0" VerticalAlignment="Top" Width="161">
-            <TextBlock Text="{Binding temp}" Foreground="#FF477B8F" FontFamily="Comic Sans MS"/>
-            <TextBlock Text="{Binding feels_like}" Foreground="#FF477B8F" FontFamily="Comic Sans MS"/>
-            <TextBlock Text="{Binding temp_min}" Foreground="#FF477B8F" FontFamily="Comic Sans MS"/>
-            <TextBlock Text="{Binding temp_max}"  Foreground="#FF477B8F" FontFamily="Comic Sans MS"/>
-            <TextBlock Text="{Binding pressure}" Foreground="#FF477B8F" FontFamily="Comic Sans MS"/>
-            <TextBlock Text="{Binding humidity}" FontFamily="Comic Sans MS" Foreground="#FF477B8F"/>
-        </StackPanel>
 
-        <StackPanel x:Name="detailsPNName" HorizontalAlignment="Left" Height="145" Margin="109,74,0,0" VerticalAlignment="Top" Width="138">
-            <TextBlock Text="Temperature:"  Foreground="#FF477B8F" FontFamily="Comic Sans MS" FontWeight="Bold"></TextBlock>
-            <TextBlock Text="Feels like:" Foreground="#FF477B8F" FontFamily="Comic Sans MS" FontWeight="Bold"></TextBlock>
-            <TextBlock Text="Temperature Min:" Foreground="#FF477B8F" FontFamily="Comic Sans MS" FontWeight="Bold"></TextBlock>
-            <TextBlock Text="Temperature Max:" Foreground="#FF477B8F" FontFamily="Comic Sans MS" FontWeight="Bold"></TextBlock>
-            <TextBlock Text="Pressure:" Foreground="#FF477B8F" FontFamily="Comic Sans MS" FontWeight="Bold"></TextBlock>
-            <TextBlock Text="Humidity:" Foreground="#FF477B8F" FontFamily="Comic Sans MS" FontWeight="Bold"></TextBlock>
-        </StackPanel>
-        <Label Content="{Binding OriginAname, UpdateSourceTrigger=PropertyChanged}" Foreground="#FF477B8F"  FontWeight="Bold" FontFamily="Comic Sans MS" HorizontalAlignment="Left"   Margin="250,29,0,0" VerticalAlignment="Top" Width="241" Height="40"/>
-        <Label Content="{Binding DestinationAname, UpdateSourceTrigger=PropertyChanged}" Foreground="#FF477B8F"  FontWeight="Bold" FontFamily="Comic Sans MS" HorizontalAlignment="Left"  Margin="491,29,0,0" VerticalAlignment="Top" Width="227" Height="40"/>
-        <ListView Margin="260,140,260,95">
-            <ListView.ItemTemplate>
-            <DataTemplate >
-                <Border BorderBrush="Black" BorderThickness="1" Margin="1">
-                    <Expander ToolTip="Expand" ExpandDirection="Down" Foreground="Black">
-                        <Expander.Header>
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition Width="Auto" />
-                                </Grid.ColumnDefinitions>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="*"  />
-                                </Grid.RowDefinitions>
-                                <Label Grid.Column="0">Column 1</Label>
-                                <Label Grid.Column="1">Column 2</Label>
-                                <Label Grid.Column="2">Column 3</Label>
-                                <Label Grid.Column="3">Column 4</Label>
+        <ListView Margin="5,95,109,151" BorderBrush="#FF477B8F" Foreground="White">
 
-                               
-                            </Grid>
-                        </Expander.Header>
-                    </Expander>
-                </Border>
-            </DataTemplate>
-        </ListView.ItemTemplate>
+            <ListViewItem Background="#FF477B8F">
+                <StackPanel Orientation="Horizontal">
+                    <Image  Source="/Icon/temp.png" Height="20"
+                        Margin="0,0,5,0" />
+                    <TextBlock >Temperature:</TextBlock>
+                    <Image Source="/Icon/outFlightIcon.png" Height="20" />
+                    <TextBlock Text="{Binding RootO.temp }" Width="63"  />
+                    <Image Source="/Icon/inFlightIcon.png" Height="20" />
+                    <TextBlock Text="{Binding RootD.temp }" Width="63" />
+                </StackPanel>
+            </ListViewItem>
+            <ListViewItem Background="White" Height="5"></ListViewItem>
+            <ListViewItem Background="#FF477B8F">
+                <StackPanel Orientation="Horizontal">
+                    <Image  Source="/Icon/feelLike.png" Height="20"
+                        Margin="0,0,5,0" />
+                    <TextBlock   Width="77">Feels like:</TextBlock>
+                    <Image Source="/Icon/outFlightIcon.png" Height="20" />
+                    <TextBlock  Text="{Binding RootO.feels_like }" Width="63" />
+                    <Image Source="/Icon/inFlightIcon.png" Height="20" />
+                    <TextBlock  Text="{Binding RootD.feels_like }" Width="63" />
+
+                </StackPanel>
+            </ListViewItem>
+            <ListViewItem Background="White" Height="5"></ListViewItem>
+
+            <ListViewItem Background="#FF477B8F" >
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="/Icon/pressure.png" 
+                    Height="20"
+                        Margin="0,0,5,0" />
+                    <TextBlock Width="75">Pressure:</TextBlock>
+                    <Image Source="/Icon/outFlightIcon.png" Height="20" />
+                    <TextBlock Text="{Binding RootO.pressure }" Width="63" />
+                    <Image Source="/Icon/inFlightIcon.png" Height="20" />
+                    <TextBlock Text="{Binding RootD.pressure }" Width="63" />
+                </StackPanel>
+            </ListViewItem>
+            <ListViewItem Background="White" Height="5"></ListViewItem>
+            <ListViewItem Background="#FF477B8F">
+
+                <StackPanel Orientation="Horizontal">
+                    <Image  Source="/Icon/humidity.png" Height="20"
+                        Margin="0,0,5,0" />
+                    <TextBlock Width="74">Humidity</TextBlock>
+                    <Image Source="/Icon/outFlightIcon.png" Height="20" />
+                    <TextBlock Text="{Binding RootO.humidity }" Width="63" />
+                    <Image Source="/Icon/inFlightIcon.png" Height="20" />
+                    <TextBlock Text="{Binding RootD.humidity }" Width="63" />
+                </StackPanel>
+            </ListViewItem>
+            <ListViewItem Background="White" Height="5"></ListViewItem>
+            <ListViewItem Background="#FF477B8F" >
+                <StackPanel Orientation="Horizontal">
+                    <Image  Source="/Icon/tempMin.png" Height="20"
+                        Margin="0,0,5,0" />
+                    <TextBlock Width="119">Temperature Min:</TextBlock>
+                    <Image Source="/Icon/outFlightIcon.png" Height="20" />
+                    <TextBlock Text="{Binding RootO.temp_min }" Width="63" />
+                    <Image Source="/Icon/inFlightIcon.png" Height="20" />
+                    <TextBlock Text="{Binding RootD.temp_min }" Width="30" />
+                </StackPanel>
+            </ListViewItem>
+            <ListViewItem Background="White" Height="5"></ListViewItem>
+            <ListViewItem Background="#FF477B8F">
+
+                <StackPanel Orientation="Horizontal">
+                    <Image  Source="/Icon/tempMax.png" Height="20"
+                        Margin="0,0,5,0" />
+                    <TextBlock Width="119">Temperature Max:</TextBlock>
+                    <Image Source="/Icon/outFlightIcon.png" Height="20" />
+                    <TextBlock Text="{Binding RootO.temp_max }" Width="63" />
+                    <Image Source="/Icon/inFlightIcon.png" Height="20" />
+                    <TextBlock Text="{Binding RootD.temp_max }" Width="30" />
+                </StackPanel>
+            </ListViewItem>
+
         </ListView>
+        <GridSplitter x:Name="pas_Copy" HorizontalAlignment="Left" Height="302" Margin="146,-71,0,0" VerticalAlignment="Top" Width="5" RenderTransformOrigin="0.5,0.5">
+            <GridSplitter.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF477B8F"/>
+                    <GradientStop Color="#FF8BC1D5" Offset="1"/>
+                </LinearGradientBrush>
+            </GridSplitter.Background>
+            <GridSplitter.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-90.00"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </GridSplitter.RenderTransform>
+        </GridSplitter>
+        <Button  x:Name="btnLight" Height="38" Content="" Margin="263,383,106,0" VerticalAlignment="Top" MouseDoubleClick="btnLight_MouseDoubleClick" RenderTransformOrigin="-1.297,-1.175">
+            <Button.Template>
+                <ControlTemplate>
+                    <Grid>
+
+
+                        <Image Source="/Icon/IconOpenMap.png" Height="30"/>
+
+                    </Grid>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+
 
 
 

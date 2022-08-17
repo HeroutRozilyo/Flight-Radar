@@ -26,6 +26,7 @@ namespace PFlight.views
         WeatherVM CurrentVM { get; set; }
         Root root=new Root();
         HelperClass helperClass = new HelperClass();
+        WeatherVP WeatherVP = null;
         public DataFlightRoot( Root r)
         {
             CurrentVM = new WeatherVM(this,r);
@@ -60,13 +61,15 @@ namespace PFlight.views
         {
             MainWindow parentWindow = Window.GetWindow(this) as MainWindow;
             parentWindow.frame.Content = null;
-            parentWindow.frame1.Navigate(new WeatherVP(root));
-            parentWindow.wNameFlight.Visibility = Visibility.Visible;
-            parentWindow.labelWeather.Visibility = Visibility.Visible;
-            parentWindow.pas.Visibility = Visibility.Visible;
-            parentWindow. wNameFlight.Text = parentWindow.nameFlight.Text;
-            parentWindow.frame2.Navigate(parentWindow.mapP);
-            parentWindow.btnLight.Visibility = Visibility.Visible;
+            
+           
+
+
+            parentWindow.WheatherFrame.Navigate(new WeatherVP(root));
+           
+            
+            parentWindow.FrameMap.Navigate(parentWindow.mapP);
+           
             // weatherButton.IsEnabled = false;
             // weatherV = new WeatherV(lastChoos);
             //weatherV.Show();

@@ -32,5 +32,21 @@ namespace PFlight.views
 
             CurrentVM.LatLonWeather(f);
         }
+        private void btnLight_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            MainWindow parentWindow = Window.GetWindow(this) as MainWindow;
+            parentWindow.frame.Navigate(parentWindow.mapP);
+            parentWindow.WheatherFrame.Content= null;
+            parentWindow.mapP.btnLight.Visibility = Visibility.Visible;
+            parentWindow.FrameMap.Content = null;
+            parentWindow.WheatherFrame.Content = null;
+           
+           
+
+            //weatherButton.IsEnabled = true;
+
+        }
+
+
     }
 }

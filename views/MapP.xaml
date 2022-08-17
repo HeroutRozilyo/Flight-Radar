@@ -8,7 +8,7 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"  
       Title="MapP">
-    
+
     <Page.Resources>
         <SolidColorBrush x:Key="ColorZoneBackground1" Color="#DD000000"/>
         <Style  TargetType="m:Pushpin" x:Key="FromIsrael" >
@@ -16,9 +16,9 @@
                 <Setter.Value>
                     <ControlTemplate x:Name="temcontrol">
                         <Image x:Name="from1" Source="{Binding ImagePinMap}">
-                          
+
                         </Image>
-                        
+
 
 
                     </ControlTemplate>
@@ -89,13 +89,25 @@
     <Grid x:Name="GridMap" Margin="10,0,0,-1" Grid.RowSpan="2">
         <m:Map x:Name="myMap" Center="32.009444, 34.876944" CredentialsProvider="AtJ_2LD-0Gxr9hiKHwkQc5kBc3-9wL38tkucgebtHsCYd1c56byKDhtzIxKbmrPk" 
                ZoomLevel="7" AnimationLevel="None" Padding="10" Margin="10,68,0,10"  >
-           
-            <!--   <m:Pushpin Location="32.009444, 34.876944" ToolTip="Tel Aviv- Ben Gurion"/>-->
-           
+            <Button  x:Name="btnLight" Height="38" Content="" Margin="45,325,680,0" VerticalAlignment="Top" MouseDoubleClick="btnLight_MouseDoubleClick" RenderTransformOrigin="-1.297,-1.175">
+                <Button.Template>
+                    <ControlTemplate>
+                        <Grid>
 
-            
+
+                            <Image Source="/Icon/PluSMaoNew.png" Height="30" Margin="65,4,-65,4"/>
+
+                        </Grid>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+
+            <!--   <m:Pushpin Location="32.009444, 34.876944" ToolTip="Tel Aviv- Ben Gurion"/>-->
+
+
+
         </m:Map>
     </Grid>
 
-    
+
 </Page>

@@ -394,6 +394,26 @@
   <ItemGroup>
     <Resource Include="Icon\HistoryData.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icon\feelLike.png" />
+    <Resource Include="Icon\humidity.png" />
+    <Resource Include="Icon\temperature..png" />
+    <Resource Include="Icon\tempMax.png" />
+    <Resource Include="Icon\tempMin.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icon\inFlightIcon.png" />
+    <Resource Include="Icon\outFlightIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icon\temp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icon\pressure.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icon\PluSMaoNew.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="packages\System.Text.Json.6.0.4\build\System.Text.Json.targets" Condition="Exists('packages\System.Text.Json.6.0.4\build\System.Text.Json.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

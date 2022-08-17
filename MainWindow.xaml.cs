@@ -59,10 +59,8 @@ namespace PFlight
 
 
 
-            wNameFlight.Visibility = Visibility.Collapsed;
-            labelWeather.Visibility = Visibility.Collapsed;
-            btnLight.Visibility = Visibility.Collapsed;
-            pas.Visibility = Visibility.Collapsed;
+          
+          
             dataFrame.Visibility = Visibility.Collapsed;
            // backData.Visibility = Visibility.Collapsed;
 
@@ -168,20 +166,12 @@ namespace PFlight
             frame1.Content = null;
             frame2.Content = null;
 
-            wNameFlight.Visibility = Visibility.Collapsed;
-            labelWeather.Visibility = Visibility.Collapsed;
-            btnLight.Visibility = Visibility.Collapsed;
-            pas.Visibility = Visibility.Collapsed;
+          
             //weatherButton.IsEnabled = true;
 
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            
-        }
-
-       
+        
 
            
 
