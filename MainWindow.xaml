@@ -151,20 +151,27 @@
                 </DatePicker.BorderBrush>
             </DatePicker>
             <TextBlock x:Name="textday"  HorizontalAlignment="Left" Margin="485,6,0,564.333" TextWrapping="Wrap" Width="163" RenderTransformOrigin="0.526,-1.632" FontFamily="Comic Sans MS" Foreground="White"/>
-           
-            <Frame  Margin="344,0,-0.333,10.333" x:Name="frame" NavigationUIVisibility="Hidden" Grid.ColumnSpan="2" />
-            <Frame Margin="344,349,-0.333,0.333" x:Name="frame1" NavigationUIVisibility="Hidden" Grid.ColumnSpan="2"/>
-            <Frame  Margin="344,0,9.667,275.333" x:Name="frame2" NavigationUIVisibility="Hidden" Grid.ColumnSpan="2"/>
-           
-           
-          
 
-           
-            
-            <uc:AutoCompleteTextBoxUserControl x:Name="autoSuggestionUserControl" Margin="-103,-196,649.172,379.333" RenderTransformOrigin="0.807,0.541"  selectedChangeUC="autoSuggestionUserControl_selectedChangeUC"/>
+            <Frame  Margin="344,0,-0.333,10.333" x:Name="frame" NavigationUIVisibility="Hidden" Grid.ColumnSpan="2" />
+
+
+
+
+
+
+
+            <uc:AutoCompleteTextBoxUserControl x:Name="autoSuggestionUserControl" Margin="-103,-187,649,371" RenderTransformOrigin="0.807,0.541"  selectedChangeUC="autoSuggestionUserControl_selectedChangeUC"/>
             <Frame x:Name="dataFrame" Content="" Margin="0,69,692,13" Background="#FFFBFEFF" NavigationUIVisibility="Hidden"/>
             <Frame x:Name="FrameMap" NavigationUIVisibility="Hidden"  Margin="648,-10,0,10" Grid.ColumnSpan="2"/>
             <Frame  x:Name="WheatherFrame" NavigationUIVisibility="Hidden"    Margin="360,119,364,-114"/>
+            <Button x:Name="History" HorizontalAlignment="Left" Margin="6,11,0,0" VerticalAlignment="Top" ToolTip="Show All the History" RenderTransformOrigin="-7.688,0.408" Height="33" Width="31" Click="History_Click">
+                <Button.Template>
+                    <ControlTemplate>
+                        <Image Source="/Icon/Historu.png"  />
+                    </ControlTemplate>
+                </Button.Template>
+
+            </Button>
 
 
 
@@ -175,7 +182,7 @@
 
 
         </Grid>
-       
+
 
 
     </Grid>

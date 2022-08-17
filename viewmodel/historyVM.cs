@@ -24,6 +24,8 @@ namespace PFlight.viewmodel
             model = new screenM1();
             dates = DateTime.Today;
             flights = new ObservableCollection<FlightModel.FlightData>();
+            GetAllFlightHistory();
+            
         }
 
         DateTime dates;
@@ -81,6 +83,28 @@ namespace PFlight.viewmodel
                 return false;
         }
 
+        public bool GetAllFlightHistory()
+        {
+           ;
+
+            Dictionary<string, List<FlightModel.FlightData>> dic = model.getFlights();
+            List<FlightModel.FlightData> fl = new List<FlightModel.FlightData>();
+            foreach (var item in dic["Incoming"])
+            {
+               
+                    fl.Add(item);
+            }
+            foreach (var item in dic["Outgoing"])
+            {
+               
+                    fl.Add(item);
+            }
+            Flights = new ObservableCollection<FlightModel.FlightData>(fl);
+            if (Flights.Count() == 0)
+                return true;
+            else
+                return false;
+        }
 
 
         public event PropertyChangedEventHandler PropertyChanged;

@@ -31,6 +31,7 @@ namespace PFlight.views
             this.DataContext = CurrentVM;
             nodata.Visibility = Visibility.Hidden;
             calendar.DisplayDateEnd = DateTime.Today;
+            
 
         }
 

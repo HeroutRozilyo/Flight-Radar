@@ -159,17 +159,7 @@ namespace PFlight
 
         }
 
-        private void btnLight_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            // frame.Visibility = Visibility.Visible;
-            frame.Navigate(mapP);
-            frame1.Content = null;
-            frame2.Content = null;
-
-          
-            //weatherButton.IsEnabled = true;
-
-        }
+        
 
         
 
@@ -186,6 +176,11 @@ namespace PFlight
 
         }
 
-       
+        private void History_Click(object sender, RoutedEventArgs e)
+        {
+            historyVW window=new historyVW();
+            window.Show();
+
+        }
     }
 }
