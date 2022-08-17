@@ -55,6 +55,9 @@ namespace PFlight.views
             MainWindow parentWindow = Window.GetWindow(this) as MainWindow;
             this.Visibility = Visibility.Collapsed;
             parentWindow.dataFrame.Visibility = Visibility.Collapsed;
+            parentWindow.WheatherFrame.Content = null;
+            parentWindow.FrameMap.Content = null;
+            parentWindow.frame.Navigate(parentWindow.mapP);
 
         }
         private void weatherButton_Click(object sender, RoutedEventArgs e)

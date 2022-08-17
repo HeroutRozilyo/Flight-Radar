@@ -13,7 +13,9 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace PFlight.views
 {
@@ -27,10 +29,43 @@ namespace PFlight.views
         public firstWindow()
         {
             InitializeComponent();
+           
             CurrentVM = new OpenWindowVM(this);
             this.DataContext = CurrentVM;
+            IProgress<int> p = new Progress<int>((x) =>
+            {
+                pbStatus.Value = x;
+                if (x == 100)
+                {
+                    //update data grid here
+                    this.Dispatcher.Invoke(() =>
+                    {
+                        var viewModel = (OpenWindowVM)DataContext;
+                        if (viewModel.OpenCommand.CanExecute(null))
+                            viewModel.OpenCommand.Execute(null);
+                    });
+                    
+                }
+
+
+            });
+            Task.Run(() =>
+            {
+                //Your heavy tasks can go here 
+                var x = 0;
+                for (int i = 0; i < 10; i++)
+                {
+                    System.Threading.Thread.Sleep(100);
+                    x += 10;
+                    p.Report(x); //report back progress 
+                }
+               
+
+            });
 
         }
+
+        /*
         private void Window_ContentRendered(object sender, EventArgs e)
         {
             BackgroundWorker worker = new BackgroundWorker();
@@ -51,8 +86,8 @@ namespace PFlight.views
             this.Dispatcher.Invoke(() =>
             {
                 var viewModel = (OpenWindowVM)DataContext;
-                if (viewModel.OpenCommand.CanExecute(null))
-                    viewModel.OpenCommand.Execute(null);
+              //  if (viewModel.OpenCommand.CanExecute(null))
+                  //  viewModel.OpenCommand.Execute(null);
             });
            
         }
@@ -61,7 +96,7 @@ namespace PFlight.views
         {
             pbStatus.Value = e.ProgressPercentage;
         }
-
+        */
         private void Window_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             if (this.WindowState == WindowState.Normal)
@@ -74,5 +109,7 @@ namespace PFlight.views
         {
 
         }
+        
+       
     }
 }
