@@ -4,8 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:PFlight.views.UserControls"
-             mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             mc:Ignorable="d" Height="172" Width="277">
     <Grid x:Name="grid">
         <StackPanel Orientation="Horizontal"    
                     VerticalAlignment="Center"    
@@ -14,10 +13,23 @@
             <!-- Text Box -->
             <Border x:Name="autoTextBoxBorder"   BorderBrush="Black" BorderThickness="1"  
                         Width="220"    
-                        Height="26"  Background="#FFF5FEFC" >
+                        Height="26"  Background="#FFF3F4F4" >
 
                 <DockPanel Margin="0,0,0,-1">
-                    <Image Source="/Icon/SearchIcon.png"  Height="20"/>
+
+                    <Button x:Name="SearchButton" Click="SearchButton_Click">
+                        <Button.Template>
+                            <ControlTemplate>
+                                <Grid >
+
+
+                                <Image Source="/Icon/SearchIcon.png"  Height="20" />
+
+
+                            </Grid>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
 
 
                     <TextBox x:Name="autoTextBox"    
@@ -28,7 +40,8 @@
                              BorderThickness="0"    
                              VerticalContentAlignment="Center"    
                              HorizontalContentAlignment="Center"    
-                             Padding="0,0,0,0"    
+                             Padding="0,0,0,0" 
+                             KeyDown="autoTextBox_KeyDown"
                                 
                              Foreground="Black"    
                              TextChanged="AutoTextBox_TextChanged"/>

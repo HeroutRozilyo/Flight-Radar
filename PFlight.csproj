@@ -384,9 +384,6 @@
     <Resource Include="Icon\Backround.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Backround.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Icon\PlusMap.jpg" />
   </ItemGroup>
   <ItemGroup>

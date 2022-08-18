@@ -41,15 +41,15 @@ namespace PFlight.viewmodel
                     {
                         if (i == 0)
                         {
-                            if (DateTime.Today.ToShortDateString() != dateTime.Date.ToShortDateString())
+                            if (a!=b)
                                 return dateTime.Date.ToShortDateString() + " is a " + "ערב חג";
                             else return "Today is a " + "ערב חג";
                         }
-                        if (DateTime.Today.ToShortDateString() != dateTime.Date.ToShortDateString())
+                        if (a!=b)
                             return dateTime.Date.ToShortDateString() + " is " + i + " days befor holiday";
                         else  return "Today is " + i + " days befor holiday";
                     }
-                    if (DateTime.Today.ToShortTimeString()!=dateTime.Date.ToShortDateString()&&i==7)
+                    if (a!=b&&i==7)
                         return dateTime.Date.ToShortDateString() + " is a Regular day";
 
                 }

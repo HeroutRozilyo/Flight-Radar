@@ -51,7 +51,7 @@ namespace PFlight.views
             });
             Task.Run(() =>
             {
-                //Your heavy tasks can go here 
+                
                 var x = 0;
                 for (int i = 0; i < 10; i++)
                 {

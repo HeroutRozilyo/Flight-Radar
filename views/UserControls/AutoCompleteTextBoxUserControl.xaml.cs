@@ -137,6 +137,7 @@ namespace PFlight.views.UserControls
                     // Info.  
                     return;
                 }
+                
 
                 // Enable.  
                 this.OpenAutoSuggestionBox();
@@ -226,6 +227,19 @@ namespace PFlight.views.UserControls
         private void autoTextBox_LostFocus(object sender, RoutedEventArgs e)
         {
             autoListPopup.StaysOpen = false;
+
+        }
+
+        private void SearchButton_Click(object sender, RoutedEventArgs e)
+        {
+            autoList.SelectedIndex = 0;
+
+        }
+
+        private void autoTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.Key == Key.Enter)
+                autoList.SelectedIndex = 1;
 
         }
     }

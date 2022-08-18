@@ -25,36 +25,32 @@
                 </Setter.Value>
             </Setter>
         </Style>
-        
+
+        <Style TargetType="{x:Type GridViewColumnHeader}">
+            <Setter Property="HorizontalContentAlignment" Value="Left" />
+            <Setter Property="Background" Value="Black"></Setter>
+            <Setter Property="Foreground" Value="White"></Setter>
+        </Style>
+
 
     </Window.Resources>
 
     <Grid Margin="0,0,0,-6" Background="#FFF3F4F4">
         <Grid.RowDefinitions>
-            <RowDefinition Height="400*"/>
-            <RowDefinition Height="202*"/>
+            <RowDefinition Height="581*"/>
+            <RowDefinition Height="21*"/>
             <RowDefinition Height="27*"/>
         </Grid.RowDefinitions>
 
 
 
-        <Label Content="Incoming Flight" Foreground="#FF477B8F"  FontWeight="Bold" HorizontalAlignment="Left" Height="42" Margin="187,107,0,0" FontFamily="Comic Sans MS" VerticalAlignment="Top" Width="152"/>
+        <Label Content="Incoming Flight" Foreground="#FF477B8F"  FontWeight="Bold" HorizontalAlignment="Left" Height="42" Margin="17,312,0,0" FontFamily="Comic Sans MS" VerticalAlignment="Top" Width="152"/>
 
-        <Label Content="Outcoming Flight" FontFamily="Comic Sans MS" HorizontalAlignment="Left" Height="42" Margin="17,107,0,0" VerticalAlignment="Top" Width="152" Foreground="#FF477B8F" FontWeight="Bold"/>
-        <!-- <ListBox x:Name="outList" HorizontalAlignment="Left" Height="142" Margin="26,155,0,0" FontFamily="Comic Sans MS" VerticalAlignment="Top" Width="130" ItemsSource="{Binding FlightsOut}" DisplayMemberPath="Destination" MouseDoubleClick="outList_MouseDoubleClick"/>-->
+        <Label Content="Outcoming Flight" FontFamily="Comic Sans MS" HorizontalAlignment="Left" Height="42" Margin="17,61,0,0" VerticalAlignment="Top" Width="152" Foreground="#FF477B8F" FontWeight="Bold"/>
 
-        
-        
-        <!-- 
 
-        <Grid x:Name="GridMap" Margin="340,0,-0.333,-0.667" Grid.RowSpan="2">
-            <m:Map x:Name="myMap" Center="32.009444, 34.876944" CredentialsProvider="AtJ_2LD-0Gxr9hiKHwkQc5kBc3-9wL38tkucgebtHsCYd1c56byKDhtzIxKbmrPk" 
-               ZoomLevel="7" AnimationLevel="None" Padding="10" Margin="10,68,0,10" >
-                
-            </m:Map>
-        
 
-    </Grid>-->
+
 
         <materialDesign:ColorZone Background="#497b8f"     
   Mode="Inverted"
@@ -84,10 +80,14 @@
 
         </materialDesign:ColorZone>
 
-        <ListView   AlternationCount="2" ItemsSource="{Binding FlightsOut}" FontFamily="Comic Sans MS" x:Name="outList" Margin="4,98,0,0" SelectionChanged="inlist_SelectionChanged" FontSize="9" Foreground="#FF477B8F" Width="152" Height="146" HorizontalAlignment="Left" VerticalAlignment="Top">
+        <ListView   AlternationCount="2" ItemsSource="{Binding FlightsOut}" FontFamily="Comic Sans MS" x:Name="outList" Margin="26,92,0,0" SelectionChanged="inlist_SelectionChanged" FontSize="12" Foreground="White" Width="254" Height="215" HorizontalAlignment="Left" VerticalAlignment="Top" ToolTip="Flights depart from Israel">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Width="50" Header=" ">
+                    <GridViewColumn Width="30" >
+                        <HeaderedContentControl>
+                            <Image Source="/Icon/outFlightIcon.png" Height="20" />
+
+                        </HeaderedContentControl>
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <Image Source="/Icon/airplane.png" Width="20" />
@@ -95,32 +95,37 @@
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
-                    <GridViewColumn Width="65" Header=""
-                DisplayMemberBinding="{Binding FlightCode}"/>
-                    <GridViewColumn Header="Destination" DisplayMemberBinding="{Binding Destination}"/>
+                    <GridViewColumn Width="100" Header="Code" DisplayMemberBinding="{Binding FlightCode}" >
+
+
+                    </GridViewColumn>
+
+                    <GridViewColumn Header="Destination" Width="100" DisplayMemberBinding="{Binding Destination}"/>
                 </GridView>
-                
+
             </ListView.View>
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
                     <Style.Triggers>
                         <Trigger Property="ListBox.AlternationIndex" Value="0">
-                            <Setter Property="Border.Background" Value="Red" />
+                            <Setter Property="Border.Background" Value="#497b8f" />
                         </Trigger>
                         <Trigger Property="ListBox.AlternationIndex" Value="1">
-                            <Setter Property="Border.Background" Value="Blue" />
+                            <Setter Property="Border.Background" Value="#FFA9B0B3" />
                         </Trigger>
                     </Style.Triggers>
-                    
+
                 </Style>
             </ListView.ItemContainerStyle>
-
-
         </ListView>
-        <ListView Name="inList"  HorizontalAlignment="Left"  Margin="169,98,0,0" FontFamily="Comic Sans MS" VerticalAlignment="Top" FontSize="9"  Foreground="#FF477B8F" Width="166" ItemsSource="{Binding FlightsIN}" SelectionChanged="inlist_SelectionChanged" Height="146"  >
+        <ListView Name="inList" AlternationCount="2"  HorizontalAlignment="Left"  Margin="22,348,0,0" FontFamily="Comic Sans MS" VerticalAlignment="Top" FontSize="12"  Foreground="White" Width="254" ItemsSource="{Binding FlightsIN}" SelectionChanged="inlist_SelectionChanged" Height="215" BorderBrush="Black" ToolTip="Incoming flights to Israel"   >
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Width="50" Header=" ">
+                    <GridViewColumn Width="30" >
+                        <HeaderedContentControl>
+                            <Image Source="/Icon/inFlightIcon.png" Height="20" />
+
+                        </HeaderedContentControl>
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <Image Source="\Icon\airplaneToIsrael.png" Width="20" />
@@ -129,48 +134,53 @@
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
-                    <GridViewColumn Width="65" Header=""
+                    <GridViewColumn Width="100" Header="Code" 
                 DisplayMemberBinding="{Binding FlightCode}"/>
+                    <GridViewColumn Header="Origin" Width="100" DisplayMemberBinding="{Binding Source}"></GridViewColumn>
                 </GridView>
             </ListView.View>
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Style.Triggers>
+                        <Trigger Property="ListBox.AlternationIndex" Value="0">
+                            <Setter Property="Border.Background" Value="#497b8f" />
+                        </Trigger>
+                        <Trigger Property="ListBox.AlternationIndex" Value="1">
+                            <Setter Property="Border.Background" Value="#FFA9B0B3" />
+                        </Trigger>
+                    </Style.Triggers>
+
+                </Style>
+            </ListView.ItemContainerStyle>
+
+
         </ListView>
 
-        <Grid Grid.RowSpan="3">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="529*"/>
-                <ColumnDefinition Width="14*"/>
-            </Grid.ColumnDefinitions>
-            <DatePicker Name="dpicker" FontFamily="Comic Sans MS"   SelectedDateChanged="dpicker_SelectedDateChanged"  SelectedDateFormat="Long" DisplayDateStart="1/01/2022" DisplayDateEnd="12/31/2022" HorizontalAlignment="Left" FirstDayOfWeek="Sunday"  Margin="828,10,0,0" VerticalAlignment="Top" Width="201" Height="34" Foreground="Black" OpacityMask="#FF477B8F">
-                <DatePicker.BorderBrush>
-                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                        <GradientStop Color="WhiteSmoke" Offset="0" />
-                        <GradientStop Color="PapayaWhip" Offset="1.0" />
-                        <GradientStop Color="NavajoWhite" Offset="0.6" />
-                    </LinearGradientBrush>
-                </DatePicker.BorderBrush>
-            </DatePicker>
-            <TextBlock x:Name="textday"  HorizontalAlignment="Left" Margin="485,6,0,564.333" TextWrapping="Wrap" Width="163" RenderTransformOrigin="0.526,-1.632" FontFamily="Comic Sans MS" Foreground="White"/>
 
-            <Frame  Margin="344,0,-0.333,10.333" x:Name="frame" NavigationUIVisibility="Hidden" Grid.ColumnSpan="2" />
+        <DatePicker Name="dpicker" FontFamily="Comic Sans MS"   SelectedDateChanged="dpicker_SelectedDateChanged"  SelectedDateFormat="Long" DisplayDateStart="1/01/2022" DisplayDateEnd="12/31/2022" HorizontalAlignment="Left" FirstDayOfWeek="Sunday"  Margin="828,10,0,0" VerticalAlignment="Top" Width="201" Height="34" Foreground="Black" OpacityMask="#FF477B8F">
+            <DatePicker.BorderBrush>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                    <GradientStop Color="WhiteSmoke" Offset="0" />
+                    <GradientStop Color="PapayaWhip" Offset="1.0" />
+                    <GradientStop Color="NavajoWhite" Offset="0.6" />
+                </LinearGradientBrush>
+            </DatePicker.BorderBrush>
+        </DatePicker>
+        <TextBlock x:Name="textday"  HorizontalAlignment="Left" Margin="475,16,0,513" TextWrapping="Wrap" Width="163" RenderTransformOrigin="0.526,-1.632" FontFamily="Comic Sans MS" Foreground="White"/>
 
+        <Frame  Margin="344,0,0,0" x:Name="frame" NavigationUIVisibility="Hidden" Grid.RowSpan="3" />
+        <Frame x:Name="dataFrame" Content="" Margin="-791,45,1483,7" Background="#FFFBFEFF" NavigationUIVisibility="Hidden" Grid.RowSpan="2"/>
+        <Frame x:Name="FrameMap" NavigationUIVisibility="Hidden"  Margin="648,-10,0,0" Grid.RowSpan="3"/>
+        <Frame  x:Name="WheatherFrame" NavigationUIVisibility="Hidden"    Margin="360,119,364,-114"/>
+        <Button x:Name="History" HorizontalAlignment="Left" Margin="10,13,0,0" VerticalAlignment="Top" ToolTip="Show All the History" RenderTransformOrigin="-7.688,0.408" Height="33" Width="30" Click="History_Click">
+            <Button.Template>
+                <ControlTemplate>
+                    <Image Source="/Icon/Historu.png"  />
+                </ControlTemplate>
+            </Button.Template>
 
-
-
-
-
-
-            <uc:AutoCompleteTextBoxUserControl x:Name="autoSuggestionUserControl" Margin="-103,-187,649,371" RenderTransformOrigin="0.807,0.541"  selectedChangeUC="autoSuggestionUserControl_selectedChangeUC"/>
-            <Frame x:Name="dataFrame" Content="" Margin="0,69,692,13" Background="#FFFBFEFF" NavigationUIVisibility="Hidden"/>
-            <Frame x:Name="FrameMap" NavigationUIVisibility="Hidden"  Margin="648,-10,0,10" Grid.ColumnSpan="2"/>
-            <Frame  x:Name="WheatherFrame" NavigationUIVisibility="Hidden"    Margin="360,119,364,-114"/>
-            <Button x:Name="History" HorizontalAlignment="Left" Margin="6,11,0,0" VerticalAlignment="Top" ToolTip="Show All the History" RenderTransformOrigin="-7.688,0.408" Height="33" Width="31" Click="History_Click">
-                <Button.Template>
-                    <ControlTemplate>
-                        <Image Source="/Icon/Historu.png"  />
-                    </ControlTemplate>
-                </Button.Template>
-
-            </Button>
+        </Button>
+        <uc:AutoCompleteTextBoxUserControl x:Name="autoSuggestionUserControl" Margin="16,-55,800,464" RenderTransformOrigin="0.807,0.541"  selectedChangeUC="autoSuggestionUserControl_selectedChangeUC"/>
 
 
 
@@ -180,7 +190,7 @@
 
 
 
-        </Grid>
+
 
 
 

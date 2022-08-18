@@ -5,19 +5,25 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PFlight.views"
         mc:Ignorable="d"
-        Title="historyVW" Height="358" Width="964" >
+        Title="historyVW" Height="358" Width="923"  WindowStartupLocation="CenterScreen" >
     <Window.Resources>
         <Style x:Key="cal" TargetType="{x:Type Calendar}">
-            <Setter Property="Background" Value="AliceBlue"/>
+            <Setter Property="Background" Value="#FFF3F4F4"/>
             <Setter Property="FontWeight" Value="Bold"/>
 
 
         </Style>
+
+        <Style TargetType="{x:Type GridViewColumnHeader}">
+            <Setter Property="HorizontalContentAlignment" Value="Left" />
+            <Setter Property="Background" Value="Black"></Setter>
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
     </Window.Resources>
-    <Grid Background="#FFEFF2F4">
+    <Grid Background="#FFF3F4F4">
 
 
-        <Expander x:Name="expenderA"  Margin="718,65,31,30"  ExpandDirection="Down"  Background="#00FFFFFF"  >
+        <Expander x:Name="expenderA"  Margin="642,53,62,42"  ExpandDirection="Down"  Background="#00FFFFFF"  >
             <Expander.Header>
                 <Grid Width="142">
                     <Image Source="/Icon/filter.png" Width="35" ToolTip=" Filter by dates" RenderTransformOrigin="-1.8,0.377" Height="26" Margin="6,0,100,0" />
@@ -57,13 +63,11 @@
 
 
 
-        <ListView x:Name="listViewHistory" Background="#FF477B8F"  ItemsSource="{Binding Flights}" RenderTransformOrigin="0.504,1.358" Margin="73,60,0,10" HorizontalAlignment="Left" Width="644" BorderBrush="#FF477B8F" Foreground="White"  >
+        <ListView x:Name="listViewHistory" AlternationCount="2"   ItemsSource="{Binding Flights}" RenderTransformOrigin="0.504,1.358" Margin="73,60,0,10" HorizontalAlignment="Left" Width="593" BorderBrush="#FF477B8F" Foreground="White"  >
             <ListView.View  >
                 <GridView>
-                    <GridViewColumn Width="160" DisplayMemberBinding="{Binding FlightCode}"  >
-                        <HeaderedContentControl>
-                            <TextBox IsReadOnly="True" Text="Code Flight" Foreground="#FF477B8F" Width="86"></TextBox>
-                        </HeaderedContentControl>
+                    <GridViewColumn Width="160" Header="Code Flight" DisplayMemberBinding="{Binding FlightCode}"  >
+
                     </GridViewColumn>
                     <GridViewColumn   Width="120" DisplayMemberBinding="{Binding Source}">
                         <HeaderedContentControl Background="#FF477B8F">
@@ -85,7 +89,7 @@
 
                         </HeaderedContentControl>
                     </GridViewColumn>
-                    <GridViewColumn Width="150" DisplayMemberBinding="{Binding DataAndTime}">
+                    <GridViewColumn Width="180" DisplayMemberBinding="{Binding DataAndTime}">
                         <HeaderedContentControl>
                             <Grid>
                                 <Image Source="/Icon/date.png" Width="30" ToolTip="Date" />
@@ -97,18 +101,26 @@
                 </GridView>
             </ListView.View>
             <ListView.ItemContainerStyle>
-                <Style TargetType="{x:Type ListViewItem}">
-                    <Setter Property="Background" Value="#FF477B8F" />
+                <Style TargetType="ListViewItem">
+                    <Style.Triggers>
+                        <Trigger Property="ListBox.AlternationIndex" Value="0">
+                            <Setter Property="Border.Background" Value="#497b8f" />
+                        </Trigger>
+                        <Trigger Property="ListBox.AlternationIndex" Value="1">
+                            <Setter Property="Border.Background" Value="#FFA9B0B3" />
+                        </Trigger>
+                    </Style.Triggers>
+
                 </Style>
             </ListView.ItemContainerStyle>
         </ListView>
-        <Label x:Name="nodata" Content="There are no flights on the requested dates" FontSize="20"  Foreground="Red" HorizontalAlignment="Left" Margin="124,189,0,0" VerticalAlignment="Top" Width="542" Height="67"/>
+        <Label x:Name="nodata" Content="There are no flights on the requested dates" FontSize="24"  FontFamily="Segoe UI Variable Text Semibold"  Foreground="#FF070808" HorizontalAlignment="Left" Margin="124,189,0,0" VerticalAlignment="Top" Width="542" Height="67"/>
         <TextBox HorizontalAlignment="Left" Margin="73,10,0,0" TextWrapping="Wrap" Text="Your selected flights " FontFamily="Segoe UI Variable Text Semibold" 
                 FontSize="24"  IsReadOnly="True" Foreground="#FF070808" VerticalAlignment="Top" Width="508" CaretBrush="#FF477B8F" BorderBrush="#89100B0B">
 
 
         </TextBox>
-        <Button x:Name="backData"  HorizontalAlignment="Left" Margin="19,82,0,0" VerticalAlignment="Top" Background="#FFEFF2F4" BorderBrush="#FFEFF2F4" MouseDoubleClick="backData_MouseDoubleClick">
+        <Button x:Name="backData"  HorizontalAlignment="Left" Margin="19,58,0,0" VerticalAlignment="Top" Background="#FFEFF2F4" BorderBrush="#FFEFF2F4" MouseDoubleClick="backData_MouseDoubleClick">
             <Image Source="/Icon/CancelFilter.png"  Height="20"/>
 
         </Button>
