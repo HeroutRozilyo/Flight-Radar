@@ -49,14 +49,13 @@ namespace PFlight.viewmodel
                             return dateTime.Date.ToShortDateString() + " is " + i + " days befor holiday";
                         else  return "Today is " + i + " days befor holiday";
                     }
-                    if (DateTime.Today.ToShortTimeString().Equals(dateTime.Date.ToShortDateString())&&i==7)
+                    if (DateTime.Today.ToShortTimeString()!=dateTime.Date.ToShortDateString()&&i==7)
                         return dateTime.Date.ToShortDateString() + " is a Regular day";
 
                 }
             }
             catch (FormatException e) { }
-            //string a = DateTime.Today.ToShortTimeString();
-            //string b = dateTime.Date.ToShortDateString();
+           
            
 
             return "Today is a Regular day";
