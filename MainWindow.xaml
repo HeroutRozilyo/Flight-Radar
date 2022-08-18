@@ -25,10 +25,11 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        
 
     </Window.Resources>
 
-    <Grid Margin="0,0,0,-6">
+    <Grid Margin="0,0,0,-6" Background="#FFF3F4F4">
         <Grid.RowDefinitions>
             <RowDefinition Height="400*"/>
             <RowDefinition Height="202*"/>
@@ -42,26 +43,8 @@
         <Label Content="Outcoming Flight" FontFamily="Comic Sans MS" HorizontalAlignment="Left" Height="42" Margin="17,107,0,0" VerticalAlignment="Top" Width="152" Foreground="#FF477B8F" FontWeight="Bold"/>
         <!-- <ListBox x:Name="outList" HorizontalAlignment="Left" Height="142" Margin="26,155,0,0" FontFamily="Comic Sans MS" VerticalAlignment="Top" Width="130" ItemsSource="{Binding FlightsOut}" DisplayMemberPath="Destination" MouseDoubleClick="outList_MouseDoubleClick"/>-->
 
-        <StackPanel x:Name="detailsP" HorizontalAlignment="Left" Height="145" Margin="142,313,0,0" VerticalAlignment="Top" Width="161" Grid.RowSpan="2">
-            <TextBlock   x:Name="nameFlight"  Foreground="#FF477B8F" FontFamily="Comic Sans MS"/>
-            <TextBlock Text="{Binding aircraft.registration}" Foreground="#FF477B8F" FontFamily="Comic Sans MS"/>
-            <TextBlock Text="{Binding airline.name}" Foreground="#FF477B8F" FontFamily="Comic Sans MS"/>
-            <TextBlock Text="{Binding airport.destination.name}"  Foreground="#FF477B8F" FontFamily="Comic Sans MS"/>
-            <TextBlock Text="{Binding airport.destination.position.country.name}" Foreground="#FF477B8F" FontFamily="Comic Sans MS"/>
-            <TextBlock Text="{Binding airport.origin.name}" FontFamily="Comic Sans MS" Foreground="#FF477B8F"/>
-            <TextBlock Text="{Binding airport.origin.position.country.name}" Foreground="#FF477B8F" FontFamily="Comic Sans MS"/>
-            <TextBlock Text="{Binding status.text}" Foreground="#FF477B8F" FontFamily="Comic Sans MS"/>
-        </StackPanel>
-        <StackPanel x:Name="detailsPNName" HorizontalAlignment="Left" Height="145" Margin="11,313,0,0" VerticalAlignment="Top" Width="138" Grid.RowSpan="2">
-            <TextBlock Text="Flight code:"  Foreground="#FF477B8F" FontFamily="Comic Sans MS"></TextBlock>
-            <TextBlock Text="Flight name:" Foreground="#FF477B8F" FontFamily="Comic Sans MS"></TextBlock>
-            <TextBlock Text="Airline:" Foreground="#FF477B8F" FontFamily="Comic Sans MS"></TextBlock>
-            <TextBlock Text="Destination:" Foreground="#FF477B8F" FontFamily="Comic Sans MS"></TextBlock>
-            <TextBlock Text="Destination country:" Foreground="#FF477B8F" FontFamily="Comic Sans MS"></TextBlock>
-            <TextBlock Text="Origin:" Foreground="#FF477B8F" FontFamily="Comic Sans MS"></TextBlock>
-            <TextBlock Text="Country of origin:" Foreground="#FF477B8F" FontFamily="Comic Sans MS"></TextBlock>
-            <TextBlock Text="Estimated arrival time:" Foreground="#FF477B8F" FontFamily="Comic Sans MS"></TextBlock>
-        </StackPanel>
+        
+        
         <!-- 
 
         <Grid x:Name="GridMap" Margin="340,0,-0.333,-0.667" Grid.RowSpan="2">
@@ -101,7 +84,7 @@
 
         </materialDesign:ColorZone>
 
-        <ListView  ItemsSource="{Binding FlightsOut}" FontFamily="Comic Sans MS" x:Name="outList" Margin="4,98,0,0" SelectionChanged="inlist_SelectionChanged" FontSize="9" Foreground="#FF477B8F" Width="152" Height="146" HorizontalAlignment="Left" VerticalAlignment="Top">
+        <ListView   AlternationCount="2" ItemsSource="{Binding FlightsOut}" FontFamily="Comic Sans MS" x:Name="outList" Margin="4,98,0,0" SelectionChanged="inlist_SelectionChanged" FontSize="9" Foreground="#FF477B8F" Width="152" Height="146" HorizontalAlignment="Left" VerticalAlignment="Top">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Width="50" Header=" ">
@@ -114,8 +97,24 @@
                     </GridViewColumn>
                     <GridViewColumn Width="65" Header=""
                 DisplayMemberBinding="{Binding FlightCode}"/>
+                    <GridViewColumn Header="Destination" DisplayMemberBinding="{Binding Destination}"/>
                 </GridView>
+                
             </ListView.View>
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Style.Triggers>
+                        <Trigger Property="ListBox.AlternationIndex" Value="0">
+                            <Setter Property="Border.Background" Value="Red" />
+                        </Trigger>
+                        <Trigger Property="ListBox.AlternationIndex" Value="1">
+                            <Setter Property="Border.Background" Value="Blue" />
+                        </Trigger>
+                    </Style.Triggers>
+                    
+                </Style>
+            </ListView.ItemContainerStyle>
+
 
         </ListView>
         <ListView Name="inList"  HorizontalAlignment="Left"  Margin="169,98,0,0" FontFamily="Comic Sans MS" VerticalAlignment="Top" FontSize="9"  Foreground="#FF477B8F" Width="166" ItemsSource="{Binding FlightsIN}" SelectionChanged="inlist_SelectionChanged" Height="146"  >

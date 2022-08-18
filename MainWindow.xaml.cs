@@ -108,7 +108,7 @@ namespace PFlight
                 dataFrame.Navigate(new DataFlightRoot(flightM));
                 dataFrame.Visibility = Visibility.Visible;
                 //detailsP.DataContext = flightM;
-                nameFlight.Text = flightM.identification.number.@default;
+                
             }
             else
                 System.Windows.MessageBox.Show("There is a problem loading the data", "My App", MessageBoxButton.OK, MessageBoxImage.Error);

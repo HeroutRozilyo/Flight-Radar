@@ -24,24 +24,41 @@ namespace PFlight.viewmodel
 
         public async Task<string> isHoliday(string date)
         {
+            DateTime dateTime=new DateTime();
             try
             {
-                DateTime dateTime = DateTime.Parse(date);
+                 dateTime = DateTime.Parse(date);
                 DateTime date1 = dateTime;
+                string a = DateTime.Today.ToShortDateString();
+                string b = dateTime.Date.ToShortDateString();
                 bool isT = false;
+                
                 for (int i = 0; i < 8; i++)
                 {
-                    date1 = date1.AddDays((double)i);
+                    date1 = date1.AddDays((double)1);
                     isT = await model.isHoliday(date1);
                     if (isT)
                     {
                         if (i == 0)
-                            return "Today is a " + "ערב חג";
-                        return "This date is " + i + " days befor holiday";
+                        {
+                            if (DateTime.Today.ToShortDateString() != dateTime.Date.ToShortDateString())
+                                return dateTime.Date.ToShortDateString() + " is a " + "ערב חג";
+                            else return "Today is a " + "ערב חג";
+                        }
+                        if (DateTime.Today.ToShortDateString() != dateTime.Date.ToShortDateString())
+                            return dateTime.Date.ToShortDateString() + " is " + i + " days befor holiday";
+                        else  return "Today is " + i + " days befor holiday";
                     }
+                    if (DateTime.Today.ToShortTimeString().Equals(dateTime.Date.ToShortDateString())&&i==7)
+                        return dateTime.Date.ToShortDateString() + " is a Regular day";
+
                 }
             }
             catch (FormatException e) { }
+            //string a = DateTime.Today.ToShortTimeString();
+            //string b = dateTime.Date.ToShortDateString();
+           
+
             return "Today is a Regular day";
         }
     }
