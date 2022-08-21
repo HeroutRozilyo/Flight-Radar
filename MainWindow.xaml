@@ -8,7 +8,7 @@
          xmlns:uc ="clr-namespace:PFlight.views.UserControls"
         mc:Ignorable="d"
         
-        Title="MainWindow" Height="639" Width="1093" WindowStartupLocation="CenterScreen" Background="#FFFBFEFF" >
+        Title="Flight Radar" Height="639" Width="1093" WindowStartupLocation="CenterScreen" Background="#FFFBFEFF" Icon="\Icon\Backround.png" >
     <Window.Resources>
 
 

@@ -28,7 +28,7 @@
         </GridSplitter>
 
 
-        <ListView Margin="5,110,109,136" BorderBrush="#FF477B8F" Foreground="White">
+        <ListView Margin="5,110,106,136" FontFamily="Comic Sans MS" BorderBrush="#FF477B8F" Foreground="White">
 
             <ListViewItem Background="#FF477B8F">
                 <StackPanel Orientation="Horizontal">
@@ -88,9 +88,9 @@
                         Margin="0,0,5,0" />
                     <TextBlock Width="119">Temperature Min:</TextBlock>
                     <Image Source="/Icon/outFlightIcon.png" Height="20" />
-                    <TextBlock Text="{Binding RootO.temp_min }" Width="63" />
+                    <TextBlock Text="{Binding RootO.temp_min }" Width="57" />
                     <Image Source="/Icon/inFlightIcon.png" Height="20" />
-                    <TextBlock Text="{Binding RootD.temp_min }" Width="30" />
+                    <TextBlock Text="{Binding RootD.temp_min }" Width="34" />
                 </StackPanel>
             </ListViewItem>
             <ListViewItem Background="White" Height="5"></ListViewItem>
@@ -101,9 +101,9 @@
                         Margin="0,0,5,0" />
                     <TextBlock Width="119">Temperature Max:</TextBlock>
                     <Image Source="/Icon/outFlightIcon.png" Height="20" />
-                    <TextBlock Text="{Binding RootO.temp_max }" Width="63" />
+                    <TextBlock Text="{Binding RootO.temp_max }" Width="57" />
                     <Image Source="/Icon/inFlightIcon.png" Height="20" />
-                    <TextBlock Text="{Binding RootD.temp_max }" Width="30" />
+                    <TextBlock Text="{Binding RootD.temp_max }" Width="34" />
                 </StackPanel>
             </ListViewItem>
 

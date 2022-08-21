@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:PFlight.views"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls" x:Class="PFlight.views.firstWindow"
         mc:Ignorable="d"
-        Title="firstWindow"  WindowStartupLocation="CenterScreen" MouseDoubleClick="Window_MouseDoubleClick">
+        Title="Flight Radar"  WindowStartupLocation="CenterScreen"  Icon="\Icon\Backround.png" MouseDoubleClick="Window_MouseDoubleClick">
     <!--<ContentRendered="Window_ContentRendered">-->
 
     <Grid Margin="0,0,0.333,-0.333">

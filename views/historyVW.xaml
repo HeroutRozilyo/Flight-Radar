@@ -5,11 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PFlight.views"
         mc:Ignorable="d"
-        Title="historyVW" Height="358" Width="923"  WindowStartupLocation="CenterScreen" >
+        Title="Flight Radar" Height="358" Width="923"  WindowStartupLocation="CenterScreen"  Icon="\Icon\Backround.png" >
     <Window.Resources>
         <Style x:Key="cal" TargetType="{x:Type Calendar}">
             <Setter Property="Background" Value="#FFF3F4F4"/>
             <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontFamily" Value="Comic Sans MS"></Setter>
 
 
         </Style>
@@ -18,6 +19,7 @@
             <Setter Property="HorizontalContentAlignment" Value="Left" />
             <Setter Property="Background" Value="Black"></Setter>
             <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontFamily" Value="Comic Sans MS"></Setter>
         </Style>
     </Window.Resources>
     <Grid Background="#FFF3F4F4">
@@ -38,7 +40,7 @@
                 </Grid.ColumnDefinitions>
                 <Calendar x:Name="calendar"   SelectionMode="SingleRange" FirstDayOfWeek="Sunday" IsTodayHighlighted="True"  
                       SelectedDate="{Binding dates, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                  SelectedDatesChanged="calendar_SelectedDatesChanged" 
+                  SelectedDatesChanged="calendar_SelectedDatesChanged"  FontFamily="Comic Sans MS"
                   Style="{Binding cal}" Margin="7,12,22,-2" Grid.ColumnSpan="2"
                 >
                     <Calendar.Background>
@@ -63,7 +65,7 @@
 
 
 
-        <ListView x:Name="listViewHistory" AlternationCount="2"   ItemsSource="{Binding Flights}" RenderTransformOrigin="0.504,1.358" Margin="73,60,0,10" HorizontalAlignment="Left" Width="593" BorderBrush="#FF477B8F" Foreground="White"  >
+        <ListView x:Name="listViewHistory" AlternationCount="2"  FontFamily="Comic Sans MS" ItemsSource="{Binding Flights}" RenderTransformOrigin="0.504,1.358" Margin="73,60,0,10" HorizontalAlignment="Left" Width="593" BorderBrush="#FF477B8F" Foreground="White"  >
             <ListView.View  >
                 <GridView>
                     <GridViewColumn Width="160" Header="Code Flight" DisplayMemberBinding="{Binding FlightCode}"  >
@@ -114,7 +116,7 @@
                 </Style>
             </ListView.ItemContainerStyle>
         </ListView>
-        <Label x:Name="nodata" Content="There are no flights on the requested dates" FontSize="24"  FontFamily="Segoe UI Variable Text Semibold"  Foreground="#FF070808" HorizontalAlignment="Left" Margin="124,189,0,0" VerticalAlignment="Top" Width="542" Height="67"/>
+        <Label x:Name="nodata"  Content="There are no flights on the requested dates" FontSize="24"  FontFamily="Segoe UI Variable Text Semibold"  Foreground="#FF070808" HorizontalAlignment="Left" Margin="124,189,0,0" VerticalAlignment="Top" Width="542" Height="67"/>
         <TextBox HorizontalAlignment="Left" Margin="73,10,0,0" TextWrapping="Wrap" Text="Your selected flights " FontFamily="Segoe UI Variable Text Semibold" 
                 FontSize="24"  IsReadOnly="True" Foreground="#FF070808" VerticalAlignment="Top" Width="508" CaretBrush="#FF477B8F" BorderBrush="#89100B0B">
 
