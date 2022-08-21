@@ -520,6 +520,16 @@ namespace PFlight.viewmodel
 
         }
 
+        public void CleanYellow()
+        {
+            YellowFlight.Children.Clear();
+            YellowFlight = new MapLayer();
+            dicI.Clear();
+            dicO.Clear();
+            map.Children.Remove(YellowFlight);
+                
+        }
+
         public void cleanDB()
         {
             model1.cleanDB();

@@ -59,13 +59,12 @@
                 <materialDesign:PopupBox
                     DockPanel.Dock="Right"
       PlacementMode="BottomAndAlignRightEdges">
-                    <ListBox>
+                    <ListBox SelectionChanged="ListBox_SelectionChanged" >
                         <ListBoxItem
-          Content="Hello World" />
+          Content="Clean Map" />
                         <ListBoxItem
-          Content="Nice Popup" />
-                        <ListBoxItem
-          Content="Goodbye" />
+          Content="About Us" />
+                       
                     </ListBox>
                 </materialDesign:PopupBox>
                 <StackPanel

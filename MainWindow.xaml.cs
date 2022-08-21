@@ -204,6 +204,15 @@ namespace PFlight
             window.Show();
 
         }
+
        
+
+        private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            CurrentVM.CleanYellow();
+            if (dataFrame.Content != null)
+                dataFrame.Content = null;
+
+        }
     }
 }
