@@ -25,7 +25,7 @@ namespace PFlight.viewmodel
 {
     public class screen1VM : INotifyPropertyChanged
     {
-        #region varieble&constructor&property 
+        #region variable
         private model.screenM1 model1 { get; set; }
         public updateMapCommand cm { get; set; }
 
@@ -36,20 +36,19 @@ namespace PFlight.viewmodel
         public ResourceDictionary res { get; set; }
         private float angle;
         public event PropertyChangedEventHandler PropertyChanged;
-        public WeatherVM weatherVM { get; set; }
-        TransformedBitmap transformBmp = new TransformedBitmap();
-        
         Image imagePinMap = new Image();
-        //  public WeatherCommand weatherCommand { get; set; }
         ObservableCollection<string> myCollection = new ObservableCollection<string>();
         List<FlightData> incom=new List<FlightData>();
         List<FlightData> outcom=new List<FlightData>();
         string code;
         List<FlightData> dicI = new List<FlightData>();
         List<FlightData> dicO = new List<FlightData>();
-
+        MapLayer allFlightLayer = new MapLayer();
+        MapLayer YellowFlight = new MapLayer();
         public Action<object, MouseButtonEventArgs> CallMyMethodEvent;
+        #endregion
 
+        #region properties
         public Image ImagePinMap
         {
             get { return imagePinMap; }
@@ -88,8 +87,14 @@ namespace PFlight.viewmodel
             PropertyChanged?.Invoke(this,
                 new PropertyChangedEventArgs(propertyName));
         }
+        #endregion
 
-
+        #region constructors
+        /// <summary>
+        /// for the main window
+        /// </summary>
+        /// <param name="m"></param>
+        /// <param name="r"></param>
         public screen1VM(Map m, ResourceDictionary r)
         {
             model1 = new model.screenM1();
@@ -116,14 +121,17 @@ namespace PFlight.viewmodel
             model1 = new model.screenM1();
             cm = new updateMapCommand();
         }
-
         #endregion
-        MapLayer allFlightLayer=new MapLayer();
-        //to uodate the data all 10 sec. the func get the new data from the web, clean the data and return specific data on flights.
-        //public async Task getUrlF()
+
+
+
+        #region update map every 10 second
+
+        /// <summary>
+        /// to uodate the data all 10 sec. the func get the new data from the web, clean the data and return specific data on flights
+        /// </summary>
         public void getUrlF()
         {
-            // Dictionary<string, List<FlightData>> temp = await model1.getWebFlights();
             Dictionary<string, List<FlightData>> temp = model1.getWebFlights();
             allFlightLayer.Children.Clear();
             allFlightLayer = new MapLayer();
@@ -154,8 +162,106 @@ namespace PFlight.viewmodel
             map.Children.Add(allFlightLayer);
         }
 
+        
+        /// <summary>
+        /// func that move on list of flights and put all of them on the screen after get their data
+        /// </summary>
+        /// <param name="flights"></param>
+        public void putFlightOnMap(ObservableCollection<FlightModel.FlightData> flights)
+        {
 
-        //add choose flight to the DB
+            FlightModel.FlightM.Root f = new FlightModel.FlightM.Root();
+            for (int i = 0; i < flights.Count; i++)
+            {
+                try
+                {
+                    putOneFlight1(flights[i]);
+
+                }
+                catch (Exception e)
+                {
+                    int a = 0;
+                }
+            }
+        }
+
+
+        /// <summary>
+        /// put orenge flight on map
+        /// </summary>
+        /// <param name="flightM"></param>
+        private void putOneFlight1(FlightModel.FlightData flightM)
+        {
+            float lat = (float)flightM.Lat;
+            float lon = (float)flightM.Long;
+            Angle = FlightAngle(lat, lon);
+            PositionOrigin origin = new PositionOrigin { X = 0.5, Y = 0.5 };//where to put the icon of the flight
+
+            #region image                                                              
+            Image image = new Image();
+            BitmapImage bitmap = new BitmapImage();
+            bitmap.BeginInit();
+            bitmap.UriSource = new Uri("C:/Users/Pc/source/repos/PFlight/Icon/ToMap.png"); //שלך
+            //bitmap.UriSource = new Uri("C:/Users/da077/source/repos/PFlight/Icon/ToMap.png");// שלי
+            bitmap.DecodePixelHeight = 256;
+            bitmap.DecodePixelWidth = 256;
+
+            if (flightM.Destination != "TLV")
+            {
+                bitmap.UriSource = new Uri("C:/Users/Pc/source/repos/PFlight/Icon/fromMap.png"); //שלך
+                //bitmap.UriSource = new Uri("C:/Users/da077/source/repos/PFlight/Icon/fromMap.png");// שלי
+
+            }
+            bitmap.EndInit();
+            image.Source = bitmap;
+
+            RotateTransform rotateTransform = new RotateTransform(Angle);
+            image.RenderTransform = rotateTransform;
+            image.Height = 20;
+            image.Width = 20;
+            ImagePinMap = image;
+            #endregion
+            ImagePinMap.MouseDown += ImagePinMap_MouseDown;
+
+
+            ImagePinMap.ToolTip = flightM.FlightCode;
+            if (flightM.FlightCode == "")
+                ImagePinMap.ToolTip = "Data Problem";
+
+            var PlaneLocation = new Location { Latitude = lat, Longitude = lon };
+            MapLayer mapLayer = new MapLayer();
+
+            allFlightLayer.AddChild(ImagePinMap, PlaneLocation, origin);
+
+        }
+        /// <summary>
+        /// put the yellow flight
+        /// </summary>
+        public void chooseFlight()
+
+        {
+            YellowFlight.Children.Clear();
+            YellowFlight = new MapLayer();
+            map.Children.Remove(YellowFlight);
+
+
+            foreach (var item in dicI)
+            {
+                addNewPolyLine(GetRootF(item.SourceId));
+            }
+            foreach (var item in dicO)
+            {
+                addNewPolyLine(GetRootF(item.SourceId));
+            }
+
+            map.Children.Add(YellowFlight);
+        }
+
+        #endregion
+
+        /// <summary>
+        /// add choose flight to the DB
+        /// </summary>
         public bool addFlightDB( FlightModel.FlightData f)
         {
             if (f.Destination == "TLV")            
@@ -165,6 +271,10 @@ namespace PFlight.viewmodel
             return model1.addFlightDB(f);
         }
 
+
+
+
+        #region for autoSuggestionUserControl
         public bool ListFromDB()
         {
             Dictionary<string, List<FlightData>> dic = model1.getFlights();
@@ -200,94 +310,20 @@ namespace PFlight.viewmodel
             return myCollection;
 
         }
-       
-
-     
-
-
-        //func that move on list of flights and put all of them on the screen after get their data
-        public void putFlightOnMap(ObservableCollection<FlightModel.FlightData> flights)
-        {
-             //map.Children.Clear();
-
-            FlightModel.FlightM.Root f = new FlightModel.FlightM.Root();
-            for (int i = 0; i < flights.Count; i++)
-            {
-                try
-                {
-                       putOneFlight1(flights[i]);
-                       
-                }
-                catch(Exception e)
-                {
-                    int a = 0;
-                }              
-            }
-        }
-
-        
-
-        private void putOneFlight1(FlightModel.FlightData flightM)
-        {
-            float lat = (float)flightM.Lat;
-            float lon= (float)flightM.Long;
-
-           
-
-          
-            Angle = FlightAngle(lat, lon);
-           
-            PositionOrigin origin = new PositionOrigin { X = 0.5, Y = 0.5 };//where to put the icon of the flight
-            //MapLayer.SetPositionOrigin(PinCurrent, origin);
-           
-            Image image = new Image();
-            BitmapImage bitmap = new BitmapImage();
-            bitmap.BeginInit();
-           bitmap.UriSource = new Uri("C:/Users/Pc/source/repos/PFlight/Icon/ToMap.png"); //שלך
-            //bitmap.UriSource = new Uri("C:/Users/da077/source/repos/PFlight/Icon/ToMap.png");// שלי
-
-            bitmap.DecodePixelHeight = 256;
-            bitmap.DecodePixelWidth = 256;
-           
+        #endregion
 
 
 
-            if (flightM.Destination != "TLV")
-            {
-                bitmap.UriSource = new Uri("C:/Users/Pc/source/repos/PFlight/Icon/fromMap.png"); //שלך
-                //bitmap.UriSource = new Uri("C:/Users/da077/source/repos/PFlight/Icon/fromMap.png");// שלי
-
-            }
-            bitmap.EndInit();
-            image.Source = bitmap;
-
-            RotateTransform rotateTransform = new RotateTransform(Angle);
-            image.RenderTransform = rotateTransform;
-            image.Height = 20;
-            image.Width = 20;
-            ImagePinMap = image;
-            ImagePinMap.MouseDown += ImagePinMap_MouseDown; 
 
 
-            ImagePinMap.ToolTip = flightM.FlightCode;
-            if(flightM.FlightCode=="")
-                ImagePinMap.ToolTip = "Data Problem";
-
-            var PlaneLocation = new Location { Latitude = lat, Longitude = lon };
-            MapLayer mapLayer = new MapLayer();
-           
-            allFlightLayer.AddChild(ImagePinMap, PlaneLocation, origin);
-           
-           
-
-           
 
 
-        }
-      
 
-       
-
+        /// <summary>
+        /// event click tothe pkane on map
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ImagePinMap_MouseDown(object sender, MouseButtonEventArgs e)
         {
 
@@ -303,21 +339,36 @@ namespace PFlight.viewmodel
 
         }
 
-        
 
-        //func to return for specific flight by her key,all the data on her
+        #region Get flight
+
+        /// <summary>
+        /// func to return for specific flight by her key,all the data on her
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
         public FlightModel.FlightM.Root GetRootF(string key)
         {
             return model1.GetRootF(key);
         }
+        /// <summary>
+        /// return by codeFLight
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
         public FlightData GetFlightCode(string key)
         {
             FlightData a=new FlightData();
             a= model1.getOneFlights(key);
             return a;
         }
+        #endregion
 
-        //from the command order the by time and add polyline to the map
+
+        /// <summary>
+        /// from the command order the by time and add polyline to the map (UpdateMap)
+        /// </summary>
+        /// <param name="flightM"></param>
         private void Cm_UpdateMap(FlightModel.FlightM.Root flightM)
         {
             map.Children.Remove(YellowFlight);
@@ -326,7 +377,10 @@ namespace PFlight.viewmodel
 
         }
 
-        //draw the polyline
+       /// <summary>
+       /// Add new polyline
+       /// </summary>
+       /// <param name="flightM"></param>
         private void addNewPolyLine(FlightModel.FlightM.Root flightM) //list of point 
         {
             if (flightM != null)
@@ -376,6 +430,7 @@ namespace PFlight.viewmodel
 
 
                 angle1 = FlightAngle(lat, lon);
+                #region image
 
                 Image image = new Image();
                 BitmapImage bitmap = new BitmapImage();
@@ -398,14 +453,11 @@ namespace PFlight.viewmodel
                 bitmap.EndInit();
                 image.Source = bitmap;
 
-
-
-
-
                 RotateTransform rotateTransform = new RotateTransform(angle1);
                 image.RenderTransform = rotateTransform;
                 image.Height = 20;
                 image.Width = 20;
+                #endregion
                 ImagePinMap = image;
                 ImagePinMap.MouseDown += ImagePinMap_MouseDown; ;
                 Code = flightM.identification.number.@default;
@@ -413,26 +465,16 @@ namespace PFlight.viewmodel
                 if (flightM.identification.number.@default == "")
                     ImagePinMap.ToolTip = "Data Problem";
 
-               
-               
 
                 YellowFlight.AddChild(ImagePinMap, PlaneLocationl, origin);
-
-
-
-               
-                
-
-                /*
-                var PlaneLocationl = new Location { Latitude = OrderedPlaces.Last<Trail>().lat, Longitude = OrderedPlaces.Last<Trail>().lng };
-                PinCurrent.Location = PlaneLocationl;
-                map.Children.Add(PinCurrent);
-                */
             }
 
         }
 
-        //remove one flight from the map
+        /// <summary>
+        /// remove one flight from the map
+        /// </summary>
+        /// <param name="flightM"></param>
         public void removeChildren(FlightModel.FlightM.Root flightM)
         { 
              List<Image> mapPolygons = new List<Image>();
@@ -451,11 +493,17 @@ namespace PFlight.viewmodel
             map.Children.Remove(allFlightLayer);
             allFlightLayer.Children.Remove(p);
             map.Children.Add(allFlightLayer);
-            // mapPolygons.ForEach(map.Children.Remove);
+            
 
         }
 
-        //calculate the angle of the flight 
+
+        /// <summary>
+        ///  calculate the angle of the flight 
+        /// </summary>
+        /// <param name="lat"></param>
+        /// <param name="lon"></param>
+        /// <returns></returns>
         public float FlightAngle(float lat, float lon)
         {
             float latX = (float)(lat - 32.009444);
@@ -472,85 +520,11 @@ namespace PFlight.viewmodel
 
         }
 
-        MapLayer YellowFlight=new MapLayer();
-        public void chooseFlight()
-
-        {
-            YellowFlight.Children.Clear();
-            YellowFlight=new MapLayer();
-            map.Children.Remove(YellowFlight);
-            
-
-            foreach (var item in dicI)
-            {
-                addNewPolyLine(GetRootF(item.SourceId));
-            }
-            foreach (var item in dicO)
-            {
-                addNewPolyLine(GetRootF(item.SourceId));
-            }
-        
-            map.Children.Add(YellowFlight);
-        }
-
         public void cleanDB()
         {
             model1.cleanDB();
         }
 
 
-        #region async
-        ////get one flight and put really on the map
-        //private void putOneFlight(FlightModel.FlightM.Root flightM)
-        //{
-        //    //order by the time
-        //    var OrderedPlaces = (from f in flightM.trail
-        //                         orderby f.ts
-        //                         select f).ToList<Trail>();
-
-
-        //    Trail CurrentPlaceL = null;
-        //    Trail CurrentPlaceF = null;
-
-        //    Pushpin PinCurrent = new Pushpin { ToolTip = flightM.identification.number.@default };//המטוס עצמו
-        //    Pushpin PinOrigin = new Pushpin { ToolTip = flightM.airport.origin.name };//מוצא המטוס- שדה תעופה
-
-        //    PositionOrigin origin = new PositionOrigin { X = 0.4, Y = 0.4 };//where to pat the icon of the flight
-        //    MapLayer.SetPositionOrigin(PinCurrent, origin);
-
-        //    CurrentPlaceL = OrderedPlaces.Last<Trail>();
-
-        //    ///לחשוב מה עושים עם הצד ההפוך של המטוס מבחינת כיוונים
-        //    if (flightM.airport.destination.code.iata == "TLV")
-        //    {
-        //        if (CurrentPlaceL.lat > 32.009444)
-        //            PinCurrent.Style = (Style)res["ToIsrael"];
-        //        else
-        //            PinCurrent.Style = (Style)res["FromIsrael"];
-        //    }
-        //    else
-        //    {
-        //        if (CurrentPlaceL.lat > 32.009444)
-        //            PinCurrent.Style = (Style)res["FromIsrael"];
-        //        else
-        //            PinCurrent.Style = (Style)res["ToIsrael"];
-        //    }
-
-
-        //    var PlaneLocation = new Location { Latitude = CurrentPlaceL.lat, Longitude = CurrentPlaceL.lng };
-        //    PinCurrent.Location = PlaneLocation;
-
-        //    if (flightM.airport.origin.code.iata != "TLV")
-        //    {
-        //        CurrentPlaceF = OrderedPlaces.First<Trail>();
-        //        PlaneLocation = new Location { Latitude = CurrentPlaceF.lat, Longitude = CurrentPlaceF.lng };
-        //        PinOrigin.Location = PlaneLocation;
-
-        //        map.Children.Add(PinOrigin);
-        //    }
-        //    map.Children.Add(PinCurrent);
-
-        //}
-        #endregion
     }
 }

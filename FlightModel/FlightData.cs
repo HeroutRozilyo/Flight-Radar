@@ -6,7 +6,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace FlightModel
-{
+{/// <summary>
+/// class of the flight data
+/// </summary>
     public class FlightData
     {
         public int Id { get; set; }

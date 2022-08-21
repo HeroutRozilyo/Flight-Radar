@@ -11,9 +11,11 @@ namespace HebDates
     public class HebAdapter
     {
       
-
-
-
+        /// <summary>
+        /// holiday from web
+        /// </summary>
+        /// <param name="date"></param>
+        /// <returns></returns>
         public async Task<string> IfHoliday(DateTime date)
         {
             ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
@@ -38,9 +40,7 @@ namespace HebDates
                         return e.ToString();
                 }
 
-                // if (root.events[0].Contains("Erev"))///
-                //     return true;////
-                // return false;
+               
 
             }
 

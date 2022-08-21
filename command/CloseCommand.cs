@@ -32,7 +32,7 @@ namespace PFlight.command
 
         public void Execute(object parameter)
         {
-            vm.closeWnd();
+           // vm.
         }
     }
 }

@@ -9,19 +9,26 @@ namespace PFlight.viewmodel
 {
     public class HolidayVM : INotifyPropertyChanged
     {
+        #region varable
         model.HolidatModel model;
+        public event PropertyChangedEventHandler PropertyChanged;
+        #endregion
 
         public HolidayVM()
         {
             model = new model.HolidatModel();
         }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-   
+       
 
 
 
+
+
+        /// <summary>
+        /// checking if the daate is holiday or befor
+        /// </summary>
+        /// <param name="date"></param>
+        /// <returns></returns>
         public async Task<string> isHoliday(string date)
         {
             DateTime dateTime=new DateTime();

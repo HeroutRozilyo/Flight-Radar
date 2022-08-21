@@ -11,10 +11,7 @@ namespace PFlight.model
     {
         HebAdapter heb = new HebAdapter();
 
-        //public bool isHoliday(DateTime date)
-        //{
-        //    return  heb.IfHoliday(date);
-        //}
+       
 
         public async Task<string> isHoliday(DateTime date)
         {

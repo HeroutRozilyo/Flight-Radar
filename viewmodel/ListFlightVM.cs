@@ -12,14 +12,12 @@ using System.Runtime.CompilerServices;
 
 namespace PFlight.viewmodel
 {
-
+    /// <summary>
+    /// for  history one flight page
+    /// </summary>
     public class ListFlightVM
     {
 
-        
-        
-           ListFlightM model = new ListFlightM();
-            //public ICommand flightDetailsCommand { get; set; }
 
             public ListFlightVM(FlightData _flight)
             {

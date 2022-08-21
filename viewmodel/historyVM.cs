@@ -11,12 +11,17 @@ using System.Windows.Input;
 
 namespace PFlight.viewmodel
 {
+    /// <summary>
+    /// search history 
+    /// </summary>
     public class historyVM : INotifyPropertyChanged
     {
-        
+        #region variable
         private screenM1 model { get; set; }
-  
 
+        private ObservableCollection<FlightModel.FlightData> flights;// list of the flight search result
+        DateTime dates;//the chosen date
+        #endregion
 
         public historyVM()
         {
@@ -28,7 +33,7 @@ namespace PFlight.viewmodel
             
         }
 
-        DateTime dates;
+        #region property
         public DateTime Dates
         {
             get
@@ -44,7 +49,7 @@ namespace PFlight.viewmodel
         }
 
 
-        public ObservableCollection<FlightModel.FlightData> flights;
+        
         public ObservableCollection<FlightModel.FlightData> Flights
         {
             get
@@ -58,7 +63,12 @@ namespace PFlight.viewmodel
 
             }
         }
-
+        #endregion
+        /// <summary>
+        /// when create filter
+        /// </summary>
+        /// <param name="dates"></param>
+        /// <returns></returns>
         public bool GetFlightsFromDB(DateTime[] dates)
         {
             DateTime fromTime = dates[0];
@@ -83,6 +93,10 @@ namespace PFlight.viewmodel
                 return false;
         }
 
+        /// <summary>
+        /// to insert data to FLight
+        /// </summary>
+        /// <returns></returns>
         public bool GetAllFlightHistory()
         {
            ;

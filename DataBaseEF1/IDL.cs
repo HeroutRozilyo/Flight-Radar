@@ -9,7 +9,11 @@ namespace DataBaseEF1
 {
     public class IDL
     {
-
+        /// <summary>
+        /// add One Flight to the DB
+        /// </summary>
+        /// <param name="f"></param>
+        /// <returns></returns>
         public bool addOneFlights(FlightData f)
         {
             using (var db = new DB())
@@ -47,22 +51,7 @@ namespace DataBaseEF1
             return result;
         }
 
-        //return one flights by id
-        public FlightData getOneFlights(int val)
-        {
-            FlightData flight = null;
-            using (var db = new DB())
-            {
-
-                flight = (from f in db.Flights
-                          where f.Id == val
-                          select f).FirstOrDefault();
-
-            }
-            return flight;
-        }
-
-
+        
 
         public bool removeOneFlights( FlightData flight)
         {

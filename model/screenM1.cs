@@ -17,10 +17,7 @@ namespace PFlight.model
             bl = new FlightBL.BL();
         }
 
-        //public async Task<Dictionary<string, List<FlightData>>> getWebFlights()
-        //{
-        //    return await bl.getWebFlights();
-        //}
+      
 
         public Dictionary<string, List<FlightData>> getWebFlights()
         {

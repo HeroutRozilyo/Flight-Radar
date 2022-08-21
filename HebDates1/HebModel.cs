@@ -8,7 +8,7 @@ namespace HebDates
 {
     class HebModel
     {
-        // Root myDeserializedClass = JsonConvert.DeserializeObject<Root>(myJsonResponse);
+        
         public class HeDateParts
         {
             public string y { get; set; }

@@ -17,8 +17,8 @@ namespace DataBaseEF1
 
 
 
-        //return the current flight.
-        public Dictionary<string, List<FlightData>> GetWebFlights()//////////זה לא סנכרוני, אחרי שיעבוד לנסות לעבור לפונקציה למעלה שהיא א סנכרונית
+        //return the all the flights.
+        public Dictionary<string, List<FlightData>> GetWebFlights()
         {
 
             Dictionary<string, List<FlightData>> Result = new Dictionary<string, List<FlightData>>(); // return to BL
@@ -85,7 +85,11 @@ namespace DataBaseEF1
             return Result;
         }
 
-
+        /// <summary>
+        /// return root according Code FLight
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns> root</returns>
         public FlightM.Root GetFlightData(string key)
         {
             var CurrentUrl = FlightURL + key;
@@ -100,7 +104,6 @@ namespace DataBaseEF1
 
                     var v = JsonConvert.DeserializeObject<FlightM.Root>(json);
                     root = (FlightM.Root)v;
-                    // root = (FlightM.Root)Newtonsoft.Json.JsonConvert.DeserializeObject(json, typeof(FlightM.Root));
                 }
                 catch (Exception e)
                 {

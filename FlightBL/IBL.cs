@@ -11,14 +11,14 @@ namespace FlightBL
     public interface IBL
     {
         Dictionary<string, List<FlightData>> getWebFlights(); //from the web
-        //Task<Dictionary<string, List<FlightData>>> getWebFlights(); //from the web
+      
 
         Dictionary<string, List<FlightData>> getFlights();//return all the data at the data base       
-        FlightData getOneFlights( int val);//return one flights
+       
         FlightData getFlightCode(string val);//return one flights
-        bool addOneFlights( FlightData flight);
-        bool removeOneFlights( FlightData flight);
-        FlightM.Root getRootFlights(string key);
+        bool addOneFlights( FlightData flight);//to the DB
+        bool removeOneFlights( FlightData flight);//from the DB
+        FlightM.Root getRootFlights(string key);//by FLightCOde
         void cleanDB();
     }
 }

@@ -10,7 +10,9 @@ namespace DataBaseEF1
 {
     public class DB : DbContext
     {
-
+        /// <summary>
+        /// Data Base
+        /// </summary>
         public DbSet<FlightData> Flights { get; set; }
 
 

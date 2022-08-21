@@ -8,7 +8,9 @@ namespace FlightModel
 {
     public class FlightM
     {
-        // Root myDeserializedClass = JsonConvert.DeserializeObject<Root>(myJsonResponse);
+        /// <summary>
+        /// from Jason
+        /// </summary>
         public class Aircraft
         {
             public Model model { get; set; }

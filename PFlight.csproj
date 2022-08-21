@@ -213,7 +213,6 @@
     <Compile Include="command\OpenWindowCommand.cs" />
     <Compile Include="command\updateMapCommand.cs" />
     <Compile Include="model\HolidatModel.cs" />
-    <Compile Include="model\ListFlightM.cs" />
     <Compile Include="model\screenM1.cs" />
     <Compile Include="model\WeatherM.cs" />
     <Compile Include="viewmodel\historyVM.cs" />
@@ -341,22 +340,10 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Icon\to.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Icon\from.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Icon\airplaneToIsrael.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Icon\airplane.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Icon\24.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Icon\backgroundMainScreen.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Icon\open.jpg" />
@@ -394,7 +381,6 @@
   <ItemGroup>
     <Resource Include="Icon\feelLike.png" />
     <Resource Include="Icon\humidity.png" />
-    <Resource Include="Icon\temperature..png" />
     <Resource Include="Icon\tempMax.png" />
     <Resource Include="Icon\tempMin.png" />
   </ItemGroup>
@@ -409,9 +395,6 @@
     <Resource Include="Icon\pressure.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Icon\PluSMaoNew.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Icon\Historu.png" />
   </ItemGroup>
   <ItemGroup>
@@ -419,9 +402,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Icon\filter.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Icon\HistoryDataBackround.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Icon\CancelFilter.png" />
