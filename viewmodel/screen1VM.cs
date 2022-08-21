@@ -237,8 +237,8 @@ namespace PFlight.viewmodel
             Image image = new Image();
             BitmapImage bitmap = new BitmapImage();
             bitmap.BeginInit();
-            bitmap.UriSource = new Uri("C:/Users/Pc/source/repos/PFlight/Icon/ToMap.png"); //שלך
-           // bitmap.UriSource = new Uri("C:/Users/da077/source/repos/PFlight/Icon/ToMap.png");// שלי
+           // bitmap.UriSource = new Uri("C:/Users/Pc/source/repos/PFlight/Icon/ToMap.png"); //שלך
+            bitmap.UriSource = new Uri("C:/Users/da077/source/repos/PFlight/Icon/ToMap.png");// שלי
 
             bitmap.DecodePixelHeight = 256;
             bitmap.DecodePixelWidth = 256;
@@ -248,8 +248,8 @@ namespace PFlight.viewmodel
 
             if (flightM.Destination != "TLV")
             {
-                bitmap.UriSource = new Uri("C:/Users/Pc/source/repos/PFlight/Icon/fromMap.png"); //שלך
-               // bitmap.UriSource = new Uri("C:/Users/da077/source/repos/PFlight/Icon/fromMap.png");// שלי
+                //bitmap.UriSource = new Uri("C:/Users/Pc/source/repos/PFlight/Icon/fromMap.png"); //שלך
+                bitmap.UriSource = new Uri("C:/Users/da077/source/repos/PFlight/Icon/fromMap.png");// שלי
 
             }
             bitmap.EndInit();
@@ -371,8 +371,8 @@ namespace PFlight.viewmodel
                 Image image = new Image();
                 BitmapImage bitmap = new BitmapImage();
                 bitmap.BeginInit();
-                bitmap.UriSource = new Uri("C:/Users/Pc/source/repos/PFlight/Icon/airplaneToIsrael.png");
-               // bitmap.UriSource = new Uri("C:/Users/da077/source/repos/PFlight/Icon/airplaneToIsrael.png");
+                //bitmap.UriSource = new Uri("C:/Users/Pc/source/repos/PFlight/Icon/airplaneToIsrael.png");
+                bitmap.UriSource = new Uri("C:/Users/da077/source/repos/PFlight/Icon/airplaneToIsrael.png");
 
                 bitmap.DecodePixelHeight = 256;
                 bitmap.DecodePixelWidth = 256;
@@ -382,8 +382,8 @@ namespace PFlight.viewmodel
 
                 if (flightM.airport.destination.code.iata != "TLV")
                 {
-                  bitmap.UriSource = new Uri("C:/Users/Pc/source/repos/PFlight/Icon/airplane.png");
-                   // bitmap.UriSource = new Uri("C:/Users/da077/source/repos/PFlight/Icon/airplane.png");
+                 // bitmap.UriSource = new Uri("C:/Users/Pc/source/repos/PFlight/Icon/airplane.png");
+                    bitmap.UriSource = new Uri("C:/Users/da077/source/repos/PFlight/Icon/airplane.png");
 
                 }
                 bitmap.EndInit();
@@ -426,15 +426,15 @@ namespace PFlight.viewmodel
         //remove one flight from the map
         public void removeChildren(FlightModel.FlightM.Root flightM)
         { 
-             List<Pushpin> mapPolygons = new List<Pushpin>();
+             List<MapLayer> mapPolygons = new List<MapLayer>();
             foreach (var item in map.Children)
             {
-                if (item is Pushpin)
+                if (item is MapLayer)
                 {
-                    mapPolygons.Add(item as Pushpin);
+                    mapPolygons.Add(item as MapLayer);
                 }
             }
-            Pushpin p= mapPolygons.Find(e => (string)e.Tag == flightM.identification.id);
+            MapLayer p = mapPolygons.Find(e => (string)e.Tag == flightM.identification.number.@default);
             map.Children.Remove(p);
             // mapPolygons.ForEach(map.Children.Remove);
 

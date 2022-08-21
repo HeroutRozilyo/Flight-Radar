@@ -16,7 +16,7 @@ namespace PFlight.model
         //    return  heb.IfHoliday(date);
         //}
 
-        public async Task<bool> isHoliday(DateTime date)
+        public async Task<string> isHoliday(DateTime date)
         {
             return await heb.IfHoliday(date);
         }

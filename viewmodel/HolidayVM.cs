@@ -33,10 +33,10 @@ namespace PFlight.viewmodel
                 string b = dateTime.Date.ToShortDateString();
                 bool isT = false;
                 
-                for (int i = 0; i < 8; i++)
+                for (int i = -1; i < 8; i++)
                 {
-                    date1 = date1.AddDays((double)1);
-                    isT = await model.isHoliday(date1);
+                    date1 = dateTime.AddDays((double)i);
+                    isT = false; // await model.isHoliday(date1);
                     if (isT)
                     {
                         if (i == 0)
