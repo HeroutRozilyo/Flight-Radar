@@ -118,14 +118,16 @@ namespace PFlight.viewmodel
         }
 
         #endregion
-
+        MapLayer allFlightLayer=new MapLayer();
         //to uodate the data all 10 sec. the func get the new data from the web, clean the data and return specific data on flights.
         //public async Task getUrlF()
         public void getUrlF()
         {
             // Dictionary<string, List<FlightData>> temp = await model1.getWebFlights();
             Dictionary<string, List<FlightData>> temp = model1.getWebFlights();
-
+            allFlightLayer.Children.Clear();
+            allFlightLayer = new MapLayer();
+            map.Children.Remove(allFlightLayer);
             FlightsIN = new ObservableCollection<FlightModel.FlightData>(temp["Incoming"]);
             FlightsOut = new ObservableCollection<FlightModel.FlightData>(temp["Outgoing"]);
             for (int i = FlightsIN.Count - 1; i >= 0; i--)
@@ -143,10 +145,13 @@ namespace PFlight.viewmodel
             putFlightOnMap(FlightsOut);
 
 
+
             Pushpin PinCurrent = new Pushpin { ToolTip = "Tel Aviv- Ben Gurion" };//המטוס עצמו
             var PlaneLocation = new Location { Latitude = 32.009444, Longitude = 34.876944 };
             PinCurrent.Location = PlaneLocation;
-            map.Children.Add(PinCurrent);
+            allFlightLayer.Children.Add(PinCurrent);
+
+            map.Children.Add(allFlightLayer);
         }
 
 
@@ -211,6 +216,7 @@ namespace PFlight.viewmodel
                 try
                 {
                        putOneFlight1(flights[i]);
+                       
                 }
                 catch(Exception e)
                 {
@@ -270,11 +276,11 @@ namespace PFlight.viewmodel
             var PlaneLocation = new Location { Latitude = lat, Longitude = lon };
             MapLayer mapLayer = new MapLayer();
            
-            mapLayer.AddChild(ImagePinMap, PlaneLocation, origin);
+            allFlightLayer.AddChild(ImagePinMap, PlaneLocation, origin);
            
            
 
-            map.Children.Add(mapLayer);
+           
 
 
         }
@@ -313,8 +319,11 @@ namespace PFlight.viewmodel
 
         //from the command order the by time and add polyline to the map
         private void Cm_UpdateMap(FlightModel.FlightM.Root flightM)
-        {            
+        {
+            map.Children.Remove(YellowFlight);
             addNewPolyLine(flightM);
+            map.Children.Add(YellowFlight);
+
         }
 
         //draw the polyline
@@ -337,7 +346,7 @@ namespace PFlight.viewmodel
                 if (flightM.airport.origin.code.iata != "TLV")
                 {
                     PinOrigin.Location = PlaneLocation;
-                    map.Children.Add(PinOrigin);
+                    YellowFlight.Children.Add(PinOrigin);
                 }
                 #endregion
                
@@ -353,7 +362,7 @@ namespace PFlight.viewmodel
                     polyline.Locations.Add(new Location(item.lat, item.lng));
                 }
                 removeChildren(flightM);
-                map.Children.Add(polyline);
+                YellowFlight.Children.Add(polyline);
 
 
 
@@ -405,13 +414,13 @@ namespace PFlight.viewmodel
                     ImagePinMap.ToolTip = "Data Problem";
 
                
-                MapLayer mapLayer = new MapLayer();
+               
 
-                mapLayer.AddChild(ImagePinMap, PlaneLocationl, origin);
+                YellowFlight.AddChild(ImagePinMap, PlaneLocationl, origin);
 
 
 
-                map.Children.Add(mapLayer);
+               
                 
 
                 /*
@@ -426,20 +435,22 @@ namespace PFlight.viewmodel
         //remove one flight from the map
         public void removeChildren(FlightModel.FlightM.Root flightM)
         { 
-             List<MapLayer> mapPolygons = new List<MapLayer>();
-            foreach (var item in map.Children)
+             List<Image> mapPolygons = new List<Image>();
+            foreach (var item in allFlightLayer.Children)
             {
-                if (item is MapLayer)
+                if (item is Image)
                 {
                     
                     {
 
-                        mapPolygons.Add(item as MapLayer);
+                        mapPolygons.Add(item as Image);
                     }
                 }
             }
-             MapLayer p = mapPolygons.Find(e => ((Image)e.Children[0]).ToolTip.ToString() == flightM.identification.number.@default);
-            map.Children.Remove(p);
+            Image p = mapPolygons.Find(e => (e.ToolTip.ToString() == flightM.identification.number.@default));
+            map.Children.Remove(allFlightLayer);
+            allFlightLayer.Children.Remove(p);
+            map.Children.Add(allFlightLayer);
             // mapPolygons.ForEach(map.Children.Remove);
 
         }
@@ -461,11 +472,15 @@ namespace PFlight.viewmodel
 
         }
 
-
+        MapLayer YellowFlight=new MapLayer();
         public void chooseFlight()
+
         {
-            // Dictionary<string,List<FlightData>> dic =model1.getFlights();
-        
+            YellowFlight.Children.Clear();
+            YellowFlight=new MapLayer();
+            map.Children.Remove(YellowFlight);
+            
+
             foreach (var item in dicI)
             {
                 addNewPolyLine(GetRootF(item.SourceId));
@@ -475,7 +490,7 @@ namespace PFlight.viewmodel
                 addNewPolyLine(GetRootF(item.SourceId));
             }
         
-
+            map.Children.Add(YellowFlight);
         }
 
         public void cleanDB()
