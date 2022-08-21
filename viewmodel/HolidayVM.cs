@@ -31,23 +31,23 @@ namespace PFlight.viewmodel
                 DateTime date1 = dateTime;
                 string a = DateTime.Today.ToShortDateString();
                 string b = dateTime.Date.ToShortDateString();
-                bool isT = false;
+                string isT;
                 
-                for (int i = -1; i < 8; i++)
+                for (int i = 0; i < 8; i++)
                 {
                     date1 = dateTime.AddDays((double)i);
-                    isT = false; // await model.isHoliday(date1);
-                    if (isT)
+                    isT =  await model.isHoliday(date1);
+                    if (isT != "no holiday")
                     {
                         if (i == 0)
                         {
-                            if (a!=b)
-                                return dateTime.Date.ToShortDateString() + " is a " + "ערב חג";
-                            else return "Today is a " + "ערב חג";
+                            if (a != b)
+                                return dateTime.Date.ToShortDateString() + " is a " + isT; 
+                            else return "Today is a " + isT; 
                         }
-                        if (a!=b)
-                            return dateTime.Date.ToShortDateString() + " is " + i + " days befor holiday";
-                        else  return "Today is " + i + " days befor holiday";
+                        if (a != b)
+                            return dateTime.Date.ToShortDateString() + " is " + i + " days befor " + isT; 
+                        else return "Today is " + i + " days befor "+ isT;
                     }
                     if (a!=b&&i==7)
                         return dateTime.Date.ToShortDateString() + " is a Regular day";
@@ -56,8 +56,7 @@ namespace PFlight.viewmodel
             }
             catch (FormatException e) { }
            
-           
-
+  
             return "Today is a Regular day";
         }
     }
