@@ -231,14 +231,14 @@ namespace PFlight.viewmodel
           
             Angle = FlightAngle(lat, lon);
            
-            PositionOrigin origin = new PositionOrigin { X = 0.4, Y = 0.4 };//where to put the icon of the flight
+            PositionOrigin origin = new PositionOrigin { X = 0.5, Y = 0.5 };//where to put the icon of the flight
             //MapLayer.SetPositionOrigin(PinCurrent, origin);
            
             Image image = new Image();
             BitmapImage bitmap = new BitmapImage();
             bitmap.BeginInit();
-           // bitmap.UriSource = new Uri("C:/Users/Pc/source/repos/PFlight/Icon/ToMap.png"); //שלך
-            bitmap.UriSource = new Uri("C:/Users/da077/source/repos/PFlight/Icon/ToMap.png");// שלי
+           bitmap.UriSource = new Uri("C:/Users/Pc/source/repos/PFlight/Icon/ToMap.png"); //שלך
+            //bitmap.UriSource = new Uri("C:/Users/da077/source/repos/PFlight/Icon/ToMap.png");// שלי
 
             bitmap.DecodePixelHeight = 256;
             bitmap.DecodePixelWidth = 256;
@@ -248,8 +248,8 @@ namespace PFlight.viewmodel
 
             if (flightM.Destination != "TLV")
             {
-                //bitmap.UriSource = new Uri("C:/Users/Pc/source/repos/PFlight/Icon/fromMap.png"); //שלך
-                bitmap.UriSource = new Uri("C:/Users/da077/source/repos/PFlight/Icon/fromMap.png");// שלי
+                bitmap.UriSource = new Uri("C:/Users/Pc/source/repos/PFlight/Icon/fromMap.png"); //שלך
+                //bitmap.UriSource = new Uri("C:/Users/da077/source/repos/PFlight/Icon/fromMap.png");// שלי
 
             }
             bitmap.EndInit();
@@ -358,7 +358,7 @@ namespace PFlight.viewmodel
 
 
                //המטוס עצמו
-                PositionOrigin origin = new PositionOrigin { X = 0.4, Y = 0.4 };//where to put the icon of the flight
+                PositionOrigin origin = new PositionOrigin { X = 0.5, Y = 0.5 };//where to put the icon of the flight
                 
                 var PlaneLocationl = new Location { Latitude = OrderedPlaces.Last<Trail>().lat, Longitude = OrderedPlaces.Last<Trail>().lng };
                 float lat = (float)OrderedPlaces.Last<Trail>().lat;
@@ -371,8 +371,8 @@ namespace PFlight.viewmodel
                 Image image = new Image();
                 BitmapImage bitmap = new BitmapImage();
                 bitmap.BeginInit();
-                //bitmap.UriSource = new Uri("C:/Users/Pc/source/repos/PFlight/Icon/airplaneToIsrael.png");
-                bitmap.UriSource = new Uri("C:/Users/da077/source/repos/PFlight/Icon/airplaneToIsrael.png");
+                bitmap.UriSource = new Uri("C:/Users/Pc/source/repos/PFlight/Icon/airplaneToIsrael.png");
+               // bitmap.UriSource = new Uri("C:/Users/da077/source/repos/PFlight/Icon/airplaneToIsrael.png");
 
                 bitmap.DecodePixelHeight = 256;
                 bitmap.DecodePixelWidth = 256;
@@ -382,8 +382,8 @@ namespace PFlight.viewmodel
 
                 if (flightM.airport.destination.code.iata != "TLV")
                 {
-                 // bitmap.UriSource = new Uri("C:/Users/Pc/source/repos/PFlight/Icon/airplane.png");
-                    bitmap.UriSource = new Uri("C:/Users/da077/source/repos/PFlight/Icon/airplane.png");
+                 bitmap.UriSource = new Uri("C:/Users/Pc/source/repos/PFlight/Icon/airplane.png");
+                 // bitmap.UriSource = new Uri("C:/Users/da077/source/repos/PFlight/Icon/airplane.png");
 
                 }
                 bitmap.EndInit();
@@ -431,10 +431,14 @@ namespace PFlight.viewmodel
             {
                 if (item is MapLayer)
                 {
-                    mapPolygons.Add(item as MapLayer);
+                    
+                    {
+
+                        mapPolygons.Add(item as MapLayer);
+                    }
                 }
             }
-            MapLayer p = mapPolygons.Find(e => (string)e.Tag == flightM.identification.number.@default);
+             MapLayer p = mapPolygons.Find(e => ((Image)e.Children[0]).ToolTip.ToString() == flightM.identification.number.@default);
             map.Children.Remove(p);
             // mapPolygons.ForEach(map.Children.Remove);
 

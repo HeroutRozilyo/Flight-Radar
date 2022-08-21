@@ -104,25 +104,7 @@ namespace PFlight
             FlightData flightO = list.SelectedItem as FlightModel.FlightData;
             Root flightM = CurrentVM.GetRootF(flightO.SourceId);
             OpenDataFlight(flightM, flightO);
-            /*
-            if (flightM != null)
-            {
-                dataFrame.Navigate(new DataFlightRoot(flightM));
-                dataFrame.Visibility = Visibility.Visible;
-                //detailsP.DataContext = flightM;
-                
-            }
-            else
-                System.Windows.MessageBox.Show("There is a problem loading the data", "My App", MessageBoxButton.OK, MessageBoxImage.Error);
-            weatherB(flightM);
-
-            CurrentVM.addFlightDB( flightO);
-         
-            this.autoSuggestionUserControl.AutoSuggestionList =  CurrentVM.getObserverList();
-
-            if (CurrentVM.cm.CanExecute(flightM))
-                CurrentVM.cm.Execute(flightM);
-            */
+            
 
         }
 
