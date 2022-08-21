@@ -23,6 +23,7 @@ using System.ComponentModel;
 using PFlight.command;
 using PFlight.views;
 using PFlight.model;
+using Microsoft.Maps.MapControl.WPF;
 #endregion
 
 namespace PFlight
@@ -50,10 +51,10 @@ namespace PFlight
             CurrentVM = new screen1VM(mapP.myMap, Resources);
             this.autoSuggestionUserControl.AutoSuggestionList = CurrentVM.getObserverList();
             this.DataContext = CurrentVM;
-           // CurrentVM.cleanDB();
+            // CurrentVM.cleanDB();
             //weatherButton.IsEnabled = false;
 
-
+            CurrentVM.CallMyMethodEvent += ImagePinMap_MouseDown;
             frame.Navigate(mapP);
          
 
@@ -102,7 +103,8 @@ namespace PFlight
 
             FlightData flightO = list.SelectedItem as FlightModel.FlightData;
             Root flightM = CurrentVM.GetRootF(flightO.SourceId);
-
+            OpenDataFlight(flightM, flightO);
+            /*
             if (flightM != null)
             {
                 dataFrame.Navigate(new DataFlightRoot(flightM));
@@ -120,7 +122,45 @@ namespace PFlight
 
             if (CurrentVM.cm.CanExecute(flightM))
                 CurrentVM.cm.Execute(flightM);
+            */
 
+        }
+
+        private void ImagePinMap_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+
+            FlightM.Root root=new FlightM.Root();
+
+            FlightData flightData = CurrentVM.flightDataMap;
+            
+            if(flightData != null)
+                 root = CurrentVM.GetRootF(flightData.SourceId);
+             OpenDataFlight(root, flightData);
+            
+            
+
+
+        }
+
+        private void OpenDataFlight(Root  flightM,FlightData flightO)
+        {
+            if (flightM != null)
+            {
+                dataFrame.Navigate(new DataFlightRoot(flightM));
+                dataFrame.Visibility = Visibility.Visible;
+                //detailsP.DataContext = flightM;
+
+            }
+            else
+                System.Windows.MessageBox.Show("There is a problem loading the data", "My App", MessageBoxButton.OK, MessageBoxImage.Error);
+            weatherB(flightM);
+
+            CurrentVM.addFlightDB(flightO);
+
+            this.autoSuggestionUserControl.AutoSuggestionList = CurrentVM.getObserverList();
+
+            if (CurrentVM.cm.CanExecute(flightM))
+                CurrentVM.cm.Execute(flightM);
         }
 
 
@@ -182,5 +222,6 @@ namespace PFlight
             window.Show();
 
         }
+       
     }
 }

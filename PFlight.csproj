@@ -225,9 +225,6 @@
     <Compile Include="views\firstWindow.xaml.cs">
       <DependentUpon>firstWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="views\historyVP.xaml.cs">
-      <DependentUpon>historyVP.xaml</DependentUpon>
-    </Compile>
     <Compile Include="views\historyVW.xaml.cs">
       <DependentUpon>historyVW.xaml</DependentUpon>
     </Compile>
@@ -264,10 +261,6 @@
     <Page Include="views\firstWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="views\historyVP.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
     <Page Include="views\historyVW.xaml">
       <SubType>Designer</SubType>

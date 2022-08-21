@@ -9,7 +9,8 @@
 
 
     <Grid Margin="0,10,0,0">
-        <GridSplitter x:Name="pas" HorizontalAlignment="Left" Height="298" Margin="153,201,0,0" VerticalAlignment="Top" Width="6" RenderTransformOrigin="0.5,0.5">
+
+        <GridSplitter x:Name="pas" HorizontalAlignment="Left" Height="328" Margin="168,203,0,0" VerticalAlignment="Top" Width="6" RenderTransformOrigin="0.5,0.5">
             <GridSplitter.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="#FF477B8F" />
@@ -27,7 +28,7 @@
         </GridSplitter>
 
 
-        <ListView Margin="5,95,109,151" BorderBrush="#FF477B8F" Foreground="White">
+        <ListView Margin="5,110,109,136" BorderBrush="#FF477B8F" Foreground="White">
 
             <ListViewItem Background="#FF477B8F">
                 <StackPanel Orientation="Horizontal">
@@ -107,7 +108,7 @@
             </ListViewItem>
 
         </ListView>
-        <GridSplitter x:Name="pas_Copy" HorizontalAlignment="Left" Height="302" Margin="146,-71,0,0" VerticalAlignment="Top" Width="5" RenderTransformOrigin="0.5,0.5">
+        <GridSplitter x:Name="pas_Copy" HorizontalAlignment="Left" Height="296" Margin="149,-53,0,0" VerticalAlignment="Top" Width="5" RenderTransformOrigin="0.5,0.5">
             <GridSplitter.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="#FF477B8F"/>
@@ -123,6 +124,8 @@
                 </TransformGroup>
             </GridSplitter.RenderTransform>
         </GridSplitter>
+
+
         <Button  x:Name="btnLight" Height="38" Content="" Margin="263,383,106,0" VerticalAlignment="Top" MouseDoubleClick="btnLight_MouseDoubleClick" RenderTransformOrigin="-1.297,-1.175">
             <Button.Template>
                 <ControlTemplate>

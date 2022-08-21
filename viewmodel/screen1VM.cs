@@ -31,7 +31,7 @@ namespace PFlight.viewmodel
 
         public ObservableCollection<FlightModel.FlightData> FlightsIN { get; set; }
         public ObservableCollection<FlightModel.FlightData> FlightsOut { get; set; }
-
+        public FlightData flightDataMap = new FlightData();
         public Map map { get; set; }
         public ResourceDictionary res { get; set; }
         private float angle;
@@ -47,6 +47,8 @@ namespace PFlight.viewmodel
         string code;
         List<FlightData> dicI = new List<FlightData>();
         List<FlightData> dicO = new List<FlightData>();
+
+        public Action<object, MouseButtonEventArgs> CallMyMethodEvent;
 
         public Image ImagePinMap
         {
@@ -240,7 +242,9 @@ namespace PFlight.viewmodel
 
             bitmap.DecodePixelHeight = 256;
             bitmap.DecodePixelWidth = 256;
-            
+           
+
+
 
             if (flightM.Destination != "TLV")
             {
@@ -256,6 +260,9 @@ namespace PFlight.viewmodel
             image.Height = 20;
             image.Width = 20;
             ImagePinMap = image;
+            ImagePinMap.MouseDown += ImagePinMap_MouseDown; 
+
+
             ImagePinMap.ToolTip = flightM.FlightCode;
             if(flightM.FlightCode=="")
                 ImagePinMap.ToolTip = "Data Problem";
@@ -271,17 +278,26 @@ namespace PFlight.viewmodel
 
 
         }
-           
+      
 
-        private void PinCurrent_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+       
+
+        private void ImagePinMap_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            
+
+            var a = (Image)sender; //to get the line
+            string code = a.ToolTip.ToString();
+            flightDataMap = FlightsIN.Where(x=>x.FlightCode==code).FirstOrDefault();
+            if(flightDataMap==null)
+                flightDataMap = FlightsOut.Where(x => x.FlightCode == code).FirstOrDefault();
+            if (CallMyMethodEvent != null)
             {
-                
-                if (this.cm.CanExecute(null))
-                   cm.Execute(null);
-            };
+                CallMyMethodEvent.Invoke(sender,e);
+            }
+
         }
+
+        
 
         //func to return for specific flight by her key,all the data on her
         public FlightModel.FlightM.Root GetRootF(string key)
@@ -382,7 +398,8 @@ namespace PFlight.viewmodel
                 image.Height = 20;
                 image.Width = 20;
                 ImagePinMap = image;
-                Code= flightM.identification.number.@default;
+                ImagePinMap.MouseDown += ImagePinMap_MouseDown; ;
+                Code = flightM.identification.number.@default;
                 ImagePinMap.ToolTip = Code; 
                 if (flightM.identification.number.@default == "")
                     ImagePinMap.ToolTip = "Data Problem";

@@ -168,8 +168,8 @@
         </DatePicker>
         <TextBlock x:Name="textday"  HorizontalAlignment="Left" Margin="475,16,0,513" TextWrapping="Wrap" Width="163" RenderTransformOrigin="0.526,-1.632" FontFamily="Comic Sans MS" Foreground="White"/>
 
-        <Frame  Margin="344,0,0,0" x:Name="frame" NavigationUIVisibility="Hidden" Grid.RowSpan="3" />
-        <Frame x:Name="dataFrame" Content="" Margin="0,69,692,10" Background="#FFFBFEFF" NavigationUIVisibility="Hidden" Grid.RowSpan="3"/>
+        <Frame  Margin="344,0,0,0" x:Name="frame" NavigationUIVisibility="Hidden" Grid.RowSpan="3"  />
+        <Frame x:Name="dataFrame"  Content="" Margin="0,69,733,10" NavigationUIVisibility="Hidden" Grid.RowSpan="3"/>
         <Frame x:Name="FrameMap" NavigationUIVisibility="Hidden"  Margin="648,-10,0,0" Grid.RowSpan="3"/>
         <Frame  x:Name="WheatherFrame" NavigationUIVisibility="Hidden"    Margin="360,119,364,-114"/>
         <Button x:Name="History" HorizontalAlignment="Left" Margin="10,13,0,0" VerticalAlignment="Top" ToolTip="Show All the History" RenderTransformOrigin="-7.688,0.408" Height="33" Width="30" Click="History_Click">
