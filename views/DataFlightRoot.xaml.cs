@@ -23,10 +23,12 @@ namespace PFlight.views
     /// </summary>
     public partial class DataFlightRoot : Page
     {
+        #region variable
         WeatherVM CurrentVM { get; set; }
         Root root=new Root();
         HelperClass helperClass = new HelperClass();
-        WeatherVP WeatherVP = null;
+        #endregion
+        #region COnstructor
         public DataFlightRoot( Root r)
         {
             CurrentVM = new WeatherVM(this,r);
@@ -40,14 +42,15 @@ namespace PFlight.views
             bitmapImage.BeginInit();
             bitmapImage.UriSource = new Uri(root.aircraft.images.medium[1].src); ;
             bitmapImage.EndInit();
-
-           
             picture.Source = bitmapImage;
+
             flightCode.Content=root.identification.number.@default;
             desTime.Content= (helperClass.GetDateTimeFromEpohc(Convert.ToDouble(root.time.scheduled.arrival + root.airport.destination.timezone.offset))).ToString("HH:mm");
             originTime.Content= helperClass.GetDateTimeFromEpohc(Convert.ToDouble(root.time.scheduled.departure +(double) (root.airport.origin.timezone.offset))).ToString("HH:mm");
         }
+        #endregion
 
+        #region button
         private void backData_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             NavigationService ns = NavigationService.GetNavigationService(this);
@@ -64,18 +67,12 @@ namespace PFlight.views
         {
             MainWindow parentWindow = Window.GetWindow(this) as MainWindow;
             parentWindow.frame.Content = null;
-            
-           
-
 
             parentWindow.WheatherFrame.Navigate(new WeatherVP(root));
-           
             
             parentWindow.FrameMap.Navigate(parentWindow.mapP);
            
-            // weatherButton.IsEnabled = false;
-            // weatherV = new WeatherV(lastChoos);
-            //weatherV.Show();
         }
+#endregion
     }
 }

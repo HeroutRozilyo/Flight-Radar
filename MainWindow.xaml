@@ -63,7 +63,7 @@
                         <ListBoxItem
           Content="Clean Map" />
                         <ListBoxItem
-          Content="About Us" />
+          Content="Clean Memory" />
                        
                     </ListBox>
                 </materialDesign:PopupBox>

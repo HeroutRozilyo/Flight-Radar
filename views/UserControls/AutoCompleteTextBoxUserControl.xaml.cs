@@ -23,10 +23,12 @@ namespace PFlight.views.UserControls
     /// </summary>
     public partial class AutoCompleteTextBoxUserControl : UserControl
     {
+        #region variable
         string defutlText = "Search in your History here";
         private ObservableCollection<string> autoSuggestionList = new ObservableCollection<string>();
         public FlightData flightData = new FlightData();
         public static screen1VM CurrentVM { get; set; }
+        #endregion
 
         public AutoCompleteTextBoxUserControl()
         {
@@ -239,7 +241,7 @@ namespace PFlight.views.UserControls
         private void autoTextBox_KeyDown(object sender, KeyEventArgs e)
         {
             if(e.Key == Key.Enter)
-                autoList.SelectedIndex = 1;
+                autoList.SelectedIndex = 0;
 
         }
     }

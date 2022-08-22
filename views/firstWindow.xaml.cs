@@ -24,20 +24,22 @@ namespace PFlight.views
     /// </summary>
     public partial class firstWindow : Window
     {
+        #region Variable
         public OpenWindowVM CurrentVM { get; set; }
-         
+        #endregion
         public firstWindow()
         {
             InitializeComponent();
            
             CurrentVM = new OpenWindowVM(this);
             this.DataContext = CurrentVM;
+
             IProgress<int> p = new Progress<int>((x) =>
             {
                 pbStatus.Value = x;
                 if (x == 100)
                 {
-                    //update data grid here
+                    
                     this.Dispatcher.Invoke(() =>
                     {
                         var viewModel = (OpenWindowVM)DataContext;
@@ -65,38 +67,7 @@ namespace PFlight.views
 
         }
 
-        /*
-        private void Window_ContentRendered(object sender, EventArgs e)
-        {
-            BackgroundWorker worker = new BackgroundWorker();
-            worker.WorkerReportsProgress = true;
-            worker.DoWork += worker_DoWork;
-            worker.ProgressChanged += worker_ProgressChanged;
-
-            worker.RunWorkerAsync();
-
-        }
-        void worker_DoWork(object sender, DoWorkEventArgs e)
-        {
-            for (int i = 0; i < 100; i++)
-            {
-                (sender as BackgroundWorker).ReportProgress(i);
-                Thread.Sleep(30);
-            }
-            this.Dispatcher.Invoke(() =>
-            {
-                var viewModel = (OpenWindowVM)DataContext;
-              //  if (viewModel.OpenCommand.CanExecute(null))
-                  //  viewModel.OpenCommand.Execute(null);
-            });
-           
-        }
-
-        void worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
-        {
-            pbStatus.Value = e.ProgressPercentage;
-        }
-        */
+        
         private void Window_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             if (this.WindowState == WindowState.Normal)
@@ -105,10 +76,7 @@ namespace PFlight.views
                 this.WindowState = WindowState.Normal;
         }
 
-        private void pbStatus_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
-        {
-
-        }
+       
         
        
     }

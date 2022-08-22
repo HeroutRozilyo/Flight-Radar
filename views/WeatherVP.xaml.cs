@@ -21,9 +21,10 @@ namespace PFlight.views
     /// </summary>
     public partial class WeatherVP : Page
     {
+        #region Variable
         WeatherVM CurrentVM { get; set; }
+        #endregion
 
-        
         public WeatherVP(FlightModel.FlightM.Root f)
         {
             InitializeComponent();
@@ -37,13 +38,12 @@ namespace PFlight.views
             MainWindow parentWindow = Window.GetWindow(this) as MainWindow;
             parentWindow.frame.Navigate(parentWindow.mapP);
             parentWindow.WheatherFrame.Content= null;
-            parentWindow.mapP.btnLight.Visibility = Visibility.Visible;
+          
             parentWindow.FrameMap.Content = null;
             parentWindow.WheatherFrame.Content = null;
            
            
 
-            //weatherButton.IsEnabled = true;
 
         }
 

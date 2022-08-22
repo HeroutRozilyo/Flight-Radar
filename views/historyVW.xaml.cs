@@ -20,7 +20,10 @@ namespace PFlight.views
     /// </summary>
     public partial class historyVW : Window
     {
+        #region Variable
         historyVM CurrentVM { get; set; }
+        #endregion
+        #region Constructor
         public historyVW()
         {
             InitializeComponent();
@@ -31,7 +34,13 @@ namespace PFlight.views
             calendar.DisplayDateEnd = DateTime.Today;
 
         }
-        
+        #endregion
+
+        /// <summary>
+        /// when ew choose dates
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void calendar_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
         {
             nodata.Visibility = Visibility.Hidden;

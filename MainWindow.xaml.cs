@@ -33,45 +33,37 @@ namespace PFlight
     /// </summary>
     public partial class MainWindow : Window
     {
+        #region Variable
         public static screen1VM CurrentVM { get; set; }
         public HolidayVM HolidayVM { get; set; }
         private bool isTimerRun { get; set; }
         private Root lastChoos;
         BackgroundWorker timer;
-        WeatherV weatherV;
        public MapP mapP=new MapP();
-        ListFlightVP ListFlight;
         public ObservableCollection<string> list = new ObservableCollection<string>();
 
-
+        #endregion
 
         public MainWindow()
         {
             InitializeComponent();
             CurrentVM = new screen1VM(mapP.myMap, Resources);
+            HolidayVM = new HolidayVM();
+
             this.autoSuggestionUserControl.AutoSuggestionList = CurrentVM.getObserverList();
             this.DataContext = CurrentVM;
-            // CurrentVM.cleanDB();
-            //weatherButton.IsEnabled = false;
-
             CurrentVM.CallMyMethodEvent += ImagePinMap_MouseDown;
+          
+            
+            
             frame.Navigate(mapP);
-         
-
-
-
-          
-          
             dataFrame.Visibility = Visibility.Collapsed;
-           // backData.Visibility = Visibility.Collapsed;
-
-            HolidayVM = new HolidayVM();
             dpicker.SelectedDate = DateTime.Today;
 
 
             timer = new BackgroundWorker();
             isTimerRun = true;
-            timer.DoWork += Timer_DoWork;
+           timer.DoWork += Timer_DoWork;
             timer.ProgressChanged += Timer_ProgressChanged;
             timer.WorkerReportsProgress = true;
             timer.RunWorkerAsync();
@@ -79,6 +71,7 @@ namespace PFlight
           
         }
 
+        #region thread
         private void Timer_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
             mapP.myMap.Children.Clear();
@@ -96,13 +89,29 @@ namespace PFlight
                 }
                 catch (ThreadInterruptedException) { }
         }
+        private void Window_Closing(object sender, CancelEventArgs e)
+        {
+            if (timer.IsBusy)
+            {
+                timer.CancelAsync();
+            }
 
+        }
+        #endregion
+
+        #region Show informaion on flight
         private void inlist_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var list = (System.Windows.Controls.ListView)sender; //to get the line
 
             FlightData flightO = list.SelectedItem as FlightModel.FlightData;
             Root flightM = CurrentVM.GetRootF(flightO.SourceId);
+            if(WheatherFrame.Content!=null)
+            {
+                WheatherFrame.Content = null;
+                FrameMap.Content = null;
+                frame.Navigate(mapP);
+            }
             OpenDataFlight(flightM, flightO);
             
 
@@ -117,12 +126,16 @@ namespace PFlight
             
             if(flightData != null)
                  root = CurrentVM.GetRootF(flightData.SourceId);
-             OpenDataFlight(root, flightData);
+            if (WheatherFrame.Content != null)
+            {
+                WheatherFrame.Content = null;
+                FrameMap.Content = null;
+                frame.Navigate(mapP);
+            }
+            OpenDataFlight(root, flightData);
             
-            
-
-
         }
+       
 
         private void OpenDataFlight(Root  flightM,FlightData flightO)
         {
@@ -130,8 +143,7 @@ namespace PFlight
             {
                 dataFrame.Navigate(new DataFlightRoot(flightM));
                 dataFrame.Visibility = Visibility.Visible;
-                //detailsP.DataContext = flightM;
-
+                
             }
             else
                 System.Windows.MessageBox.Show("There is a problem loading the data", "My App", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -145,18 +157,22 @@ namespace PFlight
                 CurrentVM.cm.Execute(flightM);
         }
 
-
-
-
-        private void Window_Closing(object sender, CancelEventArgs e)
+        private void autoSuggestionUserControl_selectedChangeUC(object sender, EventArgs e)
         {
-            if (timer.IsBusy)
-            {
-                timer.CancelAsync();
-            }
-
+            FlightData flightData = autoSuggestionUserControl.flightData;
+            dataFrame.Visibility = Visibility.Visible;
+            dataFrame.Navigate(new ListFlightVP(flightData));
         }
 
+        #endregion
+
+
+
+        /// <summary>
+        /// Holiday
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private async void dpicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
             string date= dpicker.SelectedDate.ToString();
@@ -166,37 +182,18 @@ namespace PFlight
 
         }
 
-        //keep the last choos flight in order to show the weather
+        /// <summary>
+        /// keep the last choos flight in order to show the weather
+        /// </summary>
+        /// <param name="f"></param>
         public void weatherB(Root f)
         {
-           // weatherButton.IsEnabled = true;
+          
             lastChoos = f;
         }
        
 
        
-        private void Window_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            
-
-        }
-
-        
-
-        
-
-           
-
-        private void autoSuggestionUserControl_selectedChangeUC(object sender, EventArgs e)
-        {
-           FlightData flightData=  autoSuggestionUserControl.flightData;
-            dataFrame.Visibility = Visibility.Visible;
-            dataFrame.Navigate(new ListFlightVP(flightData));
-           // backData.Visibility = Visibility.Visible;
-
-
-
-        }
 
         private void History_Click(object sender, RoutedEventArgs e)
         {
@@ -207,11 +204,27 @@ namespace PFlight
 
        
 
+        /// <summary>
+        /// menu
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            CurrentVM.CleanYellow();
-            if (dataFrame.Content != null)
-                dataFrame.Content = null;
+            var a= sender as System.Windows.Controls.ListBox;
+          int b= a.SelectedIndex;
+            if (b == 0)
+            {
+                CurrentVM.CleanYellow();
+                if (dataFrame.Content != null)
+                    dataFrame.Content = null;
+            }
+            else if(b == 1)
+            {
+                CurrentVM.cleanDB(); 
+             
+            }
+               
 
         }
     }

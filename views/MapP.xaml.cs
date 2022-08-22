@@ -23,56 +23,19 @@ namespace PFlight.views
     /// </summary>
     public partial class MapP : Page
     {
+        #region Variable
         public static screen1VM CurrentVM { get; set; }
-        BackgroundWorker timer;
-        private bool isTimerRun { get; set; }
+        #endregion
         public MapP()
         {
             InitializeComponent();
             CurrentVM = new screen1VM(myMap, Resources);
             this.DataContext = CurrentVM;
-           // CurrentVM.cleanDB();
-            timer = new BackgroundWorker();
-            isTimerRun = true;
-            timer.DoWork += Timer_DoWork;
-            timer.ProgressChanged += Timer_ProgressChanged;
-            timer.WorkerReportsProgress = true;
-            btnLight.Visibility = Visibility.Collapsed;
-            timer.RunWorkerAsync();
+
 
         }
 
-        
-          
-        
-
-    private void Timer_ProgressChanged(object sender, ProgressChangedEventArgs e)
-    {
-        myMap.Children.Clear();
-        CurrentVM.getUrlF();
-        CurrentVM.chooseFlight();
-    }
-
-    private void Timer_DoWork(object sender, DoWorkEventArgs e)
-    {
-        while (isTimerRun)
-            try
-            {
-                timer.ReportProgress(1);
-                Thread.Sleep(15000);
-            }
-            catch (ThreadInterruptedException) { }
-    }
-        private void btnLight_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            MainWindow parentWindow = Window.GetWindow(this) as MainWindow;
-            parentWindow.frame.Navigate(parentWindow.mapP);
-            parentWindow.FrameMap = null;
-            parentWindow.WheatherFrame = null;
-
-
-            //weatherButton.IsEnabled = true;
-
-        }
+       
+       
     }
 }

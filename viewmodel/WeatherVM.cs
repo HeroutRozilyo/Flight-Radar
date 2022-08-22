@@ -15,6 +15,7 @@ namespace PFlight.viewmodel
 {
     public class WeatherVM : INotifyPropertyChanged
     {
+        #region variable
         WeatherM weather { get; set; }
         public  CloseCommand closeCommand { get; set; }
         public double tempDivide=11.17;
@@ -24,7 +25,10 @@ namespace PFlight.viewmodel
         string destinationAname;
         WeatherVP wnd;
         Root flightData = new Root();
+        public event PropertyChangedEventHandler PropertyChanged;
+        #endregion
 
+        #region Properties
         public string OriginAname
         {
             get { return originAname; }
@@ -76,11 +80,16 @@ namespace PFlight.viewmodel
                     PropertyChanged(this, new PropertyChangedEventArgs("RootO"));
             }
         }
+        #endregion
 
 
-        public event PropertyChangedEventHandler PropertyChanged;
 
-      
+        #region Constructors
+
+        /// <summary>
+        /// for Weather Page
+        /// </summary>
+        /// <param name="v"></param>
         public WeatherVM(WeatherVP v)
         {
             weather = new WeatherM();
@@ -88,16 +97,24 @@ namespace PFlight.viewmodel
             
             closeCommand = new CloseCommand(this);
         }
+        /// <summary>
+        /// for data Page
+        /// </summary>
+        /// <param name="v"></param>
+        /// <param name="r"></param>
         public WeatherVM(DataFlightRoot v,Root r)
         {
             weather = new WeatherM();
             FlightData = r;
-           
-
              closeCommand = new CloseCommand(this);
         }
+        #endregion
 
 
+        /// <summary>
+        /// initialization
+        /// </summary>
+        /// <param name="flight"></param>
         public async void LatLonWeather(FlightModel.FlightM.Root flight)
         {
             if (flight != null)
@@ -129,10 +146,6 @@ namespace PFlight.viewmodel
            
         }
 
-        public void closeWnd()
-        {
-// wnd.Close();
-        }
-
+       
     }
 }

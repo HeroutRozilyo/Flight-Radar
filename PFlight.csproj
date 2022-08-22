@@ -239,9 +239,6 @@
     <Compile Include="views\DataFlightRoot.xaml.cs">
       <DependentUpon>DataFlightRoot.xaml</DependentUpon>
     </Compile>
-    <Compile Include="views\WeatherV.xaml.cs">
-      <DependentUpon>WeatherV.xaml</DependentUpon>
-    </Compile>
     <Compile Include="views\WeatherVP.xaml.cs">
       <DependentUpon>WeatherVP.xaml</DependentUpon>
     </Compile>
@@ -278,10 +275,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="views\DataFlightRoot.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="views\WeatherV.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

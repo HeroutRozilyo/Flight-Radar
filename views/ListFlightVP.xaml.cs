@@ -26,7 +26,10 @@ namespace PFlight.views
 
     public partial class ListFlightVP : Page
     {
+        #region Variable
         public static ListFlightVM CurrentVM { get; set; }
+        #endregion
+        #region Constructor
         public ListFlightVP( FlightData flight)
         {
             InitializeComponent();
@@ -39,6 +42,7 @@ namespace PFlight.views
           
 
         }
+        #endregion
         private void backData_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             NavigationService ns = NavigationService.GetNavigationService(this);
